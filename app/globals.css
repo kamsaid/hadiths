@@ -1,29 +1,74 @@
-@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 255, 255, 255;
-  --background-end-rgb: 245, 245, 245;
+  /* Modern color palette */
+  --primary: 20, 184, 166; /* teal-500 */
+  --primary-dark: 15, 118, 110; /* teal-700 */
+  --secondary: 76, 29, 149; /* violet-800 */
+  --accent: 245, 158, 11; /* amber-500 */
+  --light: 241, 245, 249; /* slate-100 */
+  --dark: 15, 23, 42; /* slate-900 */
+  --background: 255, 255, 255;
+  --text: 15, 23, 42;
+  --text-light: 100, 116, 139; /* slate-500 */
+  --border: 226, 232, 240; /* slate-200 */
+  --success: 16, 185, 129; /* emerald-500 */
+  --error: 239, 68, 68; /* red-500 */
 }
 
+/* Global styles */
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-family: 'Inter', sans-serif;
+  color: rgb(var(--text));
+  background: rgb(var(--background));
+  line-height: 1.6;
 }
 
 /* Arabic font styling */
 .font-arabic {
   font-family: 'Amiri', serif;
   line-height: 1.8;
+}
+
+/* Custom button styles */
+.btn {
+  @apply rounded-md transition-colors duration-200 font-medium;
+}
+
+.btn-primary {
+  @apply bg-teal-500 hover:bg-teal-600 text-white py-2 px-4;
+}
+
+.btn-secondary {
+  @apply bg-teal-100 hover:bg-teal-200 text-teal-800 py-2 px-4;
+}
+
+.btn-outline {
+  @apply border border-teal-500 text-teal-600 hover:bg-teal-50 py-2 px-4;
+}
+
+/* Card styling */
+.card {
+  @apply bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300;
+}
+
+/* Subtle animations */
+.hover-lift {
+  @apply transition-transform duration-300 hover:-translate-y-1;
+}
+
+.hover-grow {
+  @apply transition-transform duration-300 hover:scale-[1.02];
+}
+
+/* Gradient overlays */
+.gradient-overlay {
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);
 }
 
 /* Line clamp utility */
@@ -34,9 +79,36 @@ body {
   overflow: hidden;
 }
 
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 /* Add some space for content */
 main {
   min-height: calc(100vh - 180px);
+}
+
+/* Modern container with nice padding */
+.container-custom {
+  @apply mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
+}
+
+/* Subtle reveal animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Modern divider */
+.divider {
+  @apply h-px w-full bg-gradient-to-r from-transparent via-slate-300 to-transparent my-8;
 }
 
 @layer utilities {
