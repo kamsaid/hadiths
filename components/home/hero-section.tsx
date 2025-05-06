@@ -31,7 +31,7 @@ export function HeroSection() {
             <div className="relative h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl">
               <Image 
                 src="/images/hero-prayer-app.png" 
-                alt="Islamic Prayer App" 
+                alt="Yaseen" 
                 fill
                 className="object-cover"
                 priority

@@ -19,8 +19,8 @@ export function Navbar() {
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-6">
           <Link href="/" className="font-bold text-2xl">
-            {/* Replace with your logo */}
-            <span className="text-primary">Islamic</span>Prayer
+            {/* Logo with styled text */}
+            <span className="text-green-500">Yas</span><span className="text-yellow-500">een</span>
           </Link>
           <nav className="hidden md:flex items-center gap-6">
             {navigation.map((item) => (

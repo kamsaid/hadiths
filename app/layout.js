@@ -4,8 +4,8 @@ import { Footer } from "@/components/footer"
 import { ThemeProvider } from "@/components/theme-provider"
 
 export const metadata = {
-  title: 'Islamic Prayer App',
-  description: 'Find peace through prayer with our Islamic prayer and meditation app',
+  title: 'Yaseen',
+  description: 'Find peace through prayer with Yaseen - your spiritual companion for Islamic prayer and meditation',
 }
 
 export default function RootLayout({ children }) {

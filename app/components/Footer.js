@@ -6,7 +6,9 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between">
           <div className="mb-6 md:mb-0">
-            <h3 className="text-xl font-bold mb-4">Islamic Hadiths Collection</h3>
+            <h3 className="text-xl font-bold mb-4">
+              <span className="text-green-500">Yas</span><span className="text-yellow-500">een</span>
+            </h3>
             <p className="text-emerald-200 max-w-md">
               A collection of authentic hadiths from Sahih Bukhari and Sahih Muslim with explanations.
             </p>
@@ -30,7 +32,7 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-emerald-800 mt-8 pt-8 text-center text-emerald-300">
-          <p>&copy; {new Date().getFullYear()} Islamic Hadiths Collection. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} <span className="text-green-500">Yas</span><span className="text-yellow-500">een</span>. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Prophet Stories | Islamic Hub',
+  title: 'Prophet Stories | Yaseen',
   description: 'Explore the inspiring stories of Prophets mentioned in the Holy Quran and learn valuable lessons from their lives.',
   keywords: 'Islamic stories, prophets, Quran stories, Prophet Muhammad, Prophet Ibrahim, Prophet Yusuf, Prophet Musa',
 };
