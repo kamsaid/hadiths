@@ -1,0 +1,107 @@
+{
+    "school": "Hanbali",
+    "prayer_type": "fard",
+    "rakʿāt": [
+      {
+        "number": 1,
+        "steps": [
+          {
+            "id": "intention",
+            "type": "pillar",
+            "arabic": "نِيَّة",
+            "description": "Form intention for four‑rakʿah Ẓuhr, facing the qiblah.",
+            "evidence": ["Sharḥ al‑Mumtiʿ 3/11"]
+          },
+          {
+            "id": "takbir_ihram",
+            "type": "pillar",
+            "arabic": "تَكْبِيرَةُ الإِحْرَام",
+            "description": "Raise hands to shoulder tips and say “Allāhu Akbar”, then fold right over left *below the navel*.",
+            "evidence": ["HanbaliMadhhab guide"] 
+          },
+          {
+            "id": "opening_duʿāʾ",
+            "type": "sunnah",
+            "arabic": "دعاء الاستفتاح",
+            "description": "“Subḥānaka ’Allāhumma …” recited silently.",
+            "evidence": ["Islamqa Hanbali guide"]
+          },
+          {
+            "id": "taʿawwudh_basmala",
+            "type": "sunnah"
+          },
+          {
+            "id": "fātiḥa",
+            "type": "pillar",
+            "description": "Recite Sūrat al‑Fātiḥa with brief pauses at each verse.",
+            "evidence": ["ThinkingMuslim post"]
+          },
+          {
+            "id": "surah_extra",
+            "type": "sunnah",
+            "description": "Any sūrah from al‑Qadar to al‑Humazah is typical for Ẓuhr.",
+            "evidence": ["HanbaliMadhhab guide"]
+          },
+          {
+            "id": "takbir_rukūʿ",
+            "type": "wajib",
+            "description": "Raise hands and bow while saying the takbīr.",
+            "evidence": ["HanbaliMadhhab guide"]
+          },
+          {
+            "id": "tasbīḥ_rukūʿ",
+            "type": "wajib",
+            "arabic": "سُبْحَانَ رَبِّيَ الْعَظِيمِ",
+            "min_reps": 1,
+            "pref_reps": 3
+          },
+          {
+            "id": "qawmah",
+            "type": "pillar",
+            "description": "Rise saying “Samiʿa Allāhu li‑man ḥamidah”, hands raised; then “Rabbanā laka l‑ḥamd”.",
+            "evidence": ["SeekersGuidance fatwa"]
+          },
+          {
+            "id": "first_sujūd",
+            "type": "pillar",
+            "description": "Knees → hands → forehead → nose; toes toward qiblah; say “Subḥāna Rabbīya al‑Aʿlā”.",
+            "evidence": ["HanbaliMadhhab guide"]
+          },
+          {
+            "id": "jalsa",
+            "type": "wajib",
+            "description": "Sit iftirāsh saying “Rabbi‑ghfir lī” thrice.",
+            "evidence": ["HanbaliMadhhab guide"]
+          },
+          {
+            "id": "second_sujūd",
+            "type": "pillar"
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "clone_rakʿah_of": 1,
+        "exceptions": [
+          "skip opening_duʿāʾ, taʿawwudh",
+          "sit for first tashahhud after second sujūd; posture = iftirāsh"
+        ]
+      }
+    ],
+    "final_tashahhud": {
+      "posture": "tawarruk",
+      "text": "al‑Taḥiyyātu …",
+      "ṣalawāt": "Allāhumma ṣalli ʿalā Muḥammad …",
+      "duʿāʾ": "Aʿūdhu billāh min ʿadhāb Jahannam …"
+    },
+    "taslīm": {
+      "type": "pillar",
+      "text": "As‑salāmu ʿalaykum wa raḥmatullāh",
+      "right_then_left": true
+    },
+    "general_notes": [
+      "Raising the index finger occurs at each mention of “Allāh” in tashahhud.",
+      "After qawmah, hands may either return below the navel or hang at sides (both valid)."
+    ]
+  }
+  
