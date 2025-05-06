@@ -9,7 +9,7 @@ const footerLinks = [
       { name: "How to Pray", href: "/how-to-pray" },
       { name: "Quran", href: "/quran" },
       { name: "Hadiths", href: "/hadiths" },
-      { name: "Prophet Stories", href: "/stories" },
+      { name: "Prophet Stories", href: "/prophet-stories" },
     ],
   },
   {

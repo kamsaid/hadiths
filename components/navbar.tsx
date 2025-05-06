@@ -9,8 +9,8 @@ import { cn } from "@/lib/utils";
 const navigation = [
   { name: "How to Pray", href: "/prayer" },
   { name: "Quran", href: "/quran" },
-  { name: "Hadiths", href: "/hadiths" },
-  { name: "Prophet Stories", href: "/stories" },
+  { name: "Hadiths", href: "/hadith" },
+  { name: "Prophet Stories", href: "/prophet-stories" },
 ];
 
 export function Navbar() {

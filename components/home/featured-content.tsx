@@ -37,7 +37,7 @@ const featuredContent = [
     duration: "20 min",
     author: "Mufti Ismail",
     imageSrc: "/images/prophets-stories.jpg",
-    href: "/stories/yusuf",
+    href: "/prophet-stories/Prophet%20Yusuf",
   },
 ];
 

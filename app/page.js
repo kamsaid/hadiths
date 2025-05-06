@@ -3,6 +3,7 @@ import { DailyQuote } from "@/components/home/daily-quote";
 import { FeaturedContent } from "@/components/home/featured-content";
 import { PrayerCampaign } from "@/components/home/prayer-campaign";
 import { ValueProposition } from "@/components/home/value-proposition";
+import ProphetStoriesSection from "@/components/ProphetStoriesSection";
 
 export default function HomePage() {
   return (
@@ -13,6 +14,7 @@ export default function HomePage() {
         source="Quran 94:6"
       />
       <FeaturedContent />
+      <ProphetStoriesSection />
       <PrayerCampaign 
         title="Ramadan Prayer Challenge"
         participants={97783}

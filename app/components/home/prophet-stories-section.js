@@ -1,0 +1,114 @@
+"use client";
+
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { ChevronRight } from 'lucide-react';
+
+/**
+ * ProphetStoriesSection component displays a promotional section for Prophet Stories
+ * Encourages users to explore the prophet stories collection
+ */
+const ProphetStoriesSection = () => {
+  return (
+    <section className="py-16 bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/30 dark:to-teal-950/20">
+      <div className="container mx-auto px-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-10">
+            <motion.h2 
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-4xl font-bold mb-4 text-gray-800 dark:text-white"
+            >
+              Inspiring Stories of the Prophets
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
+            >
+              Explore the timeless wisdom and guidance from the lives of the prophets mentioned in the Holy Quran.
+            </motion.p>
+          </div>
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          >
+            {/* Featured Prophet Card - Yusuf */}
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Prophet Yusuf</h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
+                  The story of patience, wisdom and forgiveness. From being betrayed by his brothers to becoming a ruler in Egypt.
+                </p>
+                <Link 
+                  href="/prophet-stories/Prophet%20Yusuf" 
+                  className="inline-flex items-center text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300"
+                >
+                  Read Story <ChevronRight className="ml-1 h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+            
+            {/* Featured Prophet Card - Nuh */}
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Prophet Nuh</h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
+                  The story of perseverance and faith. Calling his people to Allah for 950 years and building the ark to save the believers.
+                </p>
+                <Link 
+                  href="/prophet-stories/Prophet%20Nuh" 
+                  className="inline-flex items-center text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300"
+                >
+                  Read Story <ChevronRight className="ml-1 h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+            
+            {/* Featured Prophet Card - Sulaiman */}
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Prophet Sulaiman</h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
+                  The story of wisdom and leadership. Blessed with the ability to speak to animals and command over jinn.
+                </p>
+                <Link 
+                  href="/prophet-stories/Prophet%20Sulaiman" 
+                  className="inline-flex items-center text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300"
+                >
+                  Read Story <ChevronRight className="ml-1 h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="mt-10 text-center"
+          >
+            <Link 
+              href="/prophet-stories" 
+              className="inline-flex items-center justify-center px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors font-medium"
+            >
+              Explore All Prophet Stories
+              <ChevronRight className="ml-2 h-5 w-5" />
+            </Link>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ProphetStoriesSection; 
