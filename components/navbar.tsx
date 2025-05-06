@@ -11,6 +11,7 @@ const navigation = [
   { name: "Quran", href: "/quran" },
   { name: "Hadiths", href: "/hadith" },
   { name: "Prophet Stories", href: "/prophet-stories" },
+  { name: "Chat with Yaseen", href: "/chat" },
 ];
 
 export function Navbar() {

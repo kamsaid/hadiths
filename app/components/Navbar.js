@@ -99,6 +99,16 @@ const Navbar = () => {
             >
               Prophet Stories
             </Link>
+            <Link 
+              href="/chat" 
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                isActive('/chat') 
+                  ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20' 
+                  : 'text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-gray-50 dark:hover:bg-gray-800'
+              }`}
+            >
+              Chat with Yaseen
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -176,6 +186,17 @@ const Navbar = () => {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Prophet Stories
+              </Link>
+              <Link 
+                href="/chat" 
+                className={`px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                  isActive('/chat') 
+                    ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20' 
+                    : 'text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-gray-50 dark:hover:bg-gray-800'
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Chat with Yaseen
               </Link>
             </div>
           </div>

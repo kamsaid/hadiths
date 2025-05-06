@@ -11,9 +11,33 @@ export function HeroSection() {
       <div className="container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-              Find Peace Through Prayer
-            </h1>
+            <div className="flex flex-col md:flex-row gap-8 items-center mb-6">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+                Find Peace Through Prayer
+              </h1>
+              {/* Kaaba image beside the heading on larger screens */}
+              <div className="hidden md:block relative h-32 w-32 lg:h-40 lg:w-40 rounded-lg overflow-hidden shrink-0 shadow-xl">
+                <Image 
+                  src="/images/kaaba-prayer.png" 
+                  alt="Muslims praying at Kaaba in Mecca" 
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </div>
+            
+            {/* Kaaba image below the heading on mobile */}
+            <div className="md:hidden relative h-40 w-full max-w-[280px] mx-auto rounded-lg overflow-hidden mb-6 shadow-xl">
+              <Image 
+                src="/images/kaaba-prayer.png" 
+                alt="Muslims praying at Kaaba in Mecca" 
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+            
             <p className="text-xl text-muted-foreground mb-8 max-w-lg">
               Join thousands of Muslims finding guidance and tranquility in daily prayer and reflection.
             </p>
