@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { getSurah } from '@/lib/quranUtils';
 import QuranSurahHeader from '@/app/components/quran/QuranSurahHeader';
 import QuranAyah from '@/app/components/quran/QuranAyah';
 
@@ -20,6 +19,8 @@ export default function QuranSurahPage({ params }) {
   const [showTranslation, setShowTranslation] = useState(true);
   // Loading state
   const [loading, setLoading] = useState(true);
+  // Error state
+  const [error, setError] = useState(null);
 
   // Parse surah number from params
   const surahNumber = parseInt(params.surah, 10);
@@ -34,11 +35,22 @@ export default function QuranSurahPage({ params }) {
     const fetchSurah = async () => {
       setLoading(true);
       try {
-        // Get surah data
-        const data = getSurah(surahNumber);
-        setSurahData(data);
+        // Get surah data from API
+        const response = await fetch(`/api/quran?surah=${surahNumber}`);
+        
+        if (!response.ok) {
+          if (response.status === 404) {
+            setSurahData(null);
+          } else {
+            throw new Error(`Failed to fetch: ${response.status} ${response.statusText}`);
+          }
+        } else {
+          const data = await response.json();
+          setSurahData(data);
+        }
       } catch (error) {
         console.error('Error fetching surah:', error);
+        setError(`Failed to load Surah #${surahNumber}. Please try again later.`);
       } finally {
         setLoading(false);
       }
@@ -60,6 +72,24 @@ export default function QuranSurahPage({ params }) {
             ))}
           </div>
         </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="container mx-auto px-4 py-16 text-center">
+        <h1 className="text-2xl font-bold mb-4 text-red-600">Error</h1>
+        <p className="mb-6 text-gray-700 dark:text-gray-300">
+          {error}
+        </p>
+        <a
+          href="/quran"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md"
+        >
+          Return to Quran Index
+        </a>
       </div>
     );
   }
