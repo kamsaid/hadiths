@@ -23,7 +23,7 @@ export default function MobileMenu({ items, className }: MobileMenuProps) {
     <div className={cn("flex items-center", className)}>
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
-          <Button variant="ghost" size="icon" aria-label="Menu">
+          <Button variant="ghost" size="icon" aria-label="Menu" className="hover:text-[#FFB100]">
             <Menu className="h-5 w-5" />
           </Button>
         </SheetTrigger>
@@ -34,7 +34,7 @@ export default function MobileMenu({ items, className }: MobileMenuProps) {
                 key={item.name}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="text-foreground hover:text-primary py-2 text-lg"
+                className="text-foreground hover:text-[#FFB100] py-2 text-lg"
               >
                 {item.name}
               </Link>
@@ -42,13 +42,13 @@ export default function MobileMenu({ items, className }: MobileMenuProps) {
             <div className="flex flex-col gap-2 mt-4">
               <Link 
                 href="/login"
-                className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
+                className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-[#FFB100] text-[#263342] hover:bg-[#FFB100]/10 h-10 px-4 py-2"
               >
                 Login
               </Link>
               <Link 
                 href="/try-free"
-                className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+                className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-[#FFB100] text-[#263342] hover:bg-[#E09800] h-10 px-4 py-2"
               >
                 Try Free
               </Link>

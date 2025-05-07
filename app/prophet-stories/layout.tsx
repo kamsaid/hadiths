@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Prophet Stories | Yaseen',
+  title: 'Prophet Stories | Islamic Guidance',
   description: 'Explore the inspiring stories of Prophets mentioned in the Holy Quran and learn valuable lessons from their lives.',
   keywords: 'Islamic stories, prophets, Quran stories, Prophet Muhammad, Prophet Ibrahim, Prophet Yusuf, Prophet Musa',
 };
@@ -12,7 +12,7 @@ export default function ProphetStoriesLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
+    <div>
       {children}
     </div>
   );

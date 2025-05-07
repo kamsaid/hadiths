@@ -5,7 +5,7 @@ import Link from "next/link";
 
 // Featured sections with Kaaba image
 const featured = [
-  { title: "How to Pray", image: "/images/kaaba-prayer.png", href: "/how-to-pray" },
+  { title: "How to Pray", image: "/images/prayer-mat.png", href: "/how-to-pray" },
   { title: "Daily Hadith", image: "/images/kaaba-prayer.png", href: "/hadith" },
   { title: "Prophet Stories", image: "/images/kaaba-prayer.png", href: "/prophet-stories" },
   { title: "Quran Explorer", image: "/images/kaaba-prayer.png", href: "/quran" },
@@ -38,14 +38,29 @@ export default function FeaturedCarousel() {
             href={item.href}
             className="relative block h-40 rounded-lg overflow-hidden transition-transform hover:scale-105 hover:shadow-lg"
           >
-            <Image 
-              src={item.image} 
-              alt={item.title} 
-              fill 
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-              className="object-cover" 
-              priority={i === 0} 
-            />
+            {item.image.includes('prayer-mat') ? (
+              // Special handling for prayer-mat image
+              <div className="absolute inset-0 bg-black">
+                <Image 
+                  src={item.image} 
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className="object-contain mx-auto px-4"
+                  priority={i === 0}
+                />
+              </div>
+            ) : (
+              // Regular handling for other images
+              <Image 
+                src={item.image} 
+                alt={item.title} 
+                fill 
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                className="object-cover" 
+                priority={i === 0} 
+              />
+            )}
             <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/60 to-transparent">
               <h4 className="text-white font-semibold text-sm">{item.title}</h4>
             </div>

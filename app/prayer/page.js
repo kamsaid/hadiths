@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import {
   Accordion,
   AccordionItem,
@@ -149,15 +150,33 @@ export default function PrayerPage() {
 
   return (
     <div className="container mx-auto max-w-3xl px-4 py-10">
-      <motion.header initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-10 text-center space-y-2">
-        <h1 className="text-3xl font-extrabold tracking-tight">How to Pray</h1>
-        <div className="flex flex-wrap justify-center items-center gap-3 text-sm">
-          <Badge variant="outline" className="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-200">
-            {activeSchool}
-          </Badge>
-          <Badge variant="outline" className="bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-200">
-            {prayerData.prayer_type}
-          </Badge>
+      <motion.header 
+        initial={{ opacity: 0 }} 
+        animate={{ opacity: 1 }} 
+        className="mb-10 space-y-8"
+      >
+        <div className="flex justify-center mb-6">
+          <div className="relative w-40 h-60 md:w-48 md:h-72">
+            <Image 
+              src="/images/prayer-mat.png" 
+              alt="Prayer mat" 
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
+        </div>
+        
+        <div className="text-center space-y-2">
+          <h1 className="text-3xl font-extrabold tracking-tight">How to Pray</h1>
+          <div className="flex flex-wrap justify-center items-center gap-3 text-sm">
+            <Badge variant="outline" className="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-200">
+              {activeSchool}
+            </Badge>
+            <Badge variant="outline" className="bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-200">
+              {prayerData.prayer_type}
+            </Badge>
+          </div>
         </div>
       </motion.header>
 

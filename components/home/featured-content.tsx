@@ -7,7 +7,7 @@ const featuredContent = [
     category: "Prayer Guide",
     duration: "5 min",
     author: "Islamic Scholars",
-    imageSrc: "/images/kaaba-prayer.png",
+    imageSrc: "/images/prayer-mat.png",
     href: "/prayer",
     isNew: true,
   },

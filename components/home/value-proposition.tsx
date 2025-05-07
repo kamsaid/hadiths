@@ -1,4 +1,5 @@
-import { Heart, BookOpen, Calendar } from "lucide-react";
+import { Heart, Calendar } from "lucide-react";
+import Image from "next/image";
 
 const features = [
   {
@@ -9,7 +10,7 @@ const features = [
   {
     title: "Transform Your Prayer Life",
     description: "Access thousands of guided prayers, Quran studies, and Islamic teachings.",
-    icon: BookOpen,
+    image: "/images/prayer-mat.png",
   },
   {
     title: "Build a Habit",
@@ -38,7 +39,18 @@ export function ValueProposition() {
               className="bg-background p-6 rounded-lg border text-center"
             >
               <div className="mx-auto mb-4 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                <feature.icon className="h-6 w-6 text-primary" />
+                {feature.icon ? (
+                  <feature.icon className="h-6 w-6 text-primary" />
+                ) : feature.image ? (
+                  <div className="relative w-8 h-8">
+                    <Image 
+                      src={feature.image} 
+                      alt={feature.title} 
+                      fill 
+                      className="object-contain" 
+                    />
+                  </div>
+                ) : null}
               </div>
               <h3 className="text-xl font-medium mb-2">{feature.title}</h3>
               <p className="text-muted-foreground">{feature.description}</p>

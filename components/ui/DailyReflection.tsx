@@ -24,7 +24,7 @@ export default function DailyReflection() {
       <p className="text-sm text-[#263342] mb-4">{verse}</p>
       <button
         onClick={copy}
-        className="text-sm font-medium text-[#1FAA59] hover:underline"
+        className="text-sm font-medium text-[#FFB100] hover:underline"
       >
         {copied ? "Copied!" : "Copy"}
       </button>

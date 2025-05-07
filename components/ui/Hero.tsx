@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import DailyReflection from "./DailyReflection";
 import { useEffect, useState } from "react";
 
@@ -26,7 +27,7 @@ export default function Hero() {
         {particles.map((p) => (
           <motion.div
             key={p.id}
-            className="absolute bg-[#1FAA59]/30 rounded-full"
+            className="absolute bg-[#FFB100]/30 rounded-full"
             style={{
               width: p.size,
               height: p.size,
@@ -48,23 +49,22 @@ export default function Hero() {
           <h1 className="text-4xl md:text-5xl font-bold text-[#263342]">
             Your Spiritual <span className="text-[#FFB100]">Journey Starts Now</span>
           </h1>
-          <div className="mt-8 flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-4 sm:space-y-0">
-            <Link 
-              href="/login"
-              className="px-6 py-3 bg-[#1FAA59] text-white rounded-lg shadow hover:bg-[#198e52] transition"
-            >
-              Start Free Journey
-            </Link>
+          <div className="mt-8">
             <Link 
               href="/how-to-pray"
-              className="px-6 py-3 border-2 border-[#263342] text-[#263342] rounded-lg hover:bg-[#263342] hover:text-white transition"
+              className="px-6 py-3 bg-[#FFB100] text-[#263342] font-medium rounded-lg shadow hover:bg-[#E09800] transition flex items-center justify-center gap-2 inline-flex"
             >
+              <span className="relative w-5 h-5">
+                <Image 
+                  src="/images/prayer-mat.png" 
+                  alt="" 
+                  fill 
+                  className="object-contain" 
+                />
+              </span>
               Browse How to Pray
             </Link>
           </div>
-          <p className="mt-4 inline-block text-sm text-[#263342] bg-white/50 px-3 py-1 rounded-full">
-            No credit card required
-          </p>
         </div>
         <DailyReflection />
       </div>
