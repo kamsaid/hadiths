@@ -40,12 +40,18 @@ export default function MobileMenu({ items, className }: MobileMenuProps) {
               </Link>
             ))}
             <div className="flex flex-col gap-2 mt-4">
-              <Button variant="outline" asChild>
-                <Link href="/login">Login</Link>
-              </Button>
-              <Button asChild>
-                <Link href="/try-free">Try Free</Link>
-              </Button>
+              <Link 
+                href="/login"
+                className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
+              >
+                Login
+              </Link>
+              <Link 
+                href="/try-free"
+                className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+              >
+                Try Free
+              </Link>
             </div>
           </nav>
         </SheetContent>

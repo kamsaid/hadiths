@@ -59,16 +59,20 @@ export function PrayerCampaign({
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button asChild>
-              <Link href={href}>
-                {status === "upcoming" ? "Join Waitlist" : 
-                 status === "active" ? "Join in Prayer" : 
-                 "View Campaign"}
-              </Link>
-            </Button>
-            <Button variant="outline" asChild>
-              <Link href={`${href}/details`}>Details</Link>
-            </Button>
+            <Link 
+              href={href}
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
+            >
+              {status === "upcoming" ? "Join Waitlist" : 
+               status === "active" ? "Join in Prayer" : 
+               "View Campaign"}
+            </Link>
+            <Link 
+              href={`${href}/details`}
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
+            >
+              Details
+            </Link>
           </div>
         </div>
       </div>

@@ -42,12 +42,18 @@ export function HeroSection() {
               Join thousands of Muslims finding guidance and tranquility in daily prayer and reflection.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" asChild>
-                <Link href="/try-free">Try Free</Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link href="/how-to-pray">Learn How to Pray</Link>
-              </Button>
+              <Link 
+                href="/try-free"
+                className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8 py-4"
+              >
+                Try Free
+              </Link>
+              <Link 
+                href="/how-to-pray"
+                className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-11 px-8 py-4"
+              >
+                Learn How to Pray
+              </Link>
             </div>
           </div>
           
