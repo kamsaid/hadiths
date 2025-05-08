@@ -59,6 +59,7 @@ export default function Hero() {
                   src="/images/prayer-mat.png" 
                   alt="" 
                   fill 
+                  sizes="(max-width: 768px) 20px, 20px"
                   className="object-contain" 
                 />
               </span>

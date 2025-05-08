@@ -47,6 +47,7 @@ export function ValueProposition() {
                       src={feature.image} 
                       alt={feature.title} 
                       fill 
+                      sizes="32px"
                       className="object-contain" 
                     />
                   </div>

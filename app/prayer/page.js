@@ -161,6 +161,7 @@ export default function PrayerPage() {
               src="/images/prayer-mat.png" 
               alt="Prayer mat" 
               fill
+              sizes="(max-width: 768px) 160px, 192px"
               className="object-contain"
               priority
             />
