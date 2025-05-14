@@ -12,6 +12,16 @@ const fadeIn = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
 };
 
+// Define types for prophet stories data structure
+type ProphetInfo = {
+  "Full Story": Record<string, string[] | Record<string, string[]>>;
+  Intro: string;
+};
+
+type ProphetEntry = {
+  [prophetName: string]: ProphetInfo;
+};
+
 export default function ProphetStoryPage({ params }: { params: { prophet: string } }) {
   const [mounted, setMounted] = useState(false);
   const decodedProphetName = decodeURIComponent(params.prophet);
@@ -130,13 +140,16 @@ export default function ProphetStoryPage({ params }: { params: { prophet: string
 }
 
 // Helper function to find prophet data by name
-function findProphetData(prophetName: string) {
-  for (const key in prophetStories) {
-    const prophetEntry = prophetStories[key as keyof typeof prophetStories];
-    const entryProphetName = Object.keys(prophetEntry)[0];
+function findProphetData(prophetName: string): { fullStory: Record<string, any>; intro: string } | null {
+  const prophetStoriesEntries = Object.entries(prophetStories);
+  
+  for (const [_, entryValue] of prophetStoriesEntries) {
+    // Get the prophet entry (which is a key-value pair where key is prophet name)
+    const prophetEntry = entryValue as ProphetEntry;
+    const entryProphetNames = Object.keys(prophetEntry);
     
-    if (entryProphetName === prophetName) {
-      const prophetInfo = prophetEntry[entryProphetName];
+    if (entryProphetNames.includes(prophetName)) {
+      const prophetInfo = prophetEntry[prophetName];
       return {
         fullStory: prophetInfo["Full Story"],
         intro: prophetInfo.Intro

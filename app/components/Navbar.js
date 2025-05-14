@@ -30,20 +30,20 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`bg-white dark:bg-gray-900 sticky top-0 z-50 transition-shadow ${
-      isScrolled ? 'shadow-md' : 'border-b border-gray-200 dark:border-gray-800'
+    <nav className={`bg-duson-cream dark:bg-duson-ebony sticky top-0 z-50 transition-shadow ${
+      isScrolled ? 'shadow-md' : 'border-b-2 border-duson-crimson/30 dark:border-duson-crimson/30'
     }`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <div className="flex justify-center items-center bg-gradient-to-r from-emerald-500 to-emerald-600 text-white w-10 h-10 rounded-lg">
+            <div className="flex justify-center items-center bg-gradient-to-r from-duson-yellow to-duson-crimson text-duson-cream w-10 h-10 rounded-lg">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
               </svg>
             </div>
-            <span className="font-semibold text-lg text-gray-800 dark:text-white">
-              <span className="text-green-500">Yas</span><span className="text-yellow-500">een</span>
+            <span className="font-semibold text-lg text-duson-ebony dark:text-duson-cream">
+              <span className="text-duson-yellow">Yas</span><span className="text-duson-crimson">een</span>
             </span>
           </Link>
 
@@ -53,8 +53,8 @@ const Navbar = () => {
               href="/" 
               className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                 isActive('/') 
-                  ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20' 
-                  : 'text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-gray-50 dark:hover:bg-gray-800'
+                  ? 'text-duson-crimson dark:text-duson-yellow bg-duson-crimson/20 dark:bg-duson-yellow/30 border-b-2 border-duson-crimson dark:border-duson-yellow' 
+                  : 'text-duson-ebony dark:text-duson-cream hover:text-duson-crimson dark:hover:text-duson-yellow hover:bg-duson-crimson/5 dark:hover:bg-duson-yellow/5'
               }`}
             >
               Home
@@ -63,8 +63,8 @@ const Navbar = () => {
               href="/quran" 
               className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                 isActive('/quran') 
-                  ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20' 
-                  : 'text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-gray-50 dark:hover:bg-gray-800'
+                  ? 'text-duson-crimson dark:text-duson-yellow bg-duson-crimson/20 dark:bg-duson-yellow/30 border-b-2 border-duson-crimson dark:border-duson-yellow' 
+                  : 'text-duson-ebony dark:text-duson-cream hover:text-duson-crimson dark:hover:text-duson-yellow hover:bg-duson-crimson/5 dark:hover:bg-duson-yellow/5'
               }`}
             >
               Quran
@@ -73,8 +73,8 @@ const Navbar = () => {
               href="/hadith" 
               className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                 isActive('/hadith') 
-                  ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20' 
-                  : 'text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-gray-50 dark:hover:bg-gray-800'
+                  ? 'text-duson-crimson dark:text-duson-yellow bg-duson-crimson/20 dark:bg-duson-yellow/30 border-b-2 border-duson-crimson dark:border-duson-yellow' 
+                  : 'text-duson-ebony dark:text-duson-cream hover:text-duson-crimson dark:hover:text-duson-yellow hover:bg-duson-crimson/5 dark:hover:bg-duson-yellow/5'
               }`}
             >
               Hadith
@@ -83,8 +83,8 @@ const Navbar = () => {
               href="/prayer" 
               className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                 isActive('/prayer') 
-                  ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20' 
-                  : 'text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-gray-50 dark:hover:bg-gray-800'
+                  ? 'text-duson-crimson dark:text-duson-yellow bg-duson-crimson/20 dark:bg-duson-yellow/30 border-b-2 border-duson-crimson dark:border-duson-yellow' 
+                  : 'text-duson-ebony dark:text-duson-cream hover:text-duson-crimson dark:hover:text-duson-yellow hover:bg-duson-crimson/5 dark:hover:bg-duson-yellow/5'
               }`}
             >
               Prayer
@@ -93,8 +93,8 @@ const Navbar = () => {
               href="/prophet-stories" 
               className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                 isActive('/prophet-stories') 
-                  ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20' 
-                  : 'text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-gray-50 dark:hover:bg-gray-800'
+                  ? 'text-duson-crimson dark:text-duson-yellow bg-duson-crimson/20 dark:bg-duson-yellow/30 border-b-2 border-duson-crimson dark:border-duson-yellow' 
+                  : 'text-duson-ebony dark:text-duson-cream hover:text-duson-crimson dark:hover:text-duson-yellow hover:bg-duson-crimson/5 dark:hover:bg-duson-yellow/5'
               }`}
             >
               Prophet Stories
@@ -103,8 +103,8 @@ const Navbar = () => {
               href="/chat" 
               className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                 isActive('/chat') 
-                  ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20' 
-                  : 'text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-gray-50 dark:hover:bg-gray-800'
+                  ? 'text-duson-crimson dark:text-duson-yellow bg-duson-crimson/20 dark:bg-duson-yellow/30 border-b-2 border-duson-crimson dark:border-duson-yellow' 
+                  : 'text-duson-ebony dark:text-duson-cream hover:text-duson-crimson dark:hover:text-duson-yellow hover:bg-duson-crimson/5 dark:hover:bg-duson-yellow/5'
               }`}
             >
               Chat with Yaseen
@@ -114,7 +114,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button 
             type="button" 
-            className="md:hidden text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white focus:outline-none"
+            className="md:hidden text-duson-ebony dark:text-duson-cream hover:text-duson-crimson dark:hover:text-duson-yellow focus:outline-none"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -130,14 +130,14 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden bg-white dark:bg-gray-900 py-4 border-t border-gray-200 dark:border-gray-800 animate-fade-in">
+          <div className="md:hidden bg-duson-cream dark:bg-duson-ebony py-4 border-t border-duson-ebony/20 dark:border-duson-cream/20 animate-fade-in">
             <div className="flex flex-col space-y-1 px-2">
               <Link 
                 href="/" 
                 className={`px-3 py-2 rounded-md text-base font-medium transition-colors ${
                   isActive('/') 
-                    ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20' 
-                    : 'text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-gray-50 dark:hover:bg-gray-800'
+                    ? 'text-duson-crimson dark:text-duson-yellow bg-duson-crimson/20 dark:bg-duson-yellow/30 border-l-4 border-duson-crimson dark:border-duson-yellow' 
+                    : 'text-duson-ebony dark:text-duson-cream hover:text-duson-crimson dark:hover:text-duson-yellow hover:bg-duson-crimson/5 dark:hover:bg-duson-yellow/5'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -147,8 +147,8 @@ const Navbar = () => {
                 href="/quran" 
                 className={`px-3 py-2 rounded-md text-base font-medium transition-colors ${
                   isActive('/quran') 
-                    ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20' 
-                    : 'text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-gray-50 dark:hover:bg-gray-800'
+                    ? 'text-duson-crimson dark:text-duson-yellow bg-duson-crimson/20 dark:bg-duson-yellow/30 border-l-4 border-duson-crimson dark:border-duson-yellow' 
+                    : 'text-duson-ebony dark:text-duson-cream hover:text-duson-crimson dark:hover:text-duson-yellow hover:bg-duson-crimson/5 dark:hover:bg-duson-yellow/5'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -158,8 +158,8 @@ const Navbar = () => {
                 href="/hadith" 
                 className={`px-3 py-2 rounded-md text-base font-medium transition-colors ${
                   isActive('/hadith') 
-                    ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20' 
-                    : 'text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-gray-50 dark:hover:bg-gray-800'
+                    ? 'text-duson-crimson dark:text-duson-yellow bg-duson-crimson/20 dark:bg-duson-yellow/30 border-l-4 border-duson-crimson dark:border-duson-yellow' 
+                    : 'text-duson-ebony dark:text-duson-cream hover:text-duson-crimson dark:hover:text-duson-yellow hover:bg-duson-crimson/5 dark:hover:bg-duson-yellow/5'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -169,8 +169,8 @@ const Navbar = () => {
                 href="/prayer" 
                 className={`px-3 py-2 rounded-md text-base font-medium transition-colors ${
                   isActive('/prayer') 
-                    ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20' 
-                    : 'text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-gray-50 dark:hover:bg-gray-800'
+                    ? 'text-duson-crimson dark:text-duson-yellow bg-duson-crimson/20 dark:bg-duson-yellow/30 border-l-4 border-duson-crimson dark:border-duson-yellow' 
+                    : 'text-duson-ebony dark:text-duson-cream hover:text-duson-crimson dark:hover:text-duson-yellow hover:bg-duson-crimson/5 dark:hover:bg-duson-yellow/5'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -180,8 +180,8 @@ const Navbar = () => {
                 href="/prophet-stories" 
                 className={`px-3 py-2 rounded-md text-base font-medium transition-colors ${
                   isActive('/prophet-stories') 
-                    ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20' 
-                    : 'text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-gray-50 dark:hover:bg-gray-800'
+                    ? 'text-duson-crimson dark:text-duson-yellow bg-duson-crimson/20 dark:bg-duson-yellow/30 border-l-4 border-duson-crimson dark:border-duson-yellow' 
+                    : 'text-duson-ebony dark:text-duson-cream hover:text-duson-crimson dark:hover:text-duson-yellow hover:bg-duson-crimson/5 dark:hover:bg-duson-yellow/5'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -191,8 +191,8 @@ const Navbar = () => {
                 href="/chat" 
                 className={`px-3 py-2 rounded-md text-base font-medium transition-colors ${
                   isActive('/chat') 
-                    ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20' 
-                    : 'text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-gray-50 dark:hover:bg-gray-800'
+                    ? 'text-duson-crimson dark:text-duson-yellow bg-duson-crimson/20 dark:bg-duson-yellow/30 border-l-4 border-duson-crimson dark:border-duson-yellow' 
+                    : 'text-duson-ebony dark:text-duson-cream hover:text-duson-crimson dark:hover:text-duson-yellow hover:bg-duson-crimson/5 dark:hover:bg-duson-yellow/5'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >

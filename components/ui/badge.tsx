@@ -18,6 +18,12 @@ const badgeVariants = cva(
         destructive:
           "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
         outline: "text-foreground",
+        yellow: "border-transparent bg-duson-yellow text-duson-ebony hover:bg-duson-yellow/80",
+        crimson: "border-transparent bg-duson-crimson text-duson-cream hover:bg-duson-crimson/80",
+        ebony: "border-transparent bg-duson-ebony text-duson-cream hover:bg-duson-ebony/80",
+        cream: "border-transparent bg-duson-cream text-duson-ebony hover:bg-duson-cream/80",
+        yellowOutline: "border-duson-yellow text-duson-yellow hover:bg-duson-yellow/10",
+        crimsonOutline: "border-duson-crimson text-duson-crimson hover:bg-duson-crimson/10",
       },
     },
     defaultVariants: {
