@@ -1,0 +1,128 @@
+{
+    "madhab": "Shafi'i",
+    "description": "Step-by-step outline of a two-rakʿah prayer.  Repeat steps 4-9 for each additional rakʿah; see step 11 for Qunūt in Fajr.",
+    "steps": [
+      {
+        "order": 1,
+        "id": "niyyah",
+        "arabic": "",
+        "transliteration": "",
+        "description": "Form the specific intention in the heart for the prayer about to be performed.",
+        "type": "fard"
+      },
+      {
+        "order": 2,
+        "id": "takbir_tahrimah",
+        "arabic": "الله أكبر",
+        "transliteration": "Allāhu Akbar",
+        "description": "Raise both hands to shoulder/ear level with palms facing Qiblah, say the opening takbīr, then place the right hand over the left on the upper chest.",
+        "type": "fard posture, sunna placement"
+      },
+      {
+        "order": 3,
+        "id": "qiyam",
+        "arabic": "دعاء الاستفتاح، أعوذ بالله، بسم الله الرحمن الرحيم، الفاتحة، سورة",
+        "transliteration": "Duʿāʾ al-istiftāḥ, Taʿawwudh, Basmala, Sūrat al-Fātiḥah, another sūrah",
+        "description": "Recite the opening supplication silently, Taʿawwudh, then Basmala aloud in audible prayers; recite al-Fātiḥah and another sūrah in the first two rakʿahs.",
+        "type": "fard + sunna"
+      },
+      {
+        "order": 4,
+        "id": "raising_hands_ruku",
+        "arabic": "",
+        "transliteration": "",
+        "description": "Say “Allāhu Akbar”, raise the hands again to shoulder level, then bow into rukūʿ.",
+        "type": "sunna"
+      },
+      {
+        "order": 5,
+        "id": "ruku",
+        "arabic": "سبحان ربي العظيم",
+        "transliteration": "Subḥāna Rabbiyal-ʿAẓīm",
+        "description": "Back straight, hands grasping knees; recite the tasbīḥ three times.",
+        "type": "fard posture, sunna dhikr"
+      },
+      {
+        "order": 6,
+        "id": "qawmah",
+        "arabic": "سمع الله لمن حمده ربنا ولك الحمد",
+        "transliteration": "Samiʿa Allāhu liman ḥamidah, Rabbanā laka l-ḥamd",
+        "description": "Rise fully upright while raising the hands a third time, then recite the tasmiʿ and taḥmīd.",
+        "type": "fard + sunna"
+      },
+      {
+        "order": 7,
+        "id": "sujud_one",
+        "arabic": "سبحان ربي الأعلى",
+        "transliteration": "Subḥāna Rabbiyal-Aʿlā",
+        "description": "Prostrate on seven points; repeat the tasbīḥ three times.",
+        "type": "fard posture, sunna dhikr"
+      },
+      {
+        "order": 8,
+        "id": "jalsah",
+        "arabic": "",
+        "transliteration": "",
+        "description": "Sit in iftirāsh (left foot flattened, right foot upright) for a brief pause.",
+        "type": "sunna"
+      },
+      {
+        "order": 9,
+        "id": "sujud_two",
+        "arabic": "سبحان ربي الأعلى",
+        "transliteration": "Subḥāna Rabbiyal-Aʿlā",
+        "description": "Perform the second sajdah exactly like the first.",
+        "type": "fard posture, sunna dhikr"
+      },
+      {
+        "order": 10,
+        "id": "second_rakah_rise",
+        "arabic": "",
+        "transliteration": "",
+        "description": "Say “Allāhu Akbar”, stand for the second rakʿah while raising the hands a fourth time.",
+        "type": "sunna"
+      },
+      {
+        "order": 11,
+        "id": "qunut_fajr_optional",
+        "arabic": "دعاء القنوت",
+        "transliteration": "Duʿāʾ al-Qunūt",
+        "description": "In Fajr only: after rising from rukūʿ in the 2nd rakʿah, recite Qunūt aloud while standing.",
+        "type": "confirmed sunna"
+      },
+      {
+        "order": 12,
+        "id": "tashahhud",
+        "arabic": "التحيات لله والصلوات والطيبات...",
+        "transliteration": "At-taḥiyyātu Lillāh…",
+        "description": "Sit and recite the tashahhud; raise the index finger at “illā Allāh” and keep it raised until the end of the supplication.",
+        "type": "fard wording, sunna gesture"
+      },
+      {
+        "order": 13,
+        "id": "additional_rakahs",
+        "arabic": "",
+        "transliteration": "",
+        "description": "For 3- or 4-rakʿah prayers, stand for the remaining rakʿahs; in these, recite only al-Fātiḥah (no additional sūrah).",
+        "type": "fard"
+      },
+      {
+        "order": 14,
+        "id": "final_sitting_salawat_dua",
+        "arabic": "اللهم صل على محمد وعلى آل محمد...",
+        "transliteration": "Allāhumma ṣalli ʿalā Muḥammad…",
+        "description": "In the last sitting (tawarruk), repeat the tashahhud, add Ṣalawāt Ibrāhīmiyyah and any closing duʿāʾ.",
+        "type": "sunna mu’akkada"
+      },
+      {
+        "order": 15,
+        "id": "taslim",
+        "arabic": "السلام عليكم ورحمة الله",
+        "transliteration": "As-salāmu ʿalaykum wa raḥmatullāh",
+        "description": "Conclude with two taslīms: turn the head right, pause briefly, then left.",
+        "type": "fard"
+      }
+    ],
+    "notes": "Hands are raised at four junctures (entering prayer, before and after rukūʿ, and when rising for the third rakʿah).  Basmala is recited aloud in audible prayers.  Qunūt is a strong sunna in the second rakʿah of Fajr."
+  }
+  

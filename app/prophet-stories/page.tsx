@@ -69,14 +69,14 @@ export default function ProphetStoriesPage() {
               className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
             >
               <div className="p-6">
-                <h2 className="text-2xl font-bold mb-3 text-[#263342]">Prophet {prophet.name}</h2>
+                <h2 className="text-2xl font-bold mb-3 text-[#263342]">Prophet {prophet.name.replace("Prophet ", "")}</h2>
                 <p className="text-[#263342]/70 line-clamp-3 mb-4">
                   {prophet.intro}
                 </p>
                 <Link 
                   href={`/prophet-stories/${encodeURIComponent(prophet.name)}`}
                   className="inline-block bg-[#FFB100] text-[#263342] py-2 px-4 rounded-md hover:bg-[#E09800] transition-colors font-medium"
-                  aria-label={`Read the story of Prophet ${prophet.name}`}
+                  aria-label={`Read the story of Prophet ${prophet.name.replace("Prophet ", "")}`}
                   tabIndex={0}
                 >
                   Read Story <span aria-hidden="true">→</span>

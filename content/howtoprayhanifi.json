@@ -1,0 +1,123 @@
+{
+    "madhab": "Hanafi",
+    "description": "Step-by-step guide to performing a two-rakʿah Ṣalāh according to the Hanafi school (repeat steps 3–8 for each additional rakʿah as required).",
+    "steps": [
+      {
+        "order": 1,
+        "id": "niyyah",
+        "arabic": "",
+        "transliteration": "",
+        "description": "Form the intention in your heart for the specific obligatory or voluntary prayer you are about to perform.",
+        "type": "fard",
+        "sources": ["turn0search0"]
+      },
+      {
+        "order": 2,
+        "id": "takbir_tahrimah",
+        "arabic": "الله أكبر",
+        "transliteration": "Allāhu Akbar",
+        "description": "Raise both hands to the level of the ears, palms facing the Qiblah, thumbs near the earlobes, and say the opening takbīr. Hands are raised only at this point in Hanafi fiqh.",
+        "type": "fard",
+        "sources": ["turn0search1", "turn0search6"]
+      },
+      {
+        "order": 3,
+        "id": "qiyam",
+        "arabic": "سبحانك اللهم وبحمدك وتبارك اسمك وتعالى جدك ولا إله غيرك",
+        "transliteration": "Subḥānaka Allāhumma wa bi-ḥamdik…",
+        "description": "Place the right hand over the left below the navel and recite Thana, Taʿawwudh, Sūrah al-Fātiḥah (utter “Bismillāh” silently), then another sūrah in the first two rakʿahs.",
+        "type": "fard+sunna",
+        "sources": ["turn0search9", "turn0search10"]
+      },
+      {
+        "order": 4,
+        "id": "ruku",
+        "arabic": "سبحان ربي العظيم",
+        "transliteration": "Subḥāna Rabbiyal-ʿAẓīm",
+        "description": "Bow so the back is straight, hands grasping the knees with fingers spread, and recite the tasbīḥ at least three times.",
+        "type": "fard posture, sunna dhikr",
+        "sources": ["turn0search0", "turn1search4"]
+      },
+      {
+        "order": 5,
+        "id": "qawmah",
+        "arabic": "سمع الله لمن حمده ربنا لك الحمد",
+        "transliteration": "Samiʿa Allāhu liman ḥamidah, Rabbana laka l-ḥamd",
+        "description": "Return to standing, ensuring full uprightness before moving to sujūd.",
+        "type": "wājib",
+        "sources": ["turn0search0"]
+      },
+      {
+        "order": 6,
+        "id": "sujud_one",
+        "arabic": "سبحان ربي الأعلى",
+        "transliteration": "Subḥāna Rabbiyal-Aʿlā",
+        "description": "Prostrate with forehead, nose, palms, knees and toes all touching the ground facing Qiblah; recite the tasbīḥ at least three times.",
+        "type": "fard posture, sunna dhikr",
+        "sources": ["turn1search4", "turn1search8"]
+      },
+      {
+        "order": 7,
+        "id": "jalsah",
+        "arabic": "اللهم اغفر لي",
+        "transliteration": "Allāhumma ghfir-lī",
+        "description": "Sit briefly on the left foot with the right foot upright before the second prostration.",
+        "type": "wājib",
+        "sources": ["turn0search8"]
+      },
+      {
+        "order": 8,
+        "id": "sujud_two",
+        "arabic": "سبحان ربي الأعلى",
+        "transliteration": "Subḥāna Rabbiyal-Aʿlā",
+        "description": "Perform the second sajdah exactly as the first.",
+        "type": "fard posture, sunna dhikr",
+        "sources": ["turn1search4", "turn1search8"]
+      },
+      {
+        "order": 9,
+        "id": "second_rakah_rise",
+        "arabic": "",
+        "transliteration": "",
+        "description": "Saying “Allāhu Akbar” (without raising the hands) stand up for the next rakʿah and repeat steps 3–8.",
+        "type": "fard",
+        "sources": ["turn0search6"]
+      },
+      {
+        "order": 10,
+        "id": "tashahhud",
+        "arabic": "التحيات لله والصلوات والطيبات…",
+        "transliteration": "At-taḥiyyātu Lillāh…",
+        "description": "After the second sajdah of the second rakʿah, sit with the left foot flat and right foot upright (iftirāsh). Raise the index finger once at “lā ilāha” and lower it at “illā Allāh”; recite the tashahhud.",
+        "type": "wājib",
+        "sources": ["turn0search7"]
+      },
+      {
+        "order": 11,
+        "id": "additional_rakahs",
+        "arabic": "",
+        "transliteration": "",
+        "description": "For 3- or 4-rakʿah prayers, rise for the remaining rakʿahs; in these, recite only Sūrah al-Fātiḥah without an additional sūrah.",
+        "type": "fard",
+        "sources": ["turn0search10"]
+      },
+      {
+        "order": 12,
+        "id": "final_sitting_salawat_dua",
+        "arabic": "اللهم صل على محمد وعلى آل محمد…",
+        "transliteration": "Allāhumma ṣalli ʿalā Muḥammad…",
+        "description": "In the last sitting (tawarruk), recite tashahhud again, Ṣalawāt Ibrāhīmiyyah, and any duʿā from the Sunnah.",
+        "type": "sunna",
+        "sources": ["turn0search0"]
+      },
+      {
+        "order": 13,
+        "id": "taslim",
+        "arabic": "السلام عليكم ورحمة الله",
+        "transliteration": "As-salāmu ʿalaykum wa raḥmatullāh",
+        "description": "Turn the head to the right then to the left, saying the salām to conclude the prayer.",
+        "type": "fard",
+        "sources": ["turn0search0"]
+      }
+    ]
+  }

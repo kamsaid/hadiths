@@ -1,0 +1,35 @@
+/* Dark mode specific styles */
+
+/* Ensures dark mode text is properly visible */
+.dark .dark-text-fix {
+  color: hsl(var(--foreground));
+}
+
+/* Specific dark mode overrides for components that need special handling */
+.dark .preserve-color {
+  color: inherit !important;
+}
+
+/* Dark mode specific adjustments for orange brand colors */
+.dark .brand-orange {
+  color: #FFB100;
+}
+
+.dark .brand-dark {
+  color: white;
+}
+
+/* Improved contrast for muted text in dark mode */
+.dark .text-muted-foreground {
+  color: hsl(215 20.2% 75.1%); /* Slightly brighter than the default muted-foreground */
+}
+
+/* Specific styles for focus states in dark mode */
+.dark *:focus-visible {
+  outline-color: #FFB100;
+}
+
+/* Dark mode adjustments for card backgrounds */
+.dark .card-hover:hover {
+  background-color: hsl(217.2 32.6% 20%); /* Slightly lighter than muted background */
+} 

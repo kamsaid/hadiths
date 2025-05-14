@@ -39,7 +39,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <Link href="/" className="font-bold text-2xl inline-block mb-4">
-              <span className="text-[#FFB100]">Yas</span><span className="text-[#263342]">een</span>
+              <span className="text-[#FFB100]">Yas</span><span className="text-[#263342] dark:text-white">een</span>
             </Link>
             <p className="text-muted-foreground mb-4">
               Find peace and guidance through daily prayer and reflection.
@@ -97,7 +97,7 @@ export function Footer() {
                 <span className="font-semibold">12,345,678</span> Prayers Completed
               </p>
               <p className="text-muted-foreground text-sm mt-2">
-                © {new Date().getFullYear()} <span className="text-[#FFB100]">Yas</span><span className="text-[#263342]">een</span>. All rights reserved.
+                © {new Date().getFullYear()} <span className="text-[#FFB100]">Yas</span><span className="text-[#263342] dark:text-white">een</span>. All rights reserved.
               </p>
             </div>
           </div>

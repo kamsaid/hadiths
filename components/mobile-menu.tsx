@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 interface MobileMenuProps {
   items: { name: string; href: string }[];
@@ -39,10 +40,17 @@ export default function MobileMenu({ items, className }: MobileMenuProps) {
                 {item.name}
               </Link>
             ))}
+            
+            {/* Theme toggle in mobile menu */}
+            <div className="flex items-center justify-between py-2">
+              <span className="text-foreground">Toggle theme</span>
+              <ThemeToggle />
+            </div>
+            
             <div className="flex flex-col gap-2 mt-4">
               <Link 
                 href="/login"
-                className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-[#FFB100] text-[#263342] hover:bg-[#FFB100]/10 h-10 px-4 py-2"
+                className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-[#FFB100] text-[#263342] dark:text-white hover:bg-[#FFB100]/10 h-10 px-4 py-2"
               >
                 Login
               </Link>
