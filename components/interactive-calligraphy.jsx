@@ -150,7 +150,7 @@ const InteractiveCalligraphy = () => {
         transition={{ duration: 0.5 }}
       >
         <motion.h2 
-          className="text-4xl md:text-6xl font-bold text-amber-500 mb-4 font-arabic"
+          className="text-4xl md:text-6xl font-bold text-duson-yellow mb-4 font-arabic"
           variants={textVariants}
           initial="hidden"
           animate="visible"

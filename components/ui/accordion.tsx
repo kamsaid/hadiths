@@ -6,10 +6,81 @@ import { ChevronDown } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
-// Root Accordion component that manages the accordion's state
-const Accordion = AccordionPrimitive.Root;
+// Create a context for custom accordion behavior
+const AccordionContext = React.createContext<{
+  open: string[];
+  toggle: (value: string) => void;
+}>({
+  open: [],
+  toggle: () => {},
+});
 
-// Accordion item wrapper
+// Custom hook to use accordion item state
+export const useAccordionItem = (value: string) => {
+  const context = React.useContext(AccordionContext);
+  
+  if (!context) {
+    throw new Error('useAccordionItem must be used within an AccordionProvider');
+  }
+  
+  const isOpen = context.open.includes(value);
+  const toggle = () => context.toggle(value);
+  
+  return { isOpen, toggle };
+};
+
+// Root Accordion component with context provider
+const Accordion = React.forwardRef<
+  React.ElementRef<typeof AccordionPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Root> & {
+    defaultOpen?: string[];
+  }
+>(({ children, type, value, defaultValue, onValueChange, defaultOpen = [], ...props }, ref) => {
+  // State to track open items
+  const [open, setOpen] = React.useState<string[]>(defaultOpen);
+  
+  // Handle value change from Radix Accordion
+  React.useEffect(() => {
+    if (type === "single" && value) {
+      setOpen(value ? [value] : []);
+    } else if (type === "multiple" && value) {
+      setOpen(Array.isArray(value) ? value : []);
+    }
+  }, [type, value]);
+  
+  // Toggle function for custom accordion items
+  const toggle = React.useCallback((itemValue: string) => {
+    if (type === "single") {
+      const newValue = open.includes(itemValue) ? "" : itemValue;
+      setOpen(newValue ? [newValue] : []);
+      onValueChange?.(newValue);
+    } else {
+      const newValue = open.includes(itemValue)
+        ? open.filter(v => v !== itemValue)
+        : [...open, itemValue];
+      setOpen(newValue);
+      onValueChange?.(newValue);
+    }
+  }, [open, onValueChange, type]);
+  
+  return (
+    <AccordionContext.Provider value={{ open, toggle }}>
+      <AccordionPrimitive.Root
+        ref={ref}
+        type={type}
+        value={value}
+        defaultValue={defaultValue}
+        onValueChange={onValueChange}
+        {...props}
+      >
+        {children}
+      </AccordionPrimitive.Root>
+    </AccordionContext.Provider>
+  );
+});
+Accordion.displayName = "Accordion";
+
+// Accordion Item component
 const AccordionItem = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
@@ -22,7 +93,7 @@ const AccordionItem = React.forwardRef<
 ));
 AccordionItem.displayName = "AccordionItem";
 
-// Accordion trigger (header) component
+// Accordion Trigger component
 const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
@@ -43,7 +114,7 @@ const AccordionTrigger = React.forwardRef<
 ));
 AccordionTrigger.displayName = "AccordionTrigger";
 
-// Accordion content component
+// Accordion Content component
 const AccordionContent = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>

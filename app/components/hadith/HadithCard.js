@@ -41,7 +41,7 @@ export default function HadithCard({ hadith, index = 0 }) {
         delay: index * 0.05, // Staggered animation
         ease: [0.22, 1, 0.36, 1] 
       }}
-      className="relative mb-6 p-0 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:ring-2 hover:ring-orange-light/60 transition break-inside-avoid"
+      className="relative mb-6 p-0 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-lg hover:-translate-y-0.5 hover:ring-2 hover:ring-duson-yellow/60 transition break-inside-avoid"
     >
       <Link 
         href={`/hadith/${hadithNumber}`}
@@ -50,7 +50,7 @@ export default function HadithCard({ hadith, index = 0 }) {
         aria-label={`Hadith number ${hadithNumber}`}
       >
         {/* Hadith Header - Orange strip with category pill */}
-        <div className="bg-[var(--orange-primary)] h-10 flex items-center justify-between px-4 rounded-t-xl text-white">
+        <div className="bg-duson-yellow h-10 flex items-center justify-between px-4 rounded-t-xl text-duson-ebony">
           <h3 className="font-semibold">Hadith #{hadithNumber}</h3>
           <span className="text-xs rounded-full bg-white/20 px-2 py-0.5">
             Nawawi
@@ -62,14 +62,14 @@ export default function HadithCard({ hadith, index = 0 }) {
           {/* Arabic Text */}
           <p 
             dir="rtl" 
-            className="font-noto text-[1.35rem] leading-relaxed text-[var(--dark-primary)] dark:text-gray-200 my-4 line-clamp-3"
+            className="font-noto text-[1.35rem] leading-relaxed text-duson-ebony dark:text-gray-200 my-4 line-clamp-3"
           >
             {truncateText(arabicText, 200)}
           </p>
           
           {/* English Translation */}
           {englishText && (
-            <p className="text-[var(--dark-primary)]/85 dark:text-gray-300 text-[15px] line-clamp-3 mb-4">
+            <p className="text-duson-ebony/85 dark:text-gray-300 text-[15px] line-clamp-3 mb-4">
               {englishText}
             </p>
           )}
@@ -77,7 +77,7 @@ export default function HadithCard({ hadith, index = 0 }) {
           {/* Read more button */}
           <div className="mt-4 pt-3 border-t border-gray-100 dark:border-gray-700">
             <button 
-              className="text-sm font-medium px-3 py-1.5 rounded-md border border-[var(--dark-primary)]/20 text-[var(--dark-primary)] dark:text-white hover:bg-orange-light dark:hover:bg-orange-light/30 transition-all"
+              className="text-sm font-medium px-3 py-1.5 rounded-md border border-duson-ebony/20 text-duson-ebony dark:text-white hover:bg-duson-yellow/10 dark:hover:bg-duson-yellow/20 transition-all"
             >
               Read full ↗
             </button>

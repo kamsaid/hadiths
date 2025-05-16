@@ -176,7 +176,7 @@ export default function HadithDetailPage({ params }) {
         <p className="text-gray-600 dark:text-gray-400 mb-6">{error}</p>
         <Link 
           href="/hadith"
-          className="inline-block bg-[var(--orange-primary)] hover:bg-[var(--orange-secondary)] text-white font-medium py-2 px-4 rounded transition-colors"
+          className="inline-block bg-duson-yellow hover:bg-duson-crimson text-duson-ebony hover:text-duson-cream font-medium py-2 px-4 rounded transition-colors"
         >
           Return to Hadiths
         </Link>
@@ -192,7 +192,7 @@ export default function HadithDetailPage({ params }) {
         <p className="text-gray-600 dark:text-gray-400 mb-6">The hadith you're looking for doesn't exist.</p>
         <Link 
           href="/hadith"
-          className="inline-block bg-[var(--orange-primary)] hover:bg-[var(--orange-secondary)] text-white font-medium py-2 px-4 rounded transition-colors"
+          className="inline-block bg-duson-yellow hover:bg-duson-crimson text-duson-ebony hover:text-duson-cream font-medium py-2 px-4 rounded transition-colors"
         >
           Return to Hadiths
         </Link>
@@ -207,17 +207,17 @@ export default function HadithDetailPage({ params }) {
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <Link 
             href="/hadith"
-            className="inline-flex items-center text-[var(--dark-primary)] dark:text-white hover:text-[var(--orange-primary)] transition-colors"
+            className="inline-flex items-center text-duson-ebony dark:text-white hover:text-duson-yellow transition-colors"
           >
             <ArrowLeft className="h-5 w-5 mr-2" />
             <span className="font-medium">Back</span>
           </Link>
           
-          <h1 className="font-semibold text-[var(--dark-primary)] dark:text-white">
+          <h1 className="font-semibold text-duson-ebony dark:text-white">
             Hadith #{hadith.idInBook}
           </h1>
           
-          <span className="text-sm px-2 py-1 rounded-full bg-[var(--orange-primary)]/10 text-[var(--orange-primary)] dark:bg-[var(--orange-primary)]/20">
+          <span className="text-sm px-2 py-1 rounded-full bg-duson-yellow/10 text-duson-yellow dark:bg-duson-yellow/20">
             Nawawi
           </span>
         </div>
@@ -233,7 +233,7 @@ export default function HadithDetailPage({ params }) {
         >
           <p 
             dir="rtl" 
-            className="text-[var(--dark-primary)] dark:text-white font-noto mx-auto max-w-4xl text-[clamp(1.8rem,3.5vw+1rem,2.6rem)] leading-[1.8] tracking-wide"
+            className="text-duson-ebony dark:text-white font-noto mx-auto max-w-4xl text-[clamp(1.8rem,3.5vw+1rem,2.6rem)] leading-[1.8] tracking-wide"
             style={{ fontSize: `calc(var(--hadith-fs, 1) * clamp(1.8rem, 3.5vw + 1rem, 2.6rem))` }}
           >
             {hadith.arabic}
@@ -248,7 +248,7 @@ export default function HadithDetailPage({ params }) {
             transition={{ duration: 0.3, delay: 0.1 }}
             className="mb-6 max-w-3xl mx-auto"
           >
-            <p className="text-md text-[var(--orange-secondary)] dark:text-[var(--orange-primary)] italic text-center">
+            <p className="text-md text-duson-crimson dark:text-duson-yellow italic text-center">
               {hadith.english.narrator}
             </p>
           </motion.div>
@@ -261,7 +261,7 @@ export default function HadithDetailPage({ params }) {
           transition={{ duration: 0.3, delay: 0.2 }}
           className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8 max-w-3xl mx-auto mb-8"
         >
-          <div className="prose prose-lg dark:prose-invert max-w-none text-[var(--dark-primary)]/90 dark:text-gray-300">
+          <div className="prose prose-lg dark:prose-invert max-w-none text-duson-ebony/90 dark:text-gray-300">
             {hadith.english.text.split('\n\n').map((paragraph, index) => (
               <p key={index} className="mb-4 leading-relaxed">
                 {paragraph}
@@ -282,7 +282,7 @@ export default function HadithDetailPage({ params }) {
             className={`flex flex-col items-center gap-1 p-2 rounded-lg transition-colors ${
               copyStatus === 'copied' 
                 ? 'text-green-600 dark:text-green-400' 
-                : 'text-[var(--dark-primary)] dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+                : 'text-duson-ebony dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
             }`}
             aria-label="Copy hadith text"
           >
@@ -296,8 +296,8 @@ export default function HadithDetailPage({ params }) {
             onClick={toggleBookmark}
             className={`flex flex-col items-center gap-1 p-2 rounded-lg transition-colors ${
               isBookmarked 
-                ? 'text-[var(--orange-primary)]' 
-                : 'text-[var(--dark-primary)] dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+                ? 'text-duson-yellow' 
+                : 'text-duson-ebony dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
             }`}
             aria-label={isBookmarked ? "Remove bookmark" : "Bookmark hadith"}
           >
@@ -309,7 +309,7 @@ export default function HadithDetailPage({ params }) {
           
           <button 
             onClick={shareHadith}
-            className="flex flex-col items-center gap-1 p-2 rounded-lg text-[var(--dark-primary)] dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            className="flex flex-col items-center gap-1 p-2 rounded-lg text-duson-ebony dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
             aria-label="Share hadith"
           >
             <Share2 className="h-5 w-5" />
@@ -324,7 +324,7 @@ export default function HadithDetailPage({ params }) {
           {/* Toggle button */}
           <motion.button
             onClick={() => setIsSliderExpanded(!isSliderExpanded)}
-            className="h-12 w-12 rounded-full bg-[var(--orange-primary)] text-white flex items-center justify-center shadow-lg hover:bg-[var(--orange-secondary)] transition-colors"
+            className="h-12 w-12 rounded-full bg-duson-yellow text-duson-ebony flex items-center justify-center shadow-lg hover:bg-duson-crimson hover:text-duson-cream transition-colors"
             whileTap={{ scale: 0.95 }}
             aria-label={isSliderExpanded ? "Close font size controls" : "Adjust font size"}
             aria-expanded={isSliderExpanded}
@@ -343,8 +343,8 @@ export default function HadithDetailPage({ params }) {
                 className="absolute right-0 bottom-14 bg-white dark:bg-gray-900 p-4 rounded-lg shadow-lg w-64"
               >
                 <div className="flex justify-between items-center mb-3">
-                  <h3 className="font-medium text-[var(--dark-primary)] dark:text-white">Font Size</h3>
-                  <span className="text-sm text-[var(--dark-primary)]/70 dark:text-white/70">
+                  <h3 className="font-medium text-duson-ebony dark:text-white">Font Size</h3>
+                  <span className="text-sm text-duson-ebony/70 dark:text-white/70">
                     {fontSize}%
                   </span>
                 </div>
@@ -352,7 +352,7 @@ export default function HadithDetailPage({ params }) {
                 <div className="flex items-center space-x-3">
                   <button 
                     onClick={() => setFontSize(Math.max(100, fontSize - 5))}
-                    className="text-[var(--dark-primary)] dark:text-white p-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+                    className="text-duson-ebony dark:text-white p-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
                     aria-label="Decrease font size"
                     disabled={fontSize <= 100}
                   >
@@ -371,7 +371,7 @@ export default function HadithDetailPage({ params }) {
                   
                   <button 
                     onClick={() => setFontSize(Math.min(175, fontSize + 5))}
-                    className="text-[var(--dark-primary)] dark:text-white p-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+                    className="text-duson-ebony dark:text-white p-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
                     aria-label="Increase font size"
                     disabled={fontSize >= 175}
                   >
@@ -379,7 +379,7 @@ export default function HadithDetailPage({ params }) {
                   </button>
                 </div>
                 
-                <div className="mt-3 text-xs text-[var(--dark-primary)]/60 dark:text-white/60 text-center">
+                <div className="mt-3 text-xs text-duson-ebony/60 dark:text-white/60 text-center">
                   Adjust the size of the Arabic text
                 </div>
               </motion.div>
@@ -394,7 +394,7 @@ export default function HadithDetailPage({ params }) {
           {hadith.idInBook > 1 && (
             <Link 
               href={`/hadith/${hadith.idInBook - 1}`}
-              className="inline-flex items-center px-4 py-2 rounded-md bg-gray-100 dark:bg-gray-800 text-[var(--dark-primary)] dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              className="inline-flex items-center px-4 py-2 rounded-md bg-gray-100 dark:bg-gray-800 text-duson-ebony dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
               Previous Hadith
@@ -403,7 +403,7 @@ export default function HadithDetailPage({ params }) {
 
           <Link 
             href={`/hadith/${hadith.idInBook + 1}`}
-            className="inline-flex items-center px-4 py-2 rounded-md bg-gray-100 dark:bg-gray-800 text-[var(--dark-primary)] dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors ml-auto"
+            className="inline-flex items-center px-4 py-2 rounded-md bg-gray-100 dark:bg-gray-800 text-duson-ebony dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors ml-auto"
           >
             Next Hadith
             <ArrowLeft className="h-4 w-4 ml-2 rotate-180" />

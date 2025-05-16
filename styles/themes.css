@@ -1,0 +1,133 @@
+/* styles/themes.css */
+
+/*
+  This file will define CSS variables for light and dark themes
+  and include .theme-light and .theme-dark utility classes.
+*/
+
+:root {
+  /* Font Families */
+  --font-family-body: 'Inter', 'sans-serif'; /* Example body font, replace with your choice */
+  --font-family-quran: 'Scheherazade New', 'Noto Naskh Arabic', 'Amiri Quran', 'serif';
+
+  /* DUSON Color Palette - Light Theme (default) */
+  --duson-cream: 48, 67%, 94%; /* #FAF5E6 */
+  --duson-yellow: 45, 97%, 51%; /* #FBBD0D */
+  --duson-ebony: 280, 2%, 18%; /* #2D2C2E */
+  --duson-crimson: 349, 98%, 55%; /* #FD1F4A */
+
+  /* Default Semantic Colors (Light Theme) - Mapped to DUSON where appropriate */
+  --background: var(--duson-cream);        /* General page background */
+  --foreground: var(--duson-ebony);         /* General text color */
+
+  --card: var(--duson-cream);             /* Card background */
+  --card-foreground: var(--duson-ebony);  /* Card text color */
+
+  --popover: var(--duson-cream);
+  --popover-foreground: var(--duson-ebony);
+
+  --primary: var(--duson-crimson);          /* Primary actions, buttons */
+  --primary-foreground: 48, 67%, 94%;    /* Text on primary elements (duson-cream) */
+
+  --secondary: var(--duson-yellow);         /* Secondary actions, accents */
+  --secondary-foreground: var(--duson-ebony); /* Text on secondary elements */
+
+  --muted: 240, 5%, 96%;                 /* Muted background (e.g., disabled items) - Using a generic light gray */
+  --muted-foreground: 240, 4%, 46%;      /* Muted text - Using a generic mid gray */
+
+  --accent: var(--duson-yellow);            /* Accent color (often same as secondary or a brighter variant) */
+  --accent-foreground: var(--duson-ebony);  /* Text on accent elements */
+
+  --destructive: var(--duson-crimson);         /* Destructive actions (e.g., delete) - Using duson-crimson */
+  --destructive-foreground: 48, 67%, 94%; /* Text on destructive elements (duson-cream) */
+
+  --border: 240, 6%, 90%;                 /* Borders - Using a generic light gray */
+  --input: 240, 6%, 90%;                  /* Input field borders - Using a generic light gray */
+  --ring: var(--duson-yellow);              /* Focus rings */
+
+  /* Shadcn/ui default variables (if you are using it or similar patterns) */
+  /* These are often a more extensive set based on the --background and --foreground */
+  /* For simplicity, we're initially mapping them directly or to DUSON colors */
+  /* You might need to adjust these if you have specific shades for light/dark modes */
+  --radius: 0.5rem; /* Default border radius for components */
+
+  /* Font sizes - to be controlled by Settings modal */
+  --font-size-base: 1rem; /* Default base font size */
+
+  /* Transitions - to be controlled by Settings modal */
+  --page-transition-duration: 0.6s;
+}
+
+.theme-light {
+  /* Light theme is default via :root. These are HSL values. */
+  --background: var(--duson-cream);
+  --foreground: var(--duson-ebony);
+  --card: var(--duson-cream);
+  --card-foreground: var(--duson-ebony);
+  --popover: var(--duson-cream);
+  --popover-foreground: var(--duson-ebony);
+  --primary: var(--duson-crimson);
+  --primary-foreground: 48, 67%, 94%; /* Duson Cream for text on crimson */
+  --secondary: var(--duson-yellow);
+  --secondary-foreground: var(--duson-ebony);
+  --muted: 240, 5%, 96%;
+  --muted-foreground: 240, 4%, 46%;
+  --accent: var(--duson-yellow);
+  --accent-foreground: var(--duson-ebony);
+  --destructive: var(--duson-crimson);
+  --destructive-foreground: 48, 67%, 94%; /* Duson Cream for text on crimson */
+  --border: 240, 6%, 90%;
+  --input: 240, 6%, 90%;
+  --ring: var(--duson-yellow);
+}
+
+.theme-dark {
+  /* DUSON Color Palette - Dark Theme */
+  /* Assuming ebony is the primary background for dark theme */
+  /* And cream or a lighter variant of ebony for text */
+  --duson-cream-dark: 48, 67%, 94%; /* #FAF5E6 - kept for primary-foreground on dark buttons */
+  --duson-yellow-dark: 45, 97%, 51%; /* #FBBD0D - kept for accents */
+  --duson-ebony-dark: 280, 2%, 18%;  /* #2D2C2E - primary dark background */
+  --duson-crimson-dark: 349, 98%, 55%; /* #FD1F4A - kept for primary actions */
+
+  /* Dark Theme Semantic Colors - Mapped to DUSON where appropriate */
+  --background: var(--duson-ebony-dark);    /* General page background */
+  --foreground: var(--duson-cream-dark);     /* General text color */
+
+  --card: 280, 2%, 22%;                   /* Card background (slightly lighter than page bg) */
+  --card-foreground: var(--duson-cream-dark); /* Card text color */
+
+  --popover: 280, 2%, 15%;                 /* Popover background (slightly darker than page bg) */
+  --popover-foreground: var(--duson-cream-dark);
+
+  --primary: var(--duson-crimson-dark);     /* Primary actions, buttons */
+  --primary-foreground: var(--duson-cream-dark); /* Text on primary elements */
+
+  --secondary: var(--duson-yellow-dark);    /* Secondary actions, accents */
+  --secondary-foreground: var(--duson-ebony-dark); /* Text on secondary elements */
+
+  --muted: 280, 2%, 25%;                  /* Muted background (e.g., disabled items) */
+  --muted-foreground: 280, 2%, 55%;       /* Muted text */
+
+  --accent: var(--duson-yellow-dark);       /* Accent color */
+  --accent-foreground: var(--duson-ebony-dark); /* Text on accent elements */
+
+  --destructive: var(--duson-crimson-dark); /* Destructive actions */
+  --destructive-foreground: var(--duson-cream-dark); /* Text on destructive elements */
+
+  --border: 280, 2%, 28%;                 /* Borders */
+  --input: 280, 2%, 28%;                   /* Input field borders */
+  --ring: var(--duson-yellow-dark);         /* Focus rings */
+}
+
+/* Utility class to apply body font */
+body {
+  font-family: var(--font-family-body);
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+/* Utility class to apply Quranic text font */
+.font-quran {
+  font-family: var(--font-family-quran);
+} 

@@ -1,5 +1,10 @@
 import './globals.css'
 import './dark-mode.css'
+import '@fontsource/amiri-quran'
+import '@fontsource/noto-naskh-arabic'
+import '@fontsource/scheherazade-new'
+import '../styles/themes.css'
+import '../styles/arabic-text.css'
 import { ThemeProvider } from "@/components/theme-provider"
 import Link from "next/link"
 import { Sparkles } from "lucide-react"
@@ -14,6 +19,21 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            // Initialize Arabic font style from localStorage
+            try {
+              const savedArabicFont = localStorage.getItem('quran-arabic-font');
+              if (savedArabicFont) {
+                document.documentElement.style.setProperty('--selected-arabic-font', savedArabicFont);
+              }
+            } catch (e) {
+              // Ignore localStorage errors
+            }
+          `,
+        }} />
+      </head>
       <body className="min-h-screen bg-background flex flex-col">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {/* Header */}
@@ -23,28 +43,28 @@ export default function RootLayout({ children }) {
                 <Link href="/" className="flex items-center gap-2">
                   <div className="relative h-8 w-8">
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <Sparkles className="h-6 w-6 text-amber-500" />
+                      <Sparkles className="h-6 w-6 text-duson-yellow" />
                     </div>
-                    <div className="absolute inset-0 animate-spin-slow rounded-full border-2 border-dashed border-amber-500 opacity-75"></div>
+                    <div className="absolute inset-0 animate-spin-slow rounded-full border-2 border-dashed border-duson-yellow opacity-75"></div>
                   </div>
-                  <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-amber-500 to-amber-600">
+                  <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-duson-yellow to-duson-crimson">
                     Yaseen
                   </span>
                 </Link>
                 <nav className="hidden md:flex gap-6">
-                  <Link href="/prayer" className="text-sm font-medium transition-colors hover:text-amber-500">
+                  <Link href="/prayer" className="text-sm font-medium transition-colors hover:text-duson-yellow">
                     How to Pray
                   </Link>
-                  <Link href="/quran" className="text-sm font-medium transition-colors hover:text-amber-500">
+                  <Link href="/quran" className="text-sm font-medium transition-colors hover:text-duson-yellow">
                     Quran
                   </Link>
-                  <Link href="/hadith" className="text-sm font-medium transition-colors hover:text-amber-500">
+                  <Link href="/hadith" className="text-sm font-medium transition-colors hover:text-duson-yellow">
                     Hadiths
                   </Link>
-                  <Link href="/prophet-stories" className="text-sm font-medium transition-colors hover:text-amber-500">
+                  <Link href="/prophet-stories" className="text-sm font-medium transition-colors hover:text-duson-yellow">
                     Prophet Stories
                   </Link>
-                  <Link href="/chat" className="text-sm font-medium transition-colors hover:text-amber-500">
+                  <Link href="/chat" className="text-sm font-medium transition-colors hover:text-duson-yellow">
                     Chat with Yaseen
                   </Link>
                 </nav>
@@ -60,7 +80,7 @@ export default function RootLayout({ children }) {
                   <Link href="/try-free" passHref legacyBehavior>
                     <Button
                       size="sm"
-                      className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700"
+                      className="bg-gradient-to-r from-duson-yellow to-duson-crimson hover:from-duson-crimson hover:to-duson-yellow text-duson-ebony dark:text-duson-ebony"
                       as="a"
                     >
                       Try Free
@@ -81,7 +101,7 @@ export default function RootLayout({ children }) {
               <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
                 <div>
                   <div className="flex items-center gap-2 mb-4">
-                    <Sparkles className="h-5 w-5 text-amber-500" />
+                    <Sparkles className="h-5 w-5 text-duson-yellow" />
                     <span className="text-lg font-bold">Yaseen</span>
                   </div>
                   <p className="text-sm text-muted-foreground">

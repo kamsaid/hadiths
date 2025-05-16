@@ -3,11 +3,11 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Slider } from "@/components/ui/slider";
-import { Minus, Plus } from 'lucide-react';
+import { Minus, Plus, Type } from 'lucide-react';
 
 /**
- * FontSizeSlider - Floating component that allows users to adjust the font size of Quranic verses
- * Uses CSS variables to control font scaling across the entire surah
+ * FontSizeSlider - Floating component that allows users to adjust the font size
+ * Applies font scaling to both Arabic verses and translations via CSS variables
  */
 const FontSizeSlider = () => {
   // Default font size starts at 100% (scale of 1)
@@ -16,9 +16,21 @@ const FontSizeSlider = () => {
   
   // Apply font size changes with CSS variables
   useEffect(() => {
-    // Scale ranges from 1.0 to 1.75
-    const fontScale = 1 + ((fontSize - 100) / 100) * 0.75;
-    document.documentElement.style.setProperty('--ayah-fs', fontScale);
+    // Arabic text scale with enhanced readability for larger sizes
+    const arabicFontScale = 1 + ((fontSize - 100) / 100) * 1;
+    // Translation text scale (smaller range)
+    const translationFontScale = 1 + ((fontSize - 100) / 100) * 0.5;
+    
+    // Apply to CSS variables for use throughout the app
+    document.documentElement.style.setProperty('--ayah-fs', arabicFontScale);
+    document.documentElement.style.setProperty('--translation-fs', translationFontScale);
+    
+    // Also adjust letter and word spacing for better readability at larger sizes
+    const letterSpacing = 0.03 + ((fontSize - 100) / 100) * 0.02; // Increases slightly with size
+    const wordSpacing = 0.08 + ((fontSize - 100) / 100) * 0.05;   // Increases with size
+    
+    document.documentElement.style.setProperty('--arabic-letter-spacing', `${letterSpacing}em`);
+    document.documentElement.style.setProperty('--arabic-word-spacing', `${wordSpacing}em`);
     
     // Store user preference
     localStorage.setItem('quran-font-size', fontSize);
@@ -38,14 +50,12 @@ const FontSizeSlider = () => {
         {/* Toggle button */}
         <motion.button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="h-12 w-12 rounded-full bg-[var(--orange-primary)] text-white flex items-center justify-center shadow-lg hover:bg-[var(--orange-secondary)] transition-colors"
+          className="h-12 w-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg hover:bg-primary/90 transition-colors"
           whileTap={{ scale: 0.95 }}
           aria-label={isExpanded ? "Close font size controls" : "Adjust font size"}
           aria-expanded={isExpanded}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
-          </svg>
+          <Type className="h-5 w-5" />
         </motion.button>
         
         {/* Slider panel */}
@@ -56,11 +66,11 @@ const FontSizeSlider = () => {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.9 }}
               transition={{ type: 'spring', damping: 25 }}
-              className="absolute right-0 bottom-14 bg-white dark:bg-gray-900 p-4 rounded-lg shadow-lg w-64"
+              className="absolute right-0 bottom-14 bg-card p-4 rounded-lg shadow-lg border border-border w-64"
             >
               <div className="flex justify-between items-center mb-3">
-                <h3 className="font-medium text-[var(--dark-primary)] dark:text-white">Font Size</h3>
-                <span className="text-sm text-[var(--dark-primary)]/70 dark:text-white/70">
+                <h3 className="font-medium text-foreground">Font Size</h3>
+                <span className="text-sm text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
                   {fontSize}%
                 </span>
               </div>
@@ -68,7 +78,7 @@ const FontSizeSlider = () => {
               <div className="flex items-center space-x-3">
                 <button 
                   onClick={() => setFontSize(Math.max(100, fontSize - 5))}
-                  className="text-[var(--dark-primary)] dark:text-white p-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+                  className="text-foreground p-1.5 rounded-md hover:bg-accent/50 transition-colors"
                   aria-label="Decrease font size"
                   disabled={fontSize <= 100}
                 >
@@ -87,7 +97,7 @@ const FontSizeSlider = () => {
                 
                 <button 
                   onClick={() => setFontSize(Math.min(175, fontSize + 5))}
-                  className="text-[var(--dark-primary)] dark:text-white p-1.5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+                  className="text-foreground p-1.5 rounded-md hover:bg-accent/50 transition-colors"
                   aria-label="Increase font size"
                   disabled={fontSize >= 175}
                 >
@@ -95,8 +105,8 @@ const FontSizeSlider = () => {
                 </button>
               </div>
               
-              <div className="mt-3 text-xs text-[var(--dark-primary)]/60 dark:text-white/60 text-center">
-                Adjust the size of the Arabic text
+              <div className="mt-3 text-xs text-muted-foreground text-center">
+                Adjusts size of both Arabic and translation text
               </div>
             </motion.div>
           )}

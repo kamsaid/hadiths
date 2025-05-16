@@ -8,28 +8,24 @@
 /* Theme colors */
 :root {
   /* Duson Color Palette */
-  --color-bg-light:  #FAF5E6;
-  --color-bg-dark:   #2D2C2E;
-  --color-accent:    #FBBD0D;
-  --color-text-main: #2D2C2E;
-  --color-text-alt:  #FD1F4A;
+  --color-bg-light:  #FAF5E6; /* duson-cream */
+  --color-bg-dark:   #2D2C2E; /* duson-ebony */
+  --color-accent:    #FBBD0D; /* duson-yellow */
+  --color-text-main: #2D2C2E; /* duson-ebony */
+  --color-text-alt:  #FD1F4A; /* duson-crimson */
   
-  /* Legacy colors - to be deprecated */
-  --orange-primary: #FFB100;
-  --orange-secondary: #E09800;
-  --orange-light: rgba(255, 177, 0, 0.2);
-  --dark-primary: #263342;
+  /* No more legacy colors */
 }
 
 [data-theme="dark"], .dark {
-  --color-bg-light: #2D2C2E;   /* swap for dark mode */
-  --color-text-main: #FAF5E6;
+  --color-bg-light: #2D2C2E;   /* swap for dark mode - duson-ebony */
+  --color-text-main: #FAF5E6;  /* swap for dark mode - duson-cream */
 }
 
 @layer base {
   :root {
-    --background: 39 54% 94%;  /* #FAF5E6 in hsl */
-    --foreground: 240 2% 17%;  /* #2D2C2E in hsl */
+    --background: 39 54% 94%;  /* #FAF5E6 in hsl - duson-cream */
+    --foreground: 240 2% 17%;  /* #2D2C2E in hsl - duson-ebony */
 
     --muted: 39 54% 90%;
     --muted-foreground: 240 2% 47%;
@@ -43,16 +39,16 @@
     --border: 240 2% 80%;
     --input: 240 2% 80%;
 
-    --primary: 45 97% 52%;     /* #FBBD0D in hsl */
+    --primary: 45 97% 52%;     /* #FBBD0D in hsl - duson-yellow */
     --primary-foreground: 240 2% 17%;
 
     --secondary: 240 2% 17%;
     --secondary-foreground: 39 54% 94%;
 
-    --accent: 45 97% 52%;     /* #FBBD0D in hsl */
+    --accent: 45 97% 52%;     /* #FBBD0D in hsl - duson-yellow */
     --accent-foreground: 240 2% 17%;
 
-    --destructive: 347 98% 56%;  /* #FD1F4A in hsl */
+    --destructive: 347 98% 56%;  /* #FD1F4A in hsl - duson-crimson */
     --destructive-foreground: 39 54% 94%;
 
     --ring: 45 97% 52%;
@@ -60,19 +56,15 @@
     --radius: 0.5rem;
 
     --chart-1: 12 76% 61%;
-
     --chart-2: 173 58% 39%;
-
     --chart-3: 197 37% 24%;
-
     --chart-4: 43 74% 66%;
-
     --chart-5: 27 87% 67%;
   }
 
   .dark {
-    --background: 240 2% 17%;   /* #2D2C2E in hsl */
-    --foreground: 39 54% 94%;   /* #FAF5E6 in hsl */
+    --background: 240 2% 17%;   /* #2D2C2E in hsl - duson-ebony */
+    --foreground: 39 54% 94%;   /* #FAF5E6 in hsl - duson-cream */
 
     --muted: 240 2% 25%;
     --muted-foreground: 39 54% 85%;
@@ -86,28 +78,24 @@
     --border: 240 2% 30%;
     --input: 240 2% 30%;
 
-    --primary: 45 97% 52%;     /* #FBBD0D in hsl */
+    --primary: 45 97% 52%;     /* #FBBD0D in hsl - duson-yellow */
     --primary-foreground: 240 2% 17%;
 
     --secondary: 39 54% 94%;
     --secondary-foreground: 240 2% 17%;
 
-    --accent: 45 97% 52%;      /* #FBBD0D in hsl */
+    --accent: 45 97% 52%;      /* #FBBD0D in hsl - duson-yellow */
     --accent-foreground: 240 2% 17%;
 
-    --destructive: 347 98% 56%; /* #FD1F4A in hsl */
+    --destructive: 347 98% 56%; /* #FD1F4A in hsl - duson-crimson */
     --destructive-foreground: 39 54% 94%;
 
     --ring: 45 97% 52%;
 
     --chart-1: 220 70% 50%;
-
     --chart-2: 160 60% 45%;
-
     --chart-3: 30 80% 55%;
-
     --chart-4: 280 65% 60%;
-
     --chart-5: 340 75% 55%;
   }
 }

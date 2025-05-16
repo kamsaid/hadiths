@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ImagePlaceholder = ({ title, theme = "emerald" }) => {
+const ImagePlaceholder = ({ title, theme = "duson" }) => {
   // Create a simple color mapping for different themes
   const colorMap = {
     emerald: {
@@ -28,10 +28,15 @@ const ImagePlaceholder = ({ title, theme = "emerald" }) => {
       text: "text-violet-800",
       accent: "bg-violet-200",
     },
+    duson: {
+      bg: "bg-duson-cream/30", 
+      text: "text-duson-ebony dark:text-duson-cream",
+      accent: "bg-duson-yellow/30",
+    },
   };
 
-  // Use the theme or default to emerald
-  const colors = colorMap[theme] || colorMap.emerald;
+  // Use the theme or default to duson
+  const colors = colorMap[theme] || colorMap.duson;
 
   // Create a unique pattern based on the title
   const getPatternElements = () => {

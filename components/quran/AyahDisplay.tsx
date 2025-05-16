@@ -2,11 +2,20 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Bookmark, 
-  Share, 
-  Copy
-} from 'lucide-react';
+import { Bookmark, Share, Copy } from 'lucide-react';
+
+// Type definitions
+type AyahProps = {
+  ayah: {
+    number: number;
+    text: string;
+    translation: string;
+    transliteration?: string;
+  };
+  surahNumber: number;
+  showTransliteration?: boolean;
+  onActive?: () => void;
+};
 
 /**
  * AyahDisplay - Typography-focused component for displaying a single verse (ayah)
@@ -18,15 +27,15 @@ const AyahDisplay = ({
   surahNumber, 
   showTransliteration = false,
   onActive = () => {},
-}) => {
+}: AyahProps) => {
   // State for action button hover effects
-  const [activeAction, setActiveAction] = useState(null);
+  const [activeAction, setActiveAction] = useState<string | null>(null);
   
   // Format the verse reference (e.g., "2:255" for Ayatul Kursi)
   const verseReference = `${surahNumber}:${ayah.number}`;
   
   // State to track the selected Arabic font style
-  const [arabicFont, setArabicFont] = useState('uthmani');
+  const [arabicFont, setArabicFont] = useState<string>('uthmani');
   
   // Load the saved Arabic font style
   useEffect(() => {
@@ -88,36 +97,42 @@ const AyahDisplay = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: ayah.number * 0.05 }}
-      className="relative mb-16 group"
+      className="relative mb-12 group"
       onViewportEnter={() => onActive()}
     >
-      <div className="bg-white dark:bg-background rounded-xl p-6 border border-border/50 shadow-sm">
+      <div className="bg-white dark:bg-background rounded-xl p-6 border border-border/50 shadow-sm hover:shadow-md transition-shadow duration-200">
         {/* Verse number indicator */}
         <div className="absolute -left-4 -top-4 h-10 w-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-medium text-base ring-2 ring-background shadow-lg">
           {ayah.number}
         </div>
         
         {/* Arabic text with proper typography */}
-        <div dir="rtl" lang="ar" className="mb-6 pt-4 quran-verse">
-          <p style={{ fontSize: `calc(var(--ayah-fs, 1) * 1em)` }} className={`font-${arabicFont} text-arabic-large verse-animation text-foreground text-center`}>
+        <div dir="rtl" lang="ar" className="mb-8 pt-4 quran-verse">
+          <p className={`font-${arabicFont} text-arabic-large verse-animation text-foreground text-center`}>
             {ayah.text}
           </p>
         </div>
         
-        {/* Separator line */}
-        <div className="w-24 h-px bg-muted mx-auto mb-6"></div>
+        {/* Separator line with decorative element */}
+        <div className="flex items-center justify-center mb-6">
+          <div className="h-px bg-muted w-1/4"></div>
+          <div className="mx-4 text-primary">•</div>
+          <div className="h-px bg-muted w-1/4"></div>
+        </div>
         
         {/* Optional transliteration */}
         {showTransliteration && ayah.transliteration && (
-          <p className="text-muted-foreground text-base italic mb-4 text-center">
-            {ayah.transliteration}
-          </p>
+          <div className="mb-6">
+            <p className="text-muted-foreground text-base italic text-center leading-relaxed px-2">
+              {ayah.transliteration}
+            </p>
+          </div>
         )}
         
         {/* Translation - clearly separated from Arabic */}
-        <div className="bg-muted/30 p-4 rounded-lg">
-          <p style={{ fontSize: 'calc(var(--ayah-fs, 1) * 0.8)' }} className="text-foreground/90 leading-relaxed">
-            {ayah.translation}
+        <div className="bg-muted/30 p-5 rounded-lg border border-border/30">
+          <p className="text-foreground/90 leading-relaxed text-base md:text-lg">
+            {ayah.translation || "Translation unavailable"}
           </p>
         </div>
         

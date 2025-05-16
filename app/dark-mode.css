@@ -10,26 +10,26 @@
   color: inherit !important;
 }
 
-/* Dark mode specific adjustments for orange brand colors */
-.dark .brand-orange {
-  color: #FFB100;
+/* Dark mode specific adjustments for brand colors */
+.dark .brand-yellow {
+  color: hsl(var(--duson-yellow));
 }
 
 .dark .brand-dark {
-  color: white;
+  color: hsl(var(--duson-cream));
 }
 
 /* Improved contrast for muted text in dark mode */
 .dark .text-muted-foreground {
-  color: hsl(215 20.2% 75.1%); /* Slightly brighter than the default muted-foreground */
+  color: hsl(39 54% 85%); /* Slightly brighter than the default muted-foreground - based on duson-cream */
 }
 
 /* Specific styles for focus states in dark mode */
 .dark *:focus-visible {
-  outline-color: #FFB100;
+  outline-color: hsl(var(--duson-yellow));
 }
 
 /* Dark mode adjustments for card backgrounds */
 .dark .card-hover:hover {
-  background-color: hsl(217.2 32.6% 20%); /* Slightly lighter than muted background */
+  background-color: hsl(280 2% 22%); /* Slightly lighter than duson-ebony background */
 } 

@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/accordion";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, ChevronDown } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import clsx from "clsx";
 import hanbaliPrayerData from '@/content/howtopray.json';
 import hanafiPrayerData from '@/content/howtoprayhanifi.json';
@@ -109,9 +109,8 @@ const PrayerStep = ({ step }) => (
  */
 const RakaaDisplay = ({ rakaa, defaultOpen }) => (
   <AccordionItem value={`rakaa-${rakaa.number}`} className="border-none">
-    <AccordionTrigger className="rounded-lg bg-gray-100 dark:bg-gray-800 px-4 py-3 mb-2 hover:bg-gray-200 dark:hover:bg-gray-700 text-left w-full flex justify-between items-center">
+    <AccordionTrigger className="rounded-lg bg-gray-100 dark:bg-gray-800 px-4 py-3 mb-2 hover:bg-gray-200 dark:hover:bg-gray-700 text-left w-full">
       <span className="text-lg font-semibold">Rakʿa {rakaa.number}</span>
-      <ChevronDown className="h-5 w-5 transition-transform" />
     </AccordionTrigger>
     <AccordionContent className="space-y-4 pl-1 pr-1">
       {rakaa.exceptions && (

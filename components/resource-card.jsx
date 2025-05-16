@@ -41,14 +41,14 @@ const ResourceCard = ({ title, description, image, icon, href = "#" }) => {
           
           {/* Icon in bottom left */}
           <div className="absolute bottom-3 left-3 bg-white dark:bg-gray-800 rounded-full p-2 shadow-md transition-transform duration-300 group-hover:scale-110">
-            <div className="text-amber-500">
+            <div className="text-duson-yellow">
               {icon}
             </div>
           </div>
         </div>
         
         <CardContent className="p-5 flex-1 flex flex-col">
-          <h3 className="font-medium text-lg mb-2 transition-colors group-hover:text-amber-500">
+          <h3 className="font-medium text-lg mb-2 transition-colors group-hover:text-duson-yellow">
             {title}
           </h3>
           
@@ -56,7 +56,7 @@ const ResourceCard = ({ title, description, image, icon, href = "#" }) => {
             {description}
           </p>
           
-          <div className="flex items-center text-sm font-medium text-amber-500 mt-auto">
+          <div className="flex items-center text-sm font-medium text-duson-yellow mt-auto">
             <span>Explore</span>
             <ChevronRight 
               className={`ml-1 h-4 w-4 transition-transform duration-300 ${isHovered ? 'translate-x-1' : ''}`} 

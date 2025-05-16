@@ -63,7 +63,7 @@ const DailyQuote = () => {
           
           <footer className="mt-6">
             <div className="flex items-center">
-              <div className="w-10 h-1 bg-gradient-to-r from-amber-500 to-emerald-500 rounded-full mr-3"></div>
+              <div className="w-10 h-1 bg-gradient-to-r from-duson-yellow to-duson-crimson rounded-full mr-3"></div>
               <div>
                 <cite className="not-italic font-medium text-lg text-neutral-200">
                   {quote.author}

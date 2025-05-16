@@ -2,10 +2,11 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Search, X } from 'lucide-react';
 
 /**
- * Sticky search bar component for the Quran list page
- * Features a clean design with animated transitions
+ * Enhanced search bar component for the Quran list page
+ * Features clean design with animation and improved usability
  */
 export default function QuranSearch({ onSearch, className = "" }) {
   const [value, setValue] = useState("");
@@ -40,38 +41,27 @@ export default function QuranSearch({ onSearch, className = "" }) {
   }, []);
 
   return (
-    <div className={`bg-white dark:bg-gray-800 shadow-md rounded-lg sticky top-0 z-10 p-2 transition-all duration-300 ${className}`}>
-      <div className={`relative rounded-lg border ${
-        isFocused 
-          ? 'border-[var(--orange-primary)] dark:border-[var(--orange-primary)]' 
-          : 'border-gray-200 dark:border-gray-700'
-      } transition-colors duration-200`}>
+    <div 
+      className={`sticky top-0 z-10 py-4 ${className}`}
+    >
+      <div className={`relative bg-card rounded-lg shadow-sm transition-all duration-300 overflow-hidden
+        ${isFocused ? 'ring-2 ring-primary' : 'ring-1 ring-border'}`}>
         {/* Search icon */}
-        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
+        <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+          <Search 
             className={`h-5 w-5 ${
-              isFocused ? 'text-[var(--orange-primary)]' : 'text-gray-400 dark:text-gray-500'
+              isFocused ? 'text-primary' : 'text-muted-foreground'
             } transition-colors duration-200`}
-            fill="none" 
-            viewBox="0 0 24 24" 
-            stroke="currentColor"
-          >
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth={2} 
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" 
-            />
-          </svg>
+            aria-hidden="true"
+          />
         </div>
         
         {/* Search input field */}
         <input
           ref={inputRef}
           type="text"
-          className="py-3 pl-10 pr-14 w-full bg-transparent outline-none text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 rounded-lg"
-          placeholder="Search by name or number"
+          className="py-3 pl-12 pr-14 w-full bg-transparent outline-none text-foreground placeholder-muted-foreground"
+          placeholder="Search by name, number, or meaning..."
           value={value}
           onChange={handleChange}
           onFocus={() => setIsFocused(true)}
@@ -87,26 +77,36 @@ export default function QuranSearch({ onSearch, className = "" }) {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
               transition={{ duration: 0.15 }}
-              className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+              className="absolute inset-y-0 right-0 flex items-center pr-4 text-muted-foreground hover:text-foreground"
               onClick={handleClear}
               aria-label="Clear search"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
+              <X className="h-5 w-5" aria-hidden="true" />
             </motion.button>
           )}
         </AnimatePresence>
         
         {/* Keyboard shortcut indicator */}
-        <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+        <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
           {!value && (
-            <kbd className="hidden sm:flex items-center px-2 py-1 text-xs font-semibold text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 rounded">
+            <kbd className="hidden sm:flex items-center px-2 py-1 text-xs font-semibold text-muted-foreground bg-muted rounded">
               {navigator.platform.indexOf('Mac') === 0 ? '⌘K' : 'Ctrl+K'}
             </kbd>
           )}
         </div>
       </div>
+      
+      {/* View Toggle - Can be added here for Surah/Juz views */}
+      {/* <div className="flex justify-center mt-4">
+        <div className="inline-flex bg-muted rounded-full p-1">
+          <button className="px-4 py-1.5 rounded-full bg-card text-foreground shadow-sm text-sm font-medium">
+            Surahs
+          </button>
+          <button className="px-4 py-1.5 rounded-full text-muted-foreground text-sm font-medium">
+            Juz
+          </button>
+        </div>
+      </div> */}
     </div>
   );
 } 

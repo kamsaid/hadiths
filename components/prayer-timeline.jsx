@@ -127,15 +127,15 @@ const PrayerTimeline = () => {
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8">
         <div className="flex items-center mb-4 md:mb-0">
-          <MapPin className="w-5 h-5 text-amber-500 mr-2" />
+          <MapPin className="w-5 h-5 text-duson-yellow mr-2" />
           <span className="text-sm text-muted-foreground">{location}</span>
         </div>
         
-        <Card className="bg-amber-500/10 border-amber-500/20 px-4 py-3">
+        <Card className="bg-duson-yellow/10 border-duson-yellow/20 px-4 py-3">
           <div className="flex items-center">
-            <Clock className="w-5 h-5 text-amber-500 mr-2" />
+            <Clock className="w-5 h-5 text-duson-yellow mr-2" />
             <div>
-              <p className="text-sm font-medium">Next Prayer: <span className="text-amber-500">{nextPrayer.name}</span></p>
+              <p className="text-sm font-medium">Next Prayer: <span className="text-duson-yellow">{nextPrayer.name}</span></p>
               <p className="text-xs text-muted-foreground">Time remaining: {getTimeRemaining()}</p>
             </div>
           </div>
@@ -153,20 +153,20 @@ const PrayerTimeline = () => {
               {/* Timeline dot */}
               <div className={`absolute left-4 w-4 h-4 rounded-full mt-1.5 -ml-2 z-10 ${
                 prayer.active 
-                  ? "bg-amber-500 ring-4 ring-amber-500/20" 
+                  ? "bg-duson-yellow ring-4 ring-duson-yellow/20" 
                   : "bg-gray-300 dark:bg-gray-600"
               }`}></div>
               
               {/* Prayer card */}
               <div className={`ml-10 flex-1 ${
-                prayer.active ? "bg-amber-500/10 border-amber-500/20" : ""
+                prayer.active ? "bg-duson-yellow/10 border-duson-yellow/20" : ""
               } rounded-lg p-4 transition-all duration-300 hover:shadow-md`}>
                 <div className="flex justify-between items-start">
                   <div>
                     <div className="flex items-center">
                       <h3 className="text-lg font-medium">{prayer.name}</h3>
                       {prayer.active && (
-                        <span className="ml-2 inline-block px-2 py-0.5 text-xs font-medium bg-amber-500 text-white rounded-full">
+                        <span className="ml-2 inline-block px-2 py-0.5 text-xs font-medium bg-duson-yellow text-white rounded-full">
                           Current
                         </span>
                       )}

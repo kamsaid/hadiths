@@ -194,9 +194,29 @@ function getAllSurahs() {
  * @returns {string} The English translation or a fallback translation
  */
 function getTranslation(surahNumber, ayahNumber) {
+  // Convert parameters to integers to ensure proper comparison
+  surahNumber = parseInt(surahNumber, 10);
+  ayahNumber = parseInt(ayahNumber, 10);
+  
   // Check if translation exists in cache
   if (translationCache[surahNumber] && translationCache[surahNumber][ayahNumber]) {
     return translationCache[surahNumber][ayahNumber];
+  }
+  
+  // Extend translation cache for Surah Al-Baqarah with more verses
+  if (surahNumber === 2 && !translationCache[2][ayahNumber] && ayahNumber <= 10) {
+    // Add more translations for Surah Al-Baqarah
+    const additionalTranslations = {
+      6: "Those who disbelieve - it is all the same for them whether you warn them or do not warn them - they will not believe.",
+      7: "Allah has set a seal upon their hearts and upon their hearing, and over their vision is a veil. And for them is a great punishment.",
+      8: "And of the people are some who say, \"We believe in Allah and the Last Day,\" but they are not believers.",
+      9: "They [think to] deceive Allah and those who believe, but they deceive not except themselves and perceive [it] not.",
+      10: "In their hearts is disease, so Allah has increased their disease; and for them is a painful punishment because they [habitually] used to lie."
+    };
+    
+    if (additionalTranslations[ayahNumber]) {
+      return additionalTranslations[ayahNumber];
+    }
   }
   
   // Common fallbacks for various surahs when exact translations aren't available
@@ -220,6 +240,19 @@ function getTranslation(surahNumber, ayahNumber) {
   // Try to provide a meaningful fallback based on position in the surah
   if (ayahNumber === 1 && surahNumber !== 9) { // First verse (except Surah 9 which doesn't start with Bismillah)
     return commonVerses.bismillah;
+  }
+  
+  // Specific fallback for Surah Al-Baqarah
+  if (surahNumber === 2) {
+    if (ayahNumber <= 5) {
+      return [
+        "Alif, Lam, Meem.",
+        "This is the Book about which there is no doubt, a guidance for those conscious of Allah -",
+        "Who believe in the unseen, establish prayer, and spend out of what We have provided for them,",
+        "And who believe in what has been revealed to you, [O Muhammad], and what was revealed before you, and of the Hereafter they are certain [in faith].",
+        "Those are upon [right] guidance from their Lord, and it is those who are the successful."
+      ][ayahNumber - 1];
+    }
   }
   
   // For specific surah types, provide more appropriate fallbacks
@@ -254,6 +287,9 @@ function getTranslation(surahNumber, ayahNumber) {
  * @returns {Object} The surah data with verses and translations
  */
 function getSurah(surahNumber) {
+  // Convert to number to ensure proper comparison
+  surahNumber = parseInt(surahNumber, 10);
+  
   // Return from cache if available
   if (surahCache[surahNumber]) {
     return surahCache[surahNumber];
@@ -447,22 +483,7 @@ function getSurah(surahNumber) {
       
       // Fallback to our cache or generate placeholder if no translation found in XML
       if (!translation) {
-        if (translationCache[surahNumber] && translationCache[surahNumber][ayahNumber]) {
-          translation = translationCache[surahNumber][ayahNumber];
-        } else {
-          // Provide a meaningful fallback
-          // First check common patterns
-          if (ayahNumber === 1 && surahNumber !== 9) { 
-            translation = "In the name of Allah, the Entirely Merciful, the Especially Merciful.";
-          } else {
-            // Use more generic fallback
-            const surahEnglishNames = englishNames.slice(0, 39);
-            const surahName = surahNumber <= surahEnglishNames.length 
-              ? surahEnglishNames[surahNumber-1] 
-              : `Surah ${surahNumber}`;
-            translation = `Verse ${ayahNumber} of ${surahName}. [Actual translation will be added soon, In sha Allah]`;
-          }
-        }
+        translation = getTranslation(surahNumber, ayahNumber);
       }
       
       // Add transliteration if available

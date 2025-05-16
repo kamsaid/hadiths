@@ -17,12 +17,16 @@ module.exports = {
   		}
   	},
   	extend: {
+      fontFamily: {
+        sans: ['var(--font-family-body)', 'sans-serif'], // Default body font
+        amiri: ['var(--font-family-quran)', 'Amiri Quran', 'serif'] // Amiri Quran font
+      },
   		colors: {
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
-  			background: 'hsl(var(--background))',
-  			foreground: 'hsl(var(--foreground))',
+  			background: 'hsl(var(--background))', // General background
+  			foreground: 'hsl(var(--foreground))', // General foreground
   			primary: {
   				DEFAULT: 'hsl(var(--primary))',
   				foreground: 'hsl(var(--primary-foreground))'
@@ -58,11 +62,13 @@ module.exports = {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			},
+        // Custom DUSON color palette mapped to CSS variables
+        // These CSS variables will be defined in styles/themes.css
         duson: {
-          cream:  '#FAF5E6', // background (light)
-          yellow: '#FBBD0D', // accent / links
-          ebony:  '#2D2C2E', // background (dark) + text
-          crimson:'#FD1F4A', // highlight / buttons / links
+          cream:  'hsl(var(--duson-cream))',   // background (light)
+          yellow: 'hsl(var(--duson-yellow))', // accent / links
+          ebony:  'hsl(var(--duson-ebony))',  // background (dark) + text
+          crimson:'hsl(var(--duson-crimson))' // highlight / buttons / links
         }
   		},
   		borderRadius: {
@@ -104,13 +110,35 @@ module.exports = {
                   to: {
                       transform: 'rotate(360deg)'
                   }
+              },
+              // Page curl animation keyframes
+              'page-curl': {
+                '0%': {
+                  transform: 'rotateY(0deg) perspective(1000px) rotateX(0deg)',
+                  transformOrigin: 'left center',
+                },
+                '100%': {
+                  transform: 'rotateY(-180deg) perspective(1000px) rotateX(0deg)',
+                  transformOrigin: 'left center',
+                },
+              },
+              'page-slide-from-right': {
+                '0%': { transform: 'translateX(100%)', opacity: '0' },
+                '100%': { transform: 'translateX(0)', opacity: '1' },
+              },
+              'page-slide-to-left': {
+                '0%': { transform: 'translateX(0)', opacity: '1' },
+                '100%': { transform: 'translateX(-100%)', opacity: '0' },
               }
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out',
   			ripple: 'ripple 0.6s linear forwards',
-              'spin-slow': 'spin-slow 8s linear infinite'
+              'spin-slow': 'spin-slow 8s linear infinite',
+              'page-curl': 'page-curl var(--page-transition-duration, 0.6s) ease-in-out',
+              'page-slide-from-right': 'page-slide-from-right var(--page-transition-duration, 0.5s) ease-out',
+              'page-slide-to-left': 'page-slide-to-left var(--page-transition-duration, 0.5s) ease-out'
   		}
   	}
   },

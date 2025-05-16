@@ -67,7 +67,7 @@ const ScrollSpySidebar = ({ ayahs, currentAyahNumber, setCurrentAyahNumber }) =>
       {/* Desktop sidebar - fixed position */}
       <div className="hidden lg:block">
         <div className="sticky top-32 pl-8 max-h-[70vh] overflow-y-auto scrollbar-thin">
-          <h3 className="text-sm font-medium text-[var(--dark-primary)]/70 dark:text-white/70 mb-3">
+          <h3 className="text-sm font-medium text-duson-ebony/70 dark:text-white/70 mb-3">
             Verses
           </h3>
           <ul className="space-y-1.5">
@@ -77,8 +77,8 @@ const ScrollSpySidebar = ({ ayahs, currentAyahNumber, setCurrentAyahNumber }) =>
                   onClick={() => scrollToVerse(ayah.number)}
                   className={`w-full text-left px-3 py-1.5 rounded text-sm transition-colors ${
                     activeVerse === ayah.number
-                      ? 'bg-[var(--orange-light)] text-[var(--dark-primary)] font-medium dark:text-white'
-                      : 'text-[var(--dark-primary)]/60 dark:text-white/60 hover:bg-gray-100 dark:hover:bg-gray-800/30'
+                      ? 'bg-duson-yellow/10 text-duson-ebony font-medium dark:text-white'
+                      : 'text-duson-ebony/60 dark:text-white/60 hover:bg-gray-100 dark:hover:bg-gray-800/30'
                   }`}
                   data-active={activeVerse === ayah.number}
                   aria-current={activeVerse === ayah.number ? 'true' : 'false'}
@@ -95,7 +95,7 @@ const ScrollSpySidebar = ({ ayahs, currentAyahNumber, setCurrentAyahNumber }) =>
       <div className="lg:hidden">
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed right-4 bottom-20 z-30 bg-[var(--orange-primary)] text-white p-3 rounded-full shadow-lg hover:bg-[var(--orange-secondary)] transition-colors"
+          className="fixed right-4 bottom-20 z-30 bg-duson-yellow text-duson-ebony p-3 rounded-full shadow-lg hover:bg-duson-crimson hover:text-duson-cream transition-colors"
           aria-label="Open verse navigator"
         >
           <Menu className="h-6 w-6" />
@@ -123,7 +123,7 @@ const ScrollSpySidebar = ({ ayahs, currentAyahNumber, setCurrentAyahNumber }) =>
                 className="fixed right-0 top-0 bottom-0 w-[280px] bg-white dark:bg-gray-900 z-50 p-5 overflow-y-auto"
               >
                 <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-lg font-semibold text-[var(--dark-primary)] dark:text-white">
+                  <h2 className="text-lg font-semibold text-duson-ebony dark:text-white">
                     Verses
                   </h2>
                   <button
@@ -131,7 +131,7 @@ const ScrollSpySidebar = ({ ayahs, currentAyahNumber, setCurrentAyahNumber }) =>
                     className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
                     aria-label="Close verse navigator"
                   >
-                    <X className="h-5 w-5 text-[var(--dark-primary)] dark:text-white" />
+                    <X className="h-5 w-5 text-duson-ebony dark:text-white" />
                   </button>
                 </div>
                 
@@ -142,8 +142,8 @@ const ScrollSpySidebar = ({ ayahs, currentAyahNumber, setCurrentAyahNumber }) =>
                       onClick={() => scrollToVerse(ayah.number)}
                       className={`flex items-center justify-center h-10 rounded-md text-sm transition-colors ${
                         activeVerse === ayah.number
-                          ? 'bg-[var(--orange-primary)] text-white font-medium'
-                          : 'border border-gray-200 dark:border-gray-700 text-[var(--dark-primary)] dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+                          ? 'bg-duson-yellow text-duson-ebony font-medium'
+                          : 'border border-gray-200 dark:border-gray-700 text-duson-ebony dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
                       }`}
                       data-active={activeVerse === ayah.number}
                       aria-current={activeVerse === ayah.number ? 'true' : 'false'}

@@ -5,10 +5,6 @@ import * as SliderPrimitive from "@radix-ui/react-slider"
 
 import { cn } from "@/lib/utils"
 
-/**
- * Slider component based on Radix UI Slider primitive
- * Used for adjusting values within a range with a draggable thumb
- */
 const Slider = React.forwardRef<
   React.ElementRef<typeof SliderPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>
@@ -21,19 +17,12 @@ const Slider = React.forwardRef<
     )}
     {...props}
   >
-    <SliderPrimitive.Track
-      className="relative h-1.5 w-full grow overflow-hidden rounded-full bg-gray-200 dark:bg-gray-800"
-    >
-      <SliderPrimitive.Range className="absolute h-full bg-[var(--orange-primary)] dark:bg-[var(--orange-primary)]" />
+    <SliderPrimitive.Track className="relative h-1.5 w-full grow overflow-hidden rounded-full bg-primary/20">
+      <SliderPrimitive.Range className="absolute h-full bg-primary" />
     </SliderPrimitive.Track>
-    {props.value?.map((_, i) => (
-      <SliderPrimitive.Thumb
-        key={i}
-        className="block h-4 w-4 rounded-full border border-[var(--orange-secondary)] bg-white dark:border-[var(--orange-primary)] dark:bg-gray-950 ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-gray-950 dark:focus-visible:ring-gray-300"
-      />
-    ))}
+    <SliderPrimitive.Thumb className="block h-4 w-4 rounded-full border border-primary/50 bg-background shadow transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50" />
   </SliderPrimitive.Root>
 ))
 Slider.displayName = SliderPrimitive.Root.displayName
 
-export { Slider } 
+export { Slider }

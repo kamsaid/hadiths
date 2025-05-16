@@ -224,7 +224,7 @@ export default function HadithIndexPage() {
           <p className="text-gray-700 dark:text-gray-300 mb-8">{error}</p>
           <button 
             onClick={() => window.location.reload()}
-            className="px-4 py-2 bg-[var(--orange-primary)] text-white rounded-md hover:bg-[var(--orange-secondary)] transition"
+            className="px-4 py-2 bg-duson-yellow text-duson-ebony rounded-md hover:bg-duson-crimson hover:text-duson-cream transition"
           >
             Try Again
           </button>
@@ -241,7 +241,7 @@ export default function HadithIndexPage() {
         transition={{ duration: 0.3 }}
         className="mb-8"
       >
-        <h1 className="text-3xl font-bold mb-2 text-[var(--dark-primary)] dark:text-white">
+        <h1 className="text-3xl font-bold mb-2 text-duson-ebony dark:text-white">
           {collection ? collection.english.title : "Hadith Collection"}
         </h1>
         <p className="text-gray-600 dark:text-gray-400">
@@ -264,7 +264,7 @@ export default function HadithIndexPage() {
             <input
               type="text"
               placeholder="Search by number, Arabic, or English…"
-              className="w-full py-2.5 px-4 pr-10 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-[var(--orange-primary)]"
+              className="w-full py-2.5 px-4 pr-10 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-duson-yellow"
               value={searchQuery}
               onChange={handleSearchChange}
             />
@@ -275,7 +275,7 @@ export default function HadithIndexPage() {
           <select
             value={selectedCollection}
             onChange={handleCollectionChange}
-            className="py-2.5 px-4 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-[var(--dark-primary)] dark:text-white focus:outline-none focus:ring-2 focus:ring-[var(--orange-primary)] sm:max-w-[200px]"
+            className="py-2.5 px-4 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-duson-ebony dark:text-white focus:outline-none focus:ring-2 focus:ring-duson-yellow sm:max-w-[200px]"
             aria-label="Filter by collection"
           >
             {collectionsOptions.map(option => (
@@ -303,7 +303,7 @@ export default function HadithIndexPage() {
             <div className="mt-8 flex justify-center">
               <button
                 onClick={loadMoreHadiths}
-                className="px-6 py-2.5 bg-[var(--orange-primary)] text-white rounded-md hover:bg-[var(--orange-secondary)] transition shadow-sm"
+                className="px-6 py-2.5 bg-duson-yellow text-duson-ebony rounded-md hover:bg-duson-crimson hover:text-duson-cream transition shadow-sm"
               >
                 Load More Hadiths
               </button>
@@ -318,7 +318,7 @@ export default function HadithIndexPage() {
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
-              className="mt-4 px-4 py-2 bg-[var(--orange-primary)] text-white rounded-md hover:bg-[var(--orange-secondary)] transition"
+              className="mt-4 px-4 py-2 bg-duson-yellow text-duson-ebony rounded-md hover:bg-duson-crimson hover:text-duson-cream transition"
             >
               Clear Search
             </button>

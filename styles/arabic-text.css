@@ -1,0 +1,105 @@
+/* styles/arabic-text.css */
+
+/* Default values for CSS variables */
+:root {
+  --arabic-letter-spacing: 0.03em;
+  --arabic-word-spacing: 0.08em;
+  --selected-arabic-font: 'uthmani'; /* Default font style */
+}
+
+/* Base styles for Arabic text */
+[dir="rtl"] {
+  text-align: right;
+}
+
+/* Font style variations */
+.font-uthmani {
+  font-family: 'Scheherazade New', 'Amiri Quran', serif;
+  letter-spacing: var(--arabic-letter-spacing, 0.03em);
+  word-spacing: var(--arabic-word-spacing, 0.08em);
+  line-height: 2;
+}
+
+.font-naskh {
+  font-family: 'Noto Naskh Arabic', 'Scheherazade New', serif;
+  letter-spacing: var(--arabic-letter-spacing, 0.02em);
+  word-spacing: var(--arabic-word-spacing, 0.06em);
+  line-height: 1.9;
+}
+
+.font-amiri {
+  font-family: 'Amiri Quran', 'Scheherazade New', serif;
+  letter-spacing: var(--arabic-letter-spacing, 0.01em);
+  word-spacing: var(--arabic-word-spacing, 0.05em);
+  line-height: 1.8;
+}
+
+/* Dynamic font selection based on the selected style */
+.font-quran,
+.font-arabic {
+  font-family: var(--font-family-quran);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Apply styles based on the selected font */
+:root[style*="--selected-arabic-font: 'uthmani'"] .font-quran,
+:root[style*="--selected-arabic-font: uthmani"] .font-quran {
+  font-family: 'Scheherazade New', 'Amiri Quran', serif;
+}
+
+:root[style*="--selected-arabic-font: 'naskh'"] .font-quran,
+:root[style*="--selected-arabic-font: naskh"] .font-quran {
+  font-family: 'Noto Naskh Arabic', 'Scheherazade New', serif;
+}
+
+:root[style*="--selected-arabic-font: 'amiri'"] .font-quran,
+:root[style*="--selected-arabic-font: amiri"] .font-quran {
+  font-family: 'Amiri Quran', 'Scheherazade New', serif;
+}
+
+/* Size variations for different contexts */
+.text-arabic-large {
+  font-size: clamp(2.5rem, 4vw + 1rem, 3.5rem);
+}
+
+.text-arabic-medium {
+  font-size: clamp(1.75rem, 2.5vw + 1rem, 2.5rem);
+}
+
+.text-arabic-small {
+  font-size: clamp(1.25rem, 1.5vw + 0.5rem, 1.75rem);
+}
+
+/* Verse-specific styling */
+.quran-verse {
+  position: relative;
+  padding: 0.5em 0;
+}
+
+/* Enhance readability on dark backgrounds */
+.dark .font-quran,
+.dark .font-amiri,
+.dark .font-uthmani,
+.dark .font-naskh {
+  text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Special styling for verse numbers or marks */
+.verse-number {
+  font-family: 'Scheherazade New', serif;
+  font-size: 0.6em;
+  vertical-align: top;
+  color: var(--duson-crimson);
+  margin: 0 0.2em;
+}
+
+/* Add subtle animation when verses come into view */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.verse-animation {
+  animation: fadeIn 0.5s ease-out forwards;
+} 
