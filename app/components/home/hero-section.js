@@ -28,8 +28,8 @@ export function HeroSection() {
               Access the Quran, Hadiths, and Prayer Times in one place. Deepen your understanding and strengthen your connection with Allah.
             </p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center lg:justify-start">
-              <Link 
-                href="/quran"
+            <Link 
+                href="/quran/1"
                 className="bg-white text-emerald-700 hover:bg-emerald-50 px-6 py-3 rounded-lg font-medium transition shadow-lg hover:shadow-xl"
               >
                 Read Quran

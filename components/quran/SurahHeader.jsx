@@ -4,13 +4,11 @@ import { useQuran } from './QuranLayout';
 import Link from 'next/link';
 import { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  ChevronLeft, 
-  ChevronRight, 
-  Settings, 
+import {
+  ChevronLeft,
+  ChevronRight,
+  Settings,
   Share,
-  Menu,
-  X,
   ChevronDown
 } from 'lucide-react';
 import SettingsModal from './SettingsModal';
@@ -45,10 +43,10 @@ export default function SurahHeader({ surah }) {
   const [readingProgress, setReadingProgress] = useState(0);
   const [scrolled, setScrolled] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  // New state for sidebar visibility
-  const [showSidebar, setShowSidebar] = useState(false);
-  // New state for sidebar tab
-  const [sidebarTab, setSidebarTab] = useState('surah'); // 'surah' or 'juz'
+  // Accordion open state
+  const [isAccordionOpen, setIsAccordionOpen] = useState(false);
+  // Active tab for accordion ('surah' or 'juz')
+  const [activeTab, setActiveTab] = useState('surah');
   const lastScrollY = useRef(0);
   // Add missing progressBarRef
   const progressBarRef = useRef(null);
@@ -64,9 +62,9 @@ export default function SurahHeader({ surah }) {
   const prevSurah = surah.number > 1 ? surah.number - 1 : null;
   const nextSurah = surah.number < 114 ? surah.number + 1 : null;
   
-  // Fetch all surahs and juz when sidebar is opened
+  // Fetch all surahs and juz when accordion is opened
   useEffect(() => {
-    if (showSidebar && allSurahs.length === 0) {
+    if (isAccordionOpen && allSurahs.length === 0) {
       const fetchSurahs = async () => {
         setLoading(true);
         try {
@@ -97,7 +95,7 @@ export default function SurahHeader({ surah }) {
       
       fetchSurahs();
     }
-  }, [showSidebar, allSurahs.length]);
+  }, [isAccordionOpen, allSurahs.length]);
 
   // Track scroll position to update progress and collapse header
   useEffect(() => {
@@ -182,14 +180,14 @@ export default function SurahHeader({ surah }) {
     }
   };
 
-  // Toggle sidebar visibility
-  const toggleSidebar = () => {
-    setShowSidebar(!showSidebar);
+  // Toggle accordion visibility
+  const toggleAccordion = () => {
+    setIsAccordionOpen(!isAccordionOpen);
   };
 
-  // Handle changing sidebar tab
+  // Handle changing accordion tab
   const handleTabChange = (tab) => {
-    setSidebarTab(tab);
+    setActiveTab(tab);
   };
   
   // Handle search input change
@@ -235,6 +233,181 @@ export default function SurahHeader({ surah }) {
       className={`sticky top-0 z-50 backdrop-blur-md bg-background/80 transition-all duration-300 
         ${scrolled ? 'shadow-md' : ''}`}
     >
+          {/* Accordion-style Surah/Juz selector */}
+      <div className="container mx-auto px-4 py-2">
+        <button
+          className="w-full flex items-center justify-between p-2 bg-card rounded-md"
+          onClick={toggleAccordion}
+          aria-expanded={isAccordionOpen}
+        >
+          <div className="flex items-center space-x-2">
+            <div className="h-8 w-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-medium">
+              {surah.number}
+            </div>
+            <h2 className="text-sm font-medium text-foreground">{surah.englishName}</h2>
+          </div>
+          <ChevronDown
+            className={`h-5 w-5 text-foreground transition-transform ${
+              isAccordionOpen ? 'rotate-180' : ''
+            }`}
+          />
+        </button>
+        <AnimatePresence>
+          {isAccordionOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.2 }}
+              className="overflow-hidden mt-2"
+            >
+              {/* Tab navigation for Surah/Juz */}
+              <div className="flex justify-center mb-4">
+                <div className="inline-flex bg-muted rounded-full p-1">
+                  <button
+                    className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                      activeTab === 'surah'
+                        ? 'bg-card text-foreground shadow-sm'
+                        : 'text-muted-foreground hover:text-foreground'
+                    }`}
+                    onClick={() => handleTabChange('surah')}
+                  >
+                    Surahs
+                  </button>
+                  <button
+                    className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                      activeTab === 'juz'
+                        ? 'bg-card text-foreground shadow-sm'
+                        : 'text-muted-foreground hover:text-foreground'
+                    }`}
+                    onClick={() => handleTabChange('juz')}
+                  >
+                    Juz
+                  </button>
+                </div>
+              </div>
+
+              {/* Search input */}
+              <div className="mb-4">
+                <div className="relative">
+                  <input
+                    type="text"
+                    placeholder="Search by name, number, or meaning..."
+                    className="w-full py-2 pl-4 pr-10 rounded-lg bg-muted border border-muted text-foreground"
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                  />
+                  <div className="absolute right-3 top-2.5 text-muted-foreground">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              {/* Loading state */}
+              {loading && (
+                <div className="py-12 flex justify-center">
+                  <div className="animate-spin h-8 w-8 border-2 border-primary rounded-full border-t-transparent"></div>
+                </div>
+              )}
+
+              {/* Surah Tab Content */}
+              {activeTab === 'surah' && !loading && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+                  {filteredSurahs.length > 0 ? (
+                    filteredSurahs.map((item) => (
+                      <Link
+                        key={item.number}
+                        href={`/quran/${item.number}`}
+                        onClick={() => setIsAccordionOpen(false)}
+                        className={`p-3 rounded-lg transition-colors ${
+                          item.number === surah.number
+                            ? 'bg-primary/10 border border-primary/20'
+                            : 'hover:bg-accent/10'
+                        }`}
+                      >
+                        <div className="flex items-center gap-2">
+                          <div
+                            className={`h-8 w-8 rounded-full flex items-center justify-center text-sm ${
+                              item.number === surah.number
+                                ? 'bg-primary text-primary-foreground'
+                                : 'bg-muted text-muted-foreground'
+                            }`}
+                          >
+                            {item.number}
+                          </div>
+                          <div>
+                            <h3 className="text-sm font-medium text-foreground">{item.englishName}</h3>
+                            <p className="text-xs text-muted-foreground">{item.englishNameTranslation}</p>
+                          </div>
+                        </div>
+                      </Link>
+                    ))
+                  ) : (
+                    <div className="col-span-full py-8 text-center text-muted-foreground">
+                      No surahs found matching "{searchQuery}"
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Juz Tab Content */}
+              {activeTab === 'juz' && !loading && (
+                <div className="space-y-4">
+                  {filteredJuz.length > 0 ? (
+                    filteredJuz.map((juz) => (
+                      <div key={juz.number} className="border border-border rounded-lg overflow-hidden">
+                        <div className="p-3 bg-muted flex items-center justify-between">
+                          <h3 className="font-medium text-foreground">{juz.name}</h3>
+                          <span className="text-xs bg-background text-muted-foreground px-2 py-1 rounded-full">
+                            {juz.surahs.length} surahs
+                          </span>
+                        </div>
+                        <div className="p-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          {juz.surahs.map((item) => (
+                            <Link
+                              key={item.number}
+                              href={`/quran/${item.number}`}
+                              onClick={() => setIsAccordionOpen(false)}
+                              className={`p-2 rounded-md transition-colors flex items-center gap-2 ${
+                                item.number === surah.number
+                                  ? 'bg-primary/10'
+                                  : 'hover:bg-accent/10'
+                              }`}
+                            >
+                              <div
+                                className={`h-6 w-6 rounded-full flex items-center justify-center text-xs ${
+                                  item.number === surah.number
+                                    ? 'bg-primary text-primary-foreground'
+                                    : 'bg-muted text-muted-foreground'
+                                }`}
+                              >
+                                {item.number}
+                              </div>
+                              <span className="text-sm text-foreground">{item.englishName}</span>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="py-8 text-center text-muted-foreground">
+                      No juz found with surahs matching "{searchQuery}"
+                    </div>
+                  )}
+                </div>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
       {/* Main header */}
       <div className="container mx-auto px-4 transition-all duration-300">
         <motion.div 
@@ -245,67 +418,8 @@ export default function SurahHeader({ surah }) {
           }}
           transition={{ duration: 0.3 }}
         >
-          {/* Left section: Back/Menu button and Surah info */}
-          <div className="flex items-center space-x-3">
-            {/* Button to toggle sidebar for surah/juz selection */}
-            <button 
-              onClick={toggleSidebar}
-              className="p-2 rounded-full hover:bg-accent/20 transition-colors"
-              aria-label={showSidebar ? "Close Surah list" : "Open Surah list"}
-              tabIndex="0"
-            >
-              {showSidebar ? (
-                <X className="h-5 w-5 text-foreground" />
-              ) : (
-                <Menu className="h-5 w-5 text-foreground" />
-              )}
-            </button>
-            
-            {/* Collapsed view shows just surah number and name */}
-            {isCollapsed ? (
-              <div className="flex items-center space-x-2">
-                <div className="h-8 w-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-medium">
-                  {surah.number}
-                </div>
-                <h1 className="text-md font-medium text-foreground">
-                  {surah.englishName}
-                </h1>
-                <button 
-                  onClick={toggleSidebar}
-                  className="p-1 rounded-full hover:bg-accent/20 transition-colors"
-                  aria-label="Toggle Surah menu"
-                >
-                  <ChevronDown className={`h-4 w-4 text-foreground transition-transform ${showSidebar ? 'rotate-180' : ''}`} />
-                </button>
-              </div>
-            ) : (
-              <div className="flex items-center">
-                <div>
-                  <h1 className="text-lg font-medium text-foreground flex items-center">
-                    {surah.englishName}
-                    <button 
-                      onClick={toggleSidebar}
-                      className="ml-2 p-1 rounded-full hover:bg-accent/20 transition-colors"
-                      aria-label="Toggle Surah menu"
-                    >
-                      <ChevronDown className={`h-4 w-4 text-foreground transition-transform ${showSidebar ? 'rotate-180' : ''}`} />
-                    </button>
-                  </h1>
-                  <div className="flex items-center text-sm text-foreground/70">
-                    <span className={`px-2 py-0.5 text-xs rounded-full mr-2 ${
-                      surah.revelationType === 'Meccan' 
-                        ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-200' 
-                        : 'bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-200'
-                    }`}>
-                      {surah.revelationType}
-                    </span>
-                    <span>{surah.ayahs?.length || surah.ayahCount} verses</span>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
           
+          <div />
           {/* Right section: Actions and navigation */}
           <div className="flex items-center space-x-2">
             {/* Progress indicator (only visible when collapsed) */}
@@ -418,156 +532,6 @@ export default function SurahHeader({ surah }) {
         </div>
       )}
       
-      {/* Collapsible Sidebar for Surah/Juz navigation */}
-      <AnimatePresence>
-        {showSidebar && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="absolute top-full left-0 right-0 bg-background border-t border-border shadow-lg max-h-[70vh] overflow-y-auto"
-          >
-            <div className="container mx-auto px-4 py-4">
-              {/* Tab navigation for Surah/Juz */}
-              <div className="flex justify-center mb-4">
-                <div className="inline-flex bg-muted rounded-full p-1">
-                  <button 
-                    className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
-                      sidebarTab === 'surah' 
-                        ? 'bg-card text-foreground shadow-sm' 
-                        : 'text-muted-foreground hover:text-foreground'
-                    }`}
-                    onClick={() => handleTabChange('surah')}
-                  >
-                    Surahs
-                  </button>
-                  <button 
-                    className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
-                      sidebarTab === 'juz' 
-                        ? 'bg-card text-foreground shadow-sm' 
-                        : 'text-muted-foreground hover:text-foreground'
-                    }`}
-                    onClick={() => handleTabChange('juz')}
-                  >
-                    Juz
-                  </button>
-                </div>
-              </div>
-              
-              {/* Search input */}
-              <div className="mb-4">
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="Search by name, number, or meaning..."
-                    className="w-full py-2 pl-4 pr-10 rounded-lg bg-muted border border-muted text-foreground"
-                    value={searchQuery}
-                    onChange={handleSearchChange}
-                  />
-                  <div className="absolute right-3 top-2.5 text-muted-foreground">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Loading state */}
-              {loading && (
-                <div className="py-12 flex justify-center">
-                  <div className="animate-spin h-8 w-8 border-2 border-primary rounded-full border-t-transparent"></div>
-                </div>
-              )}
-              
-              {/* Surah Tab Content */}
-              {sidebarTab === 'surah' && !loading && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-                  {filteredSurahs.length > 0 ? (
-                    filteredSurahs.map((item) => (
-                      <Link 
-                        key={item.number}
-                        href={`/quran/${item.number}`}
-                        onClick={() => setShowSidebar(false)}
-                        className={`p-3 rounded-lg transition-colors ${
-                          item.number === surah.number 
-                            ? 'bg-primary/10 border border-primary/20' 
-                            : 'hover:bg-accent/10'
-                        }`}
-                      >
-                        <div className="flex items-center gap-2">
-                          <div className={`h-8 w-8 rounded-full flex items-center justify-center text-sm
-                            ${item.number === surah.number 
-                              ? 'bg-primary text-primary-foreground' 
-                              : 'bg-muted text-muted-foreground'
-                            }`}
-                          >
-                            {item.number}
-                          </div>
-                          <div>
-                            <h3 className="text-sm font-medium text-foreground">{item.englishName}</h3>
-                            <p className="text-xs text-muted-foreground">{item.englishNameTranslation}</p>
-                          </div>
-                        </div>
-                      </Link>
-                    ))
-                  ) : (
-                    <div className="col-span-full py-8 text-center text-muted-foreground">
-                      No surahs found matching "{searchQuery}"
-                    </div>
-                  )}
-                </div>
-              )}
-              
-              {/* Juz Tab Content */}
-              {sidebarTab === 'juz' && !loading && (
-                <div className="space-y-4">
-                  {filteredJuz.length > 0 ? (
-                    filteredJuz.map((juz) => (
-                      <div key={juz.number} className="border border-border rounded-lg overflow-hidden">
-                        <div className="p-3 bg-muted flex items-center justify-between">
-                          <h3 className="font-medium text-foreground">{juz.name}</h3>
-                          <span className="text-xs bg-background text-muted-foreground px-2 py-1 rounded-full">
-                            {juz.surahs.length} surahs
-                          </span>
-                        </div>
-                        <div className="p-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
-                          {juz.surahs.map((item) => (
-                            <Link 
-                              key={item.number}
-                              href={`/quran/${item.number}`}
-                              onClick={() => setShowSidebar(false)}
-                              className={`p-2 rounded-md transition-colors flex items-center gap-2 ${
-                                item.number === surah.number 
-                                  ? 'bg-primary/10' 
-                                  : 'hover:bg-accent/10'
-                              }`}
-                            >
-                              <div className={`h-6 w-6 rounded-full flex items-center justify-center text-xs
-                                ${item.number === surah.number 
-                                  ? 'bg-primary text-primary-foreground' 
-                                  : 'bg-muted text-muted-foreground'
-                                }`}
-                              >
-                                {item.number}
-                              </div>
-                              <span className="text-sm text-foreground">{item.englishName}</span>
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    ))
-                  ) : (
-                    <div className="py-8 text-center text-muted-foreground">
-                      No juz found with surahs matching "{searchQuery}"
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
       
       {/* Settings Modal */}
       <SettingsModal 

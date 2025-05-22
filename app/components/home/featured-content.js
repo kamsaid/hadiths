@@ -27,7 +27,7 @@ export function FeaturedContent() {
                 Read and explore all 114 surahs of the Holy Quran with translations and tafsir.
               </p>
               <Link 
-                href="/quran" 
+                href="/quran/1" 
                 className="inline-flex items-center text-emerald-600 dark:text-emerald-400 font-medium hover:text-emerald-700 dark:hover:text-emerald-300"
               >
                 Browse Quran

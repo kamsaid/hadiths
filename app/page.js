@@ -1,6 +1,6 @@
-import Link from "next/link"
 import Image from "next/image"
-import { BookOpen, MessageCircle, ChevronRight, Play, Volume2, Sparkles } from "lucide-react"
+import Link from "next/link"
+import { BookOpen, MessageCircle, Play, Volume2, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -39,13 +39,6 @@ export default function Home() {
                 community.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link href="/prayer" passHref legacyBehavior>
-                  <Button variant="accent" className="group" as="a">
-                    <BookOpen className="mr-2 h-4 w-4" />
-                    Browse How to Pray
-                    <ChevronRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </Link>
                 <Button variant="outline" className="border-duson-yellow text-duson-ebony dark:text-duson-cream group">
                   <Play className="mr-2 h-4 w-4 text-duson-yellow" />
                   Watch Introduction
@@ -120,12 +113,6 @@ export default function Home() {
             <TabsContent value="featured" className="space-y-4">
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                 <ResourceCard
-                  title="How to Pray"
-                  image="/placeholder.svg?height=300&width=400&text=Prayer+Guide"
-                  description="Learn the proper way to perform Salah"
-                  icon={<BookOpen className="h-5 w-5" />}
-                />
-                <ResourceCard
                   title="Daily Hadith"
                   image="/placeholder.svg?height=300&width=400&text=Hadith"
                   description="Wisdom from the Prophet Muhammad (PBUH)"
@@ -139,6 +126,7 @@ export default function Home() {
                 />
                 <ResourceCard
                   title="Quran Explorer"
+                  href="/quran/1"
                   image="/placeholder.svg?height=300&width=400&text=Quran"
                   description="Interactive Quran with translations"
                   icon={<Volume2 className="h-5 w-5" />}

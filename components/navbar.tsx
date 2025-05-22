@@ -12,7 +12,7 @@ import { useTheme } from 'next-themes';
 
 const navigation = [
   { name: "How to Pray", href: "/prayer" },
-  { name: "Quran", href: "/quran" },
+  { name: "Quran", href: "/quran/1" },
   { name: "Hadiths", href: "/hadith" },
   { name: "Prophet Stories", href: "/prophet-stories" },
   { name: "Chat with Yaseen", href: "/chat" },
@@ -58,7 +58,7 @@ export function Navbar() {
             )}
           </Button>
           
-          <Link href="/quran">
+          <Link href="/quran/1">
             <Button 
               variant={pathname.startsWith('/quran') ? 'accent' : 'ghost'} 
               className={

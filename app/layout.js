@@ -52,10 +52,7 @@ export default function RootLayout({ children }) {
                   </span>
                 </Link>
                 <nav className="hidden md:flex gap-6">
-                  <Link href="/prayer" className="text-sm font-medium transition-colors hover:text-duson-yellow">
-                    How to Pray
-                  </Link>
-                  <Link href="/quran" className="text-sm font-medium transition-colors hover:text-duson-yellow">
+                <Link href="/quran/1" className="text-sm font-medium transition-colors hover:text-duson-yellow">
                     Quran
                   </Link>
                   <Link href="/hadith" className="text-sm font-medium transition-colors hover:text-duson-yellow">
@@ -112,18 +109,13 @@ export default function RootLayout({ children }) {
                   <h3 className="mb-4 text-sm font-medium">Resources</h3>
                   <ul className="space-y-2 text-sm">
                     <li>
-                      <Link href="/quran" className="text-muted-foreground hover:text-foreground">
+                    <Link href="/quran/1" className="text-muted-foreground hover:text-foreground">
                         Quran
                       </Link>
                     </li>
                     <li>
                       <Link href="/hadith" className="text-muted-foreground hover:text-foreground">
                         Hadiths
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/prayer" className="text-muted-foreground hover:text-foreground">
-                        How to Pray
                       </Link>
                     </li>
                     <li>
