@@ -15,21 +15,12 @@ export function ThemeToggle() {
   React.useEffect(() => {
     // Set mounted to true to avoid hydration mismatch
     setMounted(true);
-    
-    // Get saved theme from localStorage if available
-    const savedTheme = localStorage.getItem('yaseen-theme');
-    if (savedTheme) {
-      setTheme(savedTheme);
-    }
-  }, [setTheme]);
+  }, []);
 
   // Toggle between light and dark themes
   const toggleTheme = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
     setTheme(newTheme);
-    
-    // Save preference to localStorage
-    localStorage.setItem('yaseen-theme', newTheme);
   };
 
   // Avoid rendering the wrong icon during SSR/hydration

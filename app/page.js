@@ -25,40 +25,17 @@ export default function Home() {
         <div className="container relative z-10 px-4 md:px-6">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-8 items-center">
             <div className="space-y-6">
-              <Badge variant="yellowOutline" className="px-3 py-1.5">
-                Begin Your Journey
-              </Badge>
               <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
-                <span className="text-duson-ebony dark:text-duson-cream">Your Spiritual </span>
+                <span className="text-duson-ebony dark:text-duson-cream">Alhamdulilah </span>
                 <span className="text-duson-crimson dark:text-duson-crimson">
-                  Journey Starts Now
+                  For Islam
                 </span>
               </h1>
               <p className="max-w-[600px] text-duson-ebony/80 dark:text-duson-cream/80 md:text-xl">
-                Discover the beauty of Islam through interactive learning, daily reflections, and a supportive
-                community.
+              Seeking knowledge is an obligation upon every Muslim. 
+              <br />
+              <span className="text-sm">Sunan Ibn Mājah 224</span>
               </p>
-              <div className="flex flex-wrap gap-4">
-                <Button variant="outline" className="border-duson-yellow text-duson-ebony dark:text-duson-cream group">
-                  <Play className="mr-2 h-4 w-4 text-duson-yellow" />
-                  Watch Introduction
-                </Button>
-              </div>
-              <div className="flex items-center gap-4 text-sm text-duson-ebony/70 dark:text-duson-cream/70">
-                <div className="flex -space-x-2">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div key={i} className="h-8 w-8 rounded-full border-2 border-duson-cream dark:border-duson-ebony bg-duson-cream/50 dark:bg-duson-ebony/50 overflow-hidden">
-                      <Image
-                        src={`/placeholder.svg?height=32&width=32&text=${i}`}
-                        alt="User"
-                        width={32}
-                        height={32}
-                      />
-                    </div>
-                  ))}
-                </div>
-                <div>Join 10,000+ Muslims on their spiritual journey</div>
-              </div>
             </div>
             <div className="relative">
               <div className="absolute -inset-0.5 rounded-3xl bg-gradient-to-r from-duson-yellow to-duson-crimson opacity-30 blur-xl"></div>

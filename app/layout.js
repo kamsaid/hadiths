@@ -61,6 +61,9 @@ export default function RootLayout({ children }) {
                   <Link href="/prophet-stories" className="text-sm font-medium transition-colors hover:text-duson-yellow">
                     Prophet Stories
                   </Link>
+                  <Link href="/explore" className="text-sm font-medium transition-colors hover:text-duson-yellow">
+                    Explore
+                  </Link>
                   <Link href="/chat" className="text-sm font-medium transition-colors hover:text-duson-yellow">
                     Chat with Yaseen
                   </Link>
@@ -121,6 +124,11 @@ export default function RootLayout({ children }) {
                     <li>
                       <Link href="/prophet-stories" className="text-muted-foreground hover:text-foreground">
                         Prophet Stories
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/explore" className="text-muted-foreground hover:text-foreground">
+                        Explore
                       </Link>
                     </li>
                   </ul>

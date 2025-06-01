@@ -21,12 +21,12 @@ export default function Hero() {
       // Add crimson particles
       color: i % 3 === 0 ? 'bg-duson-crimson/30' : 'bg-duson-yellow/30',
     }));
-    setParticles(generatedParticles);
+    setParticles(generatedParticles); 
   }, []);
 
   // Create a diagonal pattern with crimson accent
   const diagonalPattern = {
-    backgroundImage: 'linear-gradient(135deg, transparent 0%, transparent 48%, rgba(253, 31, 74, 0.07) 48%, rgba(253, 31, 74, 0.07) 52%, transparent 52%, transparent 100%)',
+    backgroundImage: 'linear-gradient(135deg, transparent 0%, transparent 49%, rgba(253, 31, 74, 0.07) 48%, rgba(253, 31, 74, 0.07) 52%, transparent 52%, transparent 100%)',
     backgroundSize: '20px 20px',
   };
 
@@ -69,8 +69,8 @@ export default function Hero() {
       <div className="container mx-auto relative grid grid-cols-1 md:grid-cols-2 gap-8 items-center px-4">
         <div>
           <h1 className="text-4xl md:text-5xl font-bold">
-            <span className="text-duson-ebony dark:text-duson-cream">Your Spiritual </span>
-            <span className="text-duson-crimson dark:text-duson-crimson">Journey Starts Now</span>
+            <span className="text-duson-ebony dark:text-duson-cream">Alhamdulilah </span>
+            <span className="text-duson-crimson dark:text-duson-crimson">For Islam</span>
           </h1>
           <p className="mt-4 text-duson-ebony/80 dark:text-duson-cream/80 max-w-lg">
             Explore authentic hadiths, Quranic teachings, and stories of the prophets to enrich your spiritual journey.

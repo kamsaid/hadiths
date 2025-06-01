@@ -255,6 +255,13 @@ ul.crimson-bullets li::before {
   overflow: hidden;
 }
 
+.line-clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 /* Add some space for content */
 main {
   min-height: calc(100vh - 180px);
@@ -345,4 +352,91 @@ h2 {
 /* Link styles */
 a {
   @apply text-duson-yellow hover:text-duson-crimson dark:text-duson-yellow dark:hover:text-duson-cream;
+}
+
+/* Custom animations for explore page */
+@keyframes float-up {
+  0% {
+    transform: translateY(100%) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(100px);
+    opacity: 0;
+  }
+}
+
+@keyframes float-up-delayed {
+  0% {
+    transform: translateY(100%) translateX(50px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(-50px);
+    opacity: 0;
+  }
+}
+
+@keyframes float-up-slow {
+  0% {
+    transform: translateY(100%) translateX(-30px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(80px);
+    opacity: 0;
+  }
+}
+
+.animate-float-up {
+  animation: float-up 3s ease-out infinite;
+}
+
+.animate-float-up-delayed {
+  animation: float-up-delayed 3.5s ease-out infinite;
+  animation-delay: 0.5s;
+}
+
+.animate-float-up-slow {
+  animation: float-up-slow 4s ease-out infinite;
+  animation-delay: 1s;
+}
+
+/* Particle positions */
+.particle-1 {
+  left: 20%;
+  bottom: 0;
+}
+
+.particle-2 {
+  left: 50%;
+  bottom: 0;
+}
+
+.particle-3 {
+  left: 80%;
+  bottom: 0;
+}
+
+/* Spin animation for refresh button */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
 }

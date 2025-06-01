@@ -18,8 +18,8 @@ class Settings(BaseSettings):
     # ------------------------------------------------------------------
     OPENAI_API_KEY: str = Field(..., env="OPENAI_API_KEY")
     PINECONE_API_KEY: str = Field(..., env="PINECONE_API_KEY")
-    # PINECONE_ENV is deprecated in newer Pinecone versions
-    # PINECONE_ENV: str = Field("us-east1-gcp", env="PINECONE_ENV")
+    # PINECONE_ENV is used by the Pinecone client to select the environment/region
+    PINECONE_ENV: str = Field("us-east1-gcp", env="PINECONE_ENV")
     PINECONE_INDEX_NAME: str = Field("islamic-kb", env="PINECONE_INDEX_NAME")
 
     # ------------------------------------------------------------------
@@ -41,7 +41,7 @@ class Settings(BaseSettings):
     # to *ignore* unrelated env vars (e.g. VITE_API_URL from the frontend)
     # instead of raising `ValidationError: extra_forbidden`.
     model_config = {
-        "env_file": ".env",     # allow optional local .env overrides
+        "env_file": ".env.local",     # Load from .env.local file
         "case_sensitive": True,  # preserve original behaviour
         "extra": "ignore",      # <- crucial: ignore unknown env vars
     }

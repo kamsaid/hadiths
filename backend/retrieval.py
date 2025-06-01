@@ -32,7 +32,10 @@ async def retrieve_context(query: str, k: int = 5) -> Tuple[List[str], float]:
     # Lazily create Pinecone instance
     pc: Pinecone = getattr(retrieve_context, "_pc", None)  # type: ignore[assignment]
     if pc is None:
-        pc = Pinecone(api_key=settings.PINECONE_API_KEY)
+        pc = Pinecone(
+            api_key=settings.PINECONE_API_KEY,
+            environment=settings.PINECONE_ENV,
+        )
         retrieve_context._pc = pc  # type: ignore[attr-defined]
 
     # Ensure index exists
