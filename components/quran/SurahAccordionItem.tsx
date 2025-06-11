@@ -232,7 +232,7 @@ const SurahAccordionItem = ({ surah, className = '' }: SurahAccordionItemProps) 
     
     // Check if user has reached the end of the surah
     if (surahData?.ayahs && ayahNumber === surahData.ayahs.length) {
-      setCompletedSurah(true);
+      (setCompletedSurah as any)(true);
     }
   };
 

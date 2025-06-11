@@ -4,37 +4,20 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-// Extended props type that includes the 'as' prop for polymorphic component
-type CardProps<T extends React.ElementType> = {
-  as?: T;
-} & React.ComponentPropsWithoutRef<T>;
-
-// Helper type for the polymorphic component
-type PolymorphicRef<T extends React.ElementType> = 
-  React.ComponentPropsWithRef<T>['ref'];
-
-// Polymorphic Card component that can render as any element or component
-const Card = React.forwardRef(
-  <T extends React.ElementType = "div">(
-    { as, className, ...props }: CardProps<T>,
-    ref: PolymorphicRef<T>
-  ) => {
-    const Component = as || "div";
-    return (
-      <Component
-        ref={ref}
-        className={cn(
-          "rounded-lg border bg-card text-card-foreground shadow-sm",
-          className
-        )}
-        {...props}
-      />
-    );
-  }
-) as <T extends React.ElementType = "div">(
-  props: CardProps<T> & { ref?: PolymorphicRef<T> }
-) => React.ReactElement;
-
+// Simple Card component without polymorphic functionality
+const Card = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "rounded-lg border bg-card text-card-foreground shadow-sm",
+      className
+    )}
+    {...props}
+  />
+));
 Card.displayName = "Card";
 
 const CardHeader = React.forwardRef<

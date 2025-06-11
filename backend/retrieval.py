@@ -8,9 +8,16 @@ from __future__ import annotations
 import logging
 from typing import List, Tuple
 
-from pinecone import Pinecone  # type: ignore
-from langchain_openai import OpenAIEmbeddings
-from langchain_pinecone import PineconeVectorStore
+# Import Pinecone and LangChain lazily inside the retrieval function to avoid
+# heavy dependencies (and ModuleNotFoundError) when Pinecone is not configured
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:  # pragma: no cover
+    # These imports are for type checkers only; at runtime they are loaded
+    # lazily in `retrieve_context`.
+    from pinecone import Pinecone  # type: ignore
+    from langchain_openai import OpenAIEmbeddings  # type: ignore
+    from langchain_pinecone import PineconeVectorStore  # type: ignore
 
 from backend.config import get_settings
 
@@ -29,8 +36,31 @@ async def retrieve_context(query: str, k: int = 5) -> Tuple[List[str], float]:
 
     settings = get_settings()
 
-    # Lazily create Pinecone instance
-    pc: Pinecone = getattr(retrieve_context, "_pc", None)  # type: ignore[assignment]
+    # ------------------------------------------------------------------
+    # Graceful fallback when Pinecone isn't configured
+    # ------------------------------------------------------------------
+    # During local development many contributors do not have a Pinecone
+    # account – or simply haven’t added `PINECONE_API_KEY` to their env.  In
+    # that case we skip vector retrieval entirely and tell the caller that no
+    # useful context was found by returning ([], 0.0) instead of raising and
+    # bubbling a 500 error up to the frontend.
+
+    if not settings.PINECONE_API_KEY:
+        logger.warning(
+            "PINECONE_API_KEY not set. Skipping semantic retrieval and "
+            "falling back to low-confidence answer."
+        )
+        return [], 0.0
+
+    # ------------------------------------------------------------------
+    # Import 3rd-party dependencies *after* we know we actually need them
+    # ------------------------------------------------------------------
+    from pinecone import Pinecone  # type: ignore
+    from langchain_openai import OpenAIEmbeddings  # type: ignore
+    from langchain_pinecone import PineconeVectorStore  # type: ignore
+
+    # Lazily create Pinecone instance so repeated calls are cheap
+    pc: 'Pinecone' = getattr(retrieve_context, "_pc", None)  # type: ignore[assignment]
     if pc is None:
         pc = Pinecone(
             api_key=settings.PINECONE_API_KEY,
@@ -44,8 +74,16 @@ async def retrieve_context(query: str, k: int = 5) -> Tuple[List[str], float]:
             f"Pinecone index '{settings.PINECONE_INDEX_NAME}' not found. Did you run the ingestion script?"
         )
 
-    # Build embedding model; LANGCHAIN caches based on API key in env
-    embed_model = OpenAIEmbeddings()
+    # ------------------------------------------------------------------
+    # Build embedding model
+    # ------------------------------------------------------------------
+    # When the environment variable `OPENAI_API_KEY` is not set, LangChain's
+    # `OpenAIEmbeddings` constructor throws the error seen by the user
+    # ("The api_key client option must be set ...").  We already **require**
+    # the key in our `Settings` model, so pass it explicitly here to avoid
+    # relying on the global environment and to make unit-testing easier.
+
+    embed_model = OpenAIEmbeddings(openai_api_key=settings.OPENAI_API_KEY)
 
     # Obtain index object
     index = pc.Index(settings.PINECONE_INDEX_NAME)

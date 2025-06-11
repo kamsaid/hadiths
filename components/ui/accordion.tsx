@@ -53,13 +53,13 @@ const Accordion = React.forwardRef<
     if (type === "single") {
       const newValue = open.includes(itemValue) ? "" : itemValue;
       setOpen(newValue ? [newValue] : []);
-      onValueChange?.(newValue);
+      (onValueChange as any)?.(newValue);
     } else {
       const newValue = open.includes(itemValue)
         ? open.filter(v => v !== itemValue)
         : [...open, itemValue];
       setOpen(newValue);
-      onValueChange?.(newValue);
+      (onValueChange as any)?.(newValue);
     }
   }, [open, onValueChange, type]);
   
@@ -67,11 +67,7 @@ const Accordion = React.forwardRef<
     <AccordionContext.Provider value={{ open, toggle }}>
       <AccordionPrimitive.Root
         ref={ref}
-        type={type}
-        value={value}
-        defaultValue={defaultValue}
-        onValueChange={onValueChange}
-        {...props}
+        {...({ type, value, defaultValue, onValueChange, ...props } as any)}
       >
         {children}
       </AccordionPrimitive.Root>

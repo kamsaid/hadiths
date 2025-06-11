@@ -5,9 +5,19 @@ import Image from "next/image";
 import DailyReflection from "./DailyReflection";
 import { useEffect, useState } from "react";
 
+// Define the type for particles
+interface Particle {
+  id: number;
+  size: number;
+  top: string;
+  left: string;
+  delay: number;
+  color: string;
+}
+
 export default function Hero() {
   // Create state for particles to ensure they're only generated client-side
-  const [particles, setParticles] = useState([]);
+  const [particles, setParticles] = useState<Particle[]>([]);
 
   // Generate particles only on the client side to avoid hydration mismatch
   useEffect(() => {

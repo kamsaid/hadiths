@@ -22,7 +22,12 @@ interface StepCardProps {
 
 export function StepCard({ step, showEvidence = true, showReps = true }: StepCardProps) {
   return (
-    <Card as={motion.div} initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} layout>
+    <motion.div 
+      initial={{ y: 20, opacity: 0 }} 
+      animate={{ y: 0, opacity: 1 }} 
+      layout
+      className="rounded-lg border bg-card text-card-foreground shadow-sm"
+    >
       <CardHeader className="flex flex-row items-start justify-between gap-2">
         <h3 className="text-base font-medium capitalize">{step.id.replace(/_/g, ' ')}</h3>
         {step.type && (
@@ -68,6 +73,6 @@ export function StepCard({ step, showEvidence = true, showReps = true }: StepCar
           </details>
         )}
       </CardContent>
-    </Card>
+    </motion.div>
   )
 }

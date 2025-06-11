@@ -33,7 +33,7 @@ export default function ProphetStoriesPage() {
   const prophets = mounted 
     ? Object.entries(prophetStories).map(([key, value]) => {
         const prophetName = Object.keys(value)[0];
-        const prophetData = value[prophetName];
+        const prophetData = (value as any)[prophetName];
         return {
           id: key,
           name: prophetName,

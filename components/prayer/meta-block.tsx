@@ -13,7 +13,12 @@ interface MetaBlockProps {
 
 export function MetaBlock({ title, rows }: MetaBlockProps) {
   return (
-    <Card as={motion.section} initial={{ y: 20, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} className="mb-10">
+    <motion.div 
+      initial={{ y: 20, opacity: 0 }} 
+      whileInView={{ y: 0, opacity: 1 }} 
+      viewport={{ once: true }} 
+      className="mb-10 rounded-lg border bg-card text-card-foreground shadow-sm"
+    >
       <CardHeader>
         <h2 className="text-xl font-bold">{title}</h2>
       </CardHeader>
@@ -25,6 +30,6 @@ export function MetaBlock({ title, rows }: MetaBlockProps) {
           </p>
         ))}
       </CardContent>
-    </Card>
+    </motion.div>
   )
 }
