@@ -8,16 +8,16 @@ const nextConfig = {
     domains: [],
   },
   
-  // Improve stability for server components
+  // Remove experimental features that might cause issues
   experimental: {
-    // Disable some experimental features that might cause instability
     serverComponentsExternalPackages: [],
-    // Ensure proper compilation
-    optimizeCss: process.env.NODE_ENV === 'production',
   },
   
   // Enable React strict mode for better debugging
   reactStrictMode: true,
+  
+  // Disable static export for API routes
+  trailingSlash: false,
 }
 
 module.exports = nextConfig 
