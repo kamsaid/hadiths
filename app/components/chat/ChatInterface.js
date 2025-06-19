@@ -83,7 +83,7 @@ export default function ChatInterface() {
   };
 
   return (
-    <div className="flex flex-col bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800 h-[600px]">
+    <div className="flex flex-col bg-duson-cream dark:bg-duson-ebony rounded-lg shadow-lg border border-duson-ebony/20 dark:border-duson-cream/20 h-[600px]">
       {/* Messages section */}
       <div className="flex-grow overflow-auto p-4">
         <ChatMessages 
@@ -94,7 +94,7 @@ export default function ChatInterface() {
       </div>
       
       {/* Input section */}
-      <div className="border-t border-gray-200 dark:border-gray-800 p-4">
+      <div className="border-t border-duson-ebony/20 dark:border-duson-cream/20 p-4">
         <ChatInput 
           onSendMessage={handleSendMessage} 
           isLoading={isLoading} 

@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" class="w-full h-full">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="storyBackground" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b4513;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#a0522d;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#cd853f;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Desert sunset gradient -->
+    <linearGradient id="desertGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#daa520;stop-opacity:0.8" />
+      <stop offset="60%" style="stop-color:#ff8c00;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#ffe4b5;stop-opacity:0.4" />
+    </linearGradient>
+    
+    <!-- Scroll texture -->
+    <pattern id="scrollTexture" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <rect width="20" height="20" fill="#f4e4bc" opacity="0.3"/>
+      <path d="M0,10 Q5,5 10,10 T20,10" fill="none" stroke="#d2b48c" stroke-width="0.5"/>
+    </pattern>
+    
+    <!-- Text glow -->
+    <filter id="textGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Main background -->
+  <rect width="400" height="300" fill="url(#storyBackground)" />
+  
+  <!-- Desert landscape silhouette -->
+  <path d="M0,200 Q100,180 200,200 Q300,220 400,200 L400,300 L0,300 Z" 
+        fill="url(#desertGradient)" opacity="0.7"/>
+  
+  <!-- Mountains in background -->
+  <g opacity="0.4">
+    <path d="M0,180 L50,140 L100,160 L150,120 L200,150 L250,110 L300,140 L350,120 L400,150 L400,300 L0,300 Z" 
+          fill="#8b4513"/>
+  </g>
+  
+  <!-- Ancient scroll decoration -->
+  <g transform="translate(50,50)">
+    <!-- Scroll background -->
+    <rect x="0" y="20" width="300" height="120" rx="10" fill="url(#scrollTexture)" 
+          stroke="#d2b48c" stroke-width="2"/>
+    
+    <!-- Scroll ends -->
+    <circle cx="10" cy="80" r="8" fill="#cd853f" stroke="#8b4513" stroke-width="1"/>
+    <circle cx="290" cy="80" r="8" fill="#cd853f" stroke="#8b4513" stroke-width="1"/>
+    
+    <!-- Decorative Arabic-style text lines -->
+    <g opacity="0.6">
+      <rect x="30" y="40" width="120" height="2" fill="#8b4513" rx="1"/>
+      <rect x="30" y="55" width="180" height="2" fill="#8b4513" rx="1"/>
+      <rect x="30" y="70" width="150" height="2" fill="#8b4513" rx="1"/>
+      <rect x="30" y="85" width="200" height="2" fill="#8b4513" rx="1"/>
+      <rect x="30" y="100" width="170" height="2" fill="#8b4513" rx="1"/>
+      <rect x="30" y="115" width="140" height="2" fill="#8b4513" rx="1"/>
+    </g>
+    
+    <!-- Decorative corner elements -->
+    <g opacity="0.8">
+      <circle cx="40" cy="40" r="3" fill="#daa520"/>
+      <circle cx="260" cy="40" r="3" fill="#daa520"/>
+      <circle cx="40" cy="120" r="3" fill="#daa520"/>
+      <circle cx="260" cy="120" r="3" fill="#daa520"/>
+    </g>
+  </g>
+  
+  <!-- Islamic architectural elements -->
+  <g transform="translate(320,80)" opacity="0.5">
+    <!-- Minaret silhouette -->
+    <rect x="0" y="0" width="12" height="80" fill="#654321"/>
+    <polygon points="0,0 6,0 12,0 10,10 2,10" fill="#8b4513"/>
+    <circle cx="6" cy="85" r="8" fill="#654321"/>
+    <path d="M6,77 L10,85 L6,93 L2,85 Z" fill="#daa520"/>
+  </g>
+  
+  <!-- Crescent moon -->
+  <g transform="translate(100,30)" opacity="0.7">
+    <path d="M15,10 Q5,15 15,25 Q20,20 15,10" fill="#daa520"/>
+    <circle cx="20" cy="18" r="2" fill="#daa520"/>
+  </g>
+  
+  <!-- Stars -->
+  <g opacity="0.6">
+    <path d="M150,40 L152,46 L158,46 L153,50 L155,56 L150,52 L145,56 L147,50 L142,46 L148,46 Z" fill="#daa520"/>
+    <path d="M320,50 L322,56 L328,56 L323,60 L325,66 L320,62 L315,66 L317,60 L312,56 L318,56 Z" fill="#daa520"/>
+    <circle cx="80" cy="60" r="1.5" fill="#daa520"/>
+    <circle cx="280" cy="40" r="1.5" fill="#daa520"/>
+  </g>
+  
+  <!-- Decorative border -->
+  <rect x="10" y="10" width="380" height="280" fill="none" 
+        stroke="#daa520" stroke-width="2" opacity="0.5" rx="5"/>
+  
+  <!-- Title text -->
+  <text x="200" y="280" text-anchor="middle" font-family="serif" font-size="14" 
+        fill="#f4e4bc" filter="url(#textGlow)" font-weight="bold">
+    Prophet Stories
+  </text>
+  
+  <!-- Subtle pattern overlay -->
+  <g opacity="0.1">
+    <pattern id="storyPattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+      <circle cx="30" cy="30" r="20" fill="none" stroke="#daa520" stroke-width="1"/>
+      <path d="M30,10 L35,25 L30,30 L25,25 Z" fill="#daa520"/>
+    </pattern>
+    <rect width="400" height="300" fill="url(#storyPattern)" />
+  </g>
+</svg> 

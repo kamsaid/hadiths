@@ -10,7 +10,6 @@ import HeroParticles from "@/components/hero-particles"
 import DailyQuote from "@/components/daily-quote"
 import ResourceCard from "@/components/resource-card"
 import InteractiveCalligraphy from "@/components/interactive-calligraphy"
-import PrayerTimeline from "@/components/prayer-timeline"
 
 /**
  * Home page component featuring a modern Islamic educational platform
@@ -56,19 +55,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Prayer Timeline */}
-      <section className="py-12">
-        <div className="container px-4 md:px-6">
-          <div className="mx-auto max-w-5xl">
-            <div className="mb-8 text-center">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-duson-ebony dark:text-duson-cream">Daily Prayer Times</h2>
-              <p className="mt-2 text-duson-ebony/70 dark:text-duson-cream/70">Stay connected with your prayers throughout the day</p>
-            </div>
-            <PrayerTimeline />
-          </div>
-        </div>
-      </section>
-
       {/* Resources Section */}
       <section className="py-20 bg-gradient-to-r from-duson-yellow/5 to-duson-crimson/5">
         <div className="container px-4 md:px-6">
@@ -91,20 +77,20 @@ export default function Home() {
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                 <ResourceCard
                   title="Daily Hadith"
-                  image="/placeholder.svg?height=300&width=400&text=Hadith"
+                  image="/images/daily-hadith.svg"
                   description="Wisdom from the Prophet Muhammad (PBUH)"
                   icon={<MessageCircle className="h-5 w-5" />}
                 />
                 <ResourceCard
                   title="Prophet Stories"
-                  image="/placeholder.svg?height=300&width=400&text=Stories"
+                  image="/images/prophet-stories.svg"
                   description="Inspiring stories from Islamic history"
                   icon={<BookOpen className="h-5 w-5" />}
                 />
                 <ResourceCard
                   title="Quran Explorer"
                   href="/quran/1"
-                  image="/placeholder.svg?height=300&width=400&text=Quran"
+                  image="/images/quran-explorer.svg"
                   description="Interactive Quran with translations"
                   icon={<Volume2 className="h-5 w-5" />}
                 />

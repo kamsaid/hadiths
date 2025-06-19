@@ -13,10 +13,10 @@ export default function ChatPage() {
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold mb-2 text-gray-800 dark:text-white">
-          Chat with <span className="text-green-500">Yas</span><span className="text-yellow-500">een</span>
+        <h1 className="text-3xl font-bold mb-2 text-duson-ebony dark:text-duson-cream">
+          Chat with <span className="text-duson-crimson">Yas</span><span className="text-duson-yellow">een</span>
         </h1>
-        <p className="text-gray-600 dark:text-gray-300 mb-6">
+        <p className="text-duson-ebony/70 dark:text-duson-cream/70 mb-6">
           Ask questions about Islam and receive answers based on authentic Islamic sources.
         </p>
         

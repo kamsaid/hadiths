@@ -43,32 +43,32 @@ export default function ChatInput({ onSendMessage, isLoading, error }) {
     <form onSubmit={handleSubmit} className="relative">
       {/* Error message (if any) */}
       {error && (
-        <div className="mb-2 text-sm text-red-500 dark:text-red-400">
+        <div className="mb-2 text-sm text-duson-crimson">
           Error: {error}
         </div>
       )}
       
       <div className="relative flex items-center">
-        {/* Text input area */}
+        {/* Text input area - updated to use current app theme colors */}
         <textarea
           ref={inputRef}
           value={inputValue}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
           placeholder="Ask Yaseen a question about Islam..."
-          className="flex-grow py-3 px-4 pr-12 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-600"
+          className="flex-grow py-3 px-4 pr-12 bg-duson-cream/50 dark:bg-duson-ebony/80 border border-duson-ebony/20 dark:border-duson-cream/20 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-duson-yellow focus:border-duson-yellow text-duson-ebony dark:text-duson-cream placeholder:text-duson-ebony/60 dark:placeholder:text-duson-cream/60"
           rows={1}
           disabled={isLoading}
           aria-label="Your message"
         />
         
-        {/* Send button */}
+        {/* Send button - updated to use current app theme colors */}
         <button
           type="submit"
-          className={`absolute right-2 p-2 rounded-full ${
+          className={`absolute right-2 p-2 rounded-full transition-colors duration-200 ${
             isLoading || !inputValue.trim()
-              ? 'text-gray-400 cursor-not-allowed'
-              : 'text-emerald-600 dark:text-emerald-400 hover:bg-gray-100 dark:hover:bg-gray-700'
+              ? 'text-duson-ebony/40 dark:text-duson-cream/40 cursor-not-allowed'
+              : 'text-duson-crimson hover:bg-duson-yellow/20 hover:text-duson-ebony dark:hover:bg-duson-yellow/20'
           }`}
           disabled={isLoading || !inputValue.trim()}
           aria-label="Send message"
@@ -88,8 +88,8 @@ export default function ChatInput({ onSendMessage, isLoading, error }) {
         </button>
       </div>
       
-      {/* Hint below the input */}
-      <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+      {/* Hint below the input - updated to use current app theme colors */}
+      <p className="text-xs text-duson-ebony/60 dark:text-duson-cream/60 mt-2">
         Press Enter to send. Yaseen will answer based on authentic Islamic sources.
       </p>
     </form>

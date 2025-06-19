@@ -26,8 +26,8 @@ export default function ChatMessages({ messages, isLoading }) {
     if (!citations || citations.length === 0) return null;
     
     return (
-      <div className="mt-3 pt-2 border-t border-gray-200 dark:border-gray-700">
-        <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Citations:</p>
+      <div className="mt-3 pt-2 border-t border-duson-ebony/20 dark:border-duson-cream/20">
+        <p className="text-xs text-duson-ebony/60 dark:text-duson-cream/60 mb-1">Citations:</p>
         <div className="space-y-1">
           {citations.map((citation, i) => {
             const citationKey = `${messageIndex}-${i}`;
@@ -36,11 +36,11 @@ export default function ChatMessages({ messages, isLoading }) {
             return (
               <div 
                 key={i} 
-                className="text-xs bg-gray-50 dark:bg-gray-800 px-2 py-1 rounded"
+                className="text-xs bg-duson-cream/50 dark:bg-duson-ebony/50 px-2 py-1 rounded border border-duson-ebony/10 dark:border-duson-cream/10"
               >
                 <button 
                   onClick={() => toggleCitation(messageIndex, i)}
-                  className="text-left w-full flex items-center justify-between"
+                  className="text-left w-full flex items-center justify-between hover:text-duson-crimson transition-colors duration-200"
                   aria-label={`Toggle citation ${citation.ref} details`}
                 >
                   <span className="font-medium">
@@ -58,11 +58,11 @@ export default function ChatMessages({ messages, isLoading }) {
                 </button>
                 
                 {isExpanded && (
-                  <div className="mt-1 text-gray-600 dark:text-gray-300">
+                  <div className="mt-1 text-duson-ebony/80 dark:text-duson-cream/80">
                     {citation.type === "quran" ? (
                       <a 
                         href={`/quran?verse=${citation.ref}`} 
-                        className="text-emerald-600 dark:text-emerald-400 hover:underline"
+                        className="text-duson-crimson hover:text-duson-yellow hover:underline transition-colors duration-200"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -71,7 +71,7 @@ export default function ChatMessages({ messages, isLoading }) {
                     ) : (
                       <a 
                         href={`/hadith?ref=${citation.ref}`} 
-                        className="text-emerald-600 dark:text-emerald-400 hover:underline"
+                        className="text-duson-crimson hover:text-duson-yellow hover:underline transition-colors duration-200"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -102,10 +102,10 @@ export default function ChatMessages({ messages, isLoading }) {
             <div 
               className={`rounded-lg p-3 max-w-[80%] ${
                 isUser
-                  ? 'bg-emerald-100 dark:bg-emerald-900/30 text-gray-800 dark:text-gray-100'
+                  ? 'bg-duson-yellow/20 border border-duson-yellow/30 text-duson-ebony dark:text-duson-ebony'
                   : message.isError
-                    ? 'bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100'
+                    ? 'bg-duson-crimson/10 border border-duson-crimson/20 text-duson-crimson'
+                    : 'bg-duson-cream/80 dark:bg-duson-ebony/80 border border-duson-ebony/10 dark:border-duson-cream/10 text-duson-ebony dark:text-duson-cream'
               }`}
             >
               {/* Display message content with proper whitespace handling */}
@@ -120,16 +120,16 @@ export default function ChatMessages({ messages, isLoading }) {
         );
       })}
       
-      {/* Loading indicator */}
+      {/* Loading indicator - updated to use current app theme colors */}
       {isLoading && (
         <div className="flex justify-start">
-          <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 flex items-center space-x-2 max-w-[80%]">
+          <div className="bg-duson-cream/80 dark:bg-duson-ebony/80 border border-duson-ebony/10 dark:border-duson-cream/10 rounded-lg p-4 flex items-center space-x-2 max-w-[80%]">
             <div className="flex space-x-1">
-              <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-              <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-              <div className="w-2 h-2 bg-gray-400 dark:bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+              <div className="w-2 h-2 bg-duson-yellow rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+              <div className="w-2 h-2 bg-duson-crimson rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+              <div className="w-2 h-2 bg-duson-yellow rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
             </div>
-            <span className="text-sm text-gray-500 dark:text-gray-400">Yaseen is thinking...</span>
+            <span className="text-sm text-duson-ebony/70 dark:text-duson-cream/70">Yaseen is thinking...</span>
           </div>
         </div>
       )}
