@@ -21,9 +21,16 @@ const QuranAyah = ({ ayah, surahNumber, showTranslation = true }) => {
         <span className="text-xs text-gray-500 dark:text-gray-400">{verseReference}</span>
       </div>
       
-      {/* Arabic text */}
-      <p className="font-arabic text-2xl leading-loose text-right mb-4 text-gray-900 dark:text-gray-100">
+      {/* Arabic text with KFGQPC Uthmani font */}
+      <p 
+        dir="rtl" 
+        lang="ar"
+        className="font-uthmani text-2xl leading-loose text-right mb-4 text-gray-900 dark:text-gray-100"
+      >
         {ayah.text}
+        <span className="text-lg text-gray-500 dark:text-gray-400 mr-2">
+          ﴿{ayah.number}﴾
+        </span>
       </p>
       
       {/* Translation (if enabled) */}

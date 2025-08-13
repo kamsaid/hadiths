@@ -5,6 +5,54 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import Arabic text optimizations */
+@import '../styles/arabic-text.css';
+
+/* Import King Fahd Complex (KFGQPC) Uthmani Fonts */
+@font-face {
+  font-family: "KFGQPC-Hafs";
+  src: url("https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.woff2") format("woff2"),
+       url("https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "KFGQPC-Hafs-Smart";
+  src: url("https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs-smart/font/hafssmart.8.woff2") format("woff2"),
+       url("https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs-smart/font/hafssmart.8.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "KFGQPC-Uthman-Naskh";
+  src: url("https://cdn.rawgit.com/mustafa0x/qpc-fonts/f93bf5f3/various-woff2/UthmanTN1%20Ver10.woff2") format("woff2"),
+       url("https://cdn.rawgit.com/mustafa0x/qpc-fonts/f93bf5f3/various-woff/UthmanTN1%20Ver10.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "KFGQPC-Uthman-Naskh";
+  src: url("https://cdn.rawgit.com/mustafa0x/qpc-fonts/f93bf5f3/various-woff2/UthmanTN1B%20Ver10.woff2") format("woff2"),
+       url("https://cdn.rawgit.com/mustafa0x/qpc-fonts/f93bf5f3/various-woff/UthmanTN1B%20Ver10.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Traditional fallback Arabic fonts */
+@font-face {
+  font-family: "Amiri-Quran";
+  src: local("Amiri Quran"),
+       local("Amiri");
+  font-display: swap;
+}
+
 /* Theme colors */
 :root {
   /* Duson Color Palette */
@@ -122,10 +170,57 @@ body {
   line-height: 1.6;
 }
 
-/* Arabic font styling */
+/* Arabic font styling with KFGQPC Uthmani fonts */
 .font-arabic {
-  font-family: 'Amiri', serif;
+  font-family: 'KFGQPC-Hafs-Smart', 'KFGQPC-Hafs', 'KFGQPC-Uthman-Naskh', 'Amiri-Quran', 'Scheherazade New', serif;
   line-height: 1.8;
+  font-feature-settings: "liga" on, "dlig" on, "calt" on;
+  text-rendering: optimizeLegibility;
+}
+
+/* Specific font classes for different KFGQPC styles */
+.font-uthmani {
+  font-family: 'KFGQPC-Hafs', 'KFGQPC-Uthman-Naskh', 'Scheherazade New', serif;
+  line-height: 2.2;
+  font-feature-settings: "liga" on, "dlig" on, "calt" on;
+  text-rendering: optimizeLegibility;
+  font-size: 1.25em;
+}
+
+.font-hafs-smart {
+  font-family: 'KFGQPC-Hafs-Smart', 'KFGQPC-Hafs', 'Scheherazade New', serif;
+  line-height: 2.0;
+  font-feature-settings: "liga" on, "dlig" on, "calt" on;
+  text-rendering: optimizeLegibility;
+  font-size: 1.2em;
+}
+
+.font-naskh {
+  font-family: 'KFGQPC-Uthman-Naskh', 'Amiri-Quran', 'Scheherazade New', serif;
+  line-height: 1.9;
+  font-feature-settings: "liga" on, "dlig" on, "calt" on;
+  text-rendering: optimizeLegibility;
+}
+
+.font-amiri {
+  font-family: 'Amiri-Quran', 'Amiri', 'Scheherazade New', serif;
+  line-height: 1.8;
+  font-feature-settings: "liga" on, "dlig" on, "calt" on;
+  text-rendering: optimizeLegibility;
+}
+
+/* Quranic text specific styles */
+.text-arabic-large {
+  font-size: calc(1.75rem * var(--ayah-fs, 1));
+  line-height: calc(2.5 * var(--ayah-fs, 1));
+}
+
+.verse-animation {
+  transition: all 0.3s ease;
+}
+
+.verse-animation:hover {
+  transform: scale(1.02);
 }
 
 /* Custom button styles */
@@ -294,7 +389,9 @@ main {
 
 @layer utilities {
   .font-arabic {
-    font-family: 'Traditional Arabic', 'Scheherazade New', serif;
+    font-family: 'KFGQPC-Hafs-Smart', 'KFGQPC-Hafs', 'KFGQPC-Uthman-Naskh', 'Amiri-Quran', 'Scheherazade New', serif;
+    font-feature-settings: "liga" on, "dlig" on, "calt" on;
+    text-rendering: optimizeLegibility;
   }
   
   .line-clamp-2 {

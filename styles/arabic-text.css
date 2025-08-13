@@ -13,25 +13,132 @@
 }
 
 /* Font style variations */
+.font-uthmani,
+.font-kfgqpc-hafs,
+.font-kfgqpc-hafs-smart,
+.font-kfgqpc-naskh {
+  /* Optimize font rendering for Arabic text */
+  font-feature-settings: "liga" on, "dlig" on, "calt" on, "kern" on;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* Improve Arabic text layout */
+  direction: rtl;
+  text-align: right;
+  unicode-bidi: bidi-override;
+  
+  /* Enhanced line spacing for better readability */
+  line-height: 2.2;
+  
+  /* Prevent text selection issues with Arabic */
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+}
+
 .font-uthmani {
-  font-family: 'Scheherazade New', 'Amiri Quran', serif;
-  letter-spacing: var(--arabic-letter-spacing, 0.03em);
-  word-spacing: var(--arabic-word-spacing, 0.08em);
-  line-height: 2;
+  font-family: 'KFGQPC-Hafs', 'KFGQPC-Uthman-Naskh', 'Scheherazade New', serif;
+  font-size: 1.5rem;
+  line-height: 2.5;
+  letter-spacing: 0.025em;
 }
 
-.font-naskh {
-  font-family: 'Noto Naskh Arabic', 'Scheherazade New', serif;
-  letter-spacing: var(--arabic-letter-spacing, 0.02em);
-  word-spacing: var(--arabic-word-spacing, 0.06em);
-  line-height: 1.9;
+.font-kfgqpc-hafs-smart {
+  font-family: 'KFGQPC-Hafs-Smart', 'KFGQPC-Hafs', serif;
+  font-size: 1.35rem;
+  line-height: 2.3;
+  letter-spacing: 0.02em;
 }
 
-.font-amiri {
-  font-family: 'Amiri Quran', 'Scheherazade New', serif;
-  letter-spacing: var(--arabic-letter-spacing, 0.01em);
-  word-spacing: var(--arabic-word-spacing, 0.05em);
+.font-kfgqpc-hafs {
+  font-family: 'KFGQPC-Hafs', 'Scheherazade New', serif;
+  font-size: 1.4rem;
+  line-height: 2.4;
+  letter-spacing: 0.02em;
+}
+
+.font-kfgqpc-naskh {
+  font-family: 'KFGQPC-Uthman-Naskh', 'Amiri-Quran', serif;
+  font-size: 1.3rem;
+  line-height: 2.2;
+  letter-spacing: 0.015em;
+}
+
+/* Responsive font sizing */
+@media (max-width: 768px) {
+  .font-uthmani {
+    font-size: 1.3rem;
+    line-height: 2.2;
+  }
+  
+  .font-kfgqpc-hafs-smart,
+  .font-kfgqpc-hafs {
+    font-size: 1.2rem;
+    line-height: 2.1;
+  }
+  
+  .font-kfgqpc-naskh {
+    font-size: 1.1rem;
+    line-height: 2.0;
+  }
+}
+
+@media (max-width: 480px) {
+  .font-uthmani {
+    font-size: 1.2rem;
+    line-height: 2.0;
+  }
+  
+  .font-kfgqpc-hafs-smart,
+  .font-kfgqpc-hafs {
+    font-size: 1.1rem;
+    line-height: 1.9;
+  }
+  
+  .font-kfgqpc-naskh {
+    font-size: 1.0rem;
+    line-height: 1.8;
+  }
+}
+
+/* Enhanced Arabic text styling */
+.arabic-text {
+  font-family: 'KFGQPC-Hafs-Smart', 'KFGQPC-Hafs', 'KFGQPC-Uthman-Naskh', 'Scheherazade New', serif;
   line-height: 1.8;
+}
+
+/* Verse numbering styling for KFGQPC fonts */
+.arabic-verse-number {
+  font-family: 'KFGQPC Arabic Symbols', 'KFGQPC-Hafs-Smart', serif;
+  font-size: 0.9em;
+  color: rgba(var(--muted-foreground));
+  margin: 0 0.25em;
+}
+
+/* Print optimizations for KFGQPC fonts */
+@media print {
+  .font-uthmani,
+  .font-kfgqpc-hafs,
+  .font-kfgqpc-hafs-smart,
+  .font-kfgqpc-naskh {
+    font-size: 14pt;
+    line-height: 1.8;
+    color: black;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+/* Dark mode optimizations */
+@media (prefers-color-scheme: dark) {
+  .font-uthmani,
+  .font-kfgqpc-hafs,
+  .font-kfgqpc-hafs-smart,
+  .font-kfgqpc-naskh {
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
 }
 
 /* Dynamic font selection based on the selected style */

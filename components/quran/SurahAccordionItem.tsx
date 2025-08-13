@@ -334,7 +334,7 @@ const SurahAccordionItem = ({ surah, className = '' }: SurahAccordionItemProps) 
                   {/* Bismillah header for all surahs except At-Tawbah (9) */}
                   {surah.number !== 9 && (
                     <div className="text-center my-6 py-4 px-4 bg-primary/5 rounded-xl border border-primary/10">
-                      <p className="font-amiri font-bold text-3xl mb-2 text-foreground">
+                      <p dir="rtl" lang="ar" className="font-uthmani font-bold text-3xl mb-2 text-foreground leading-loose">
                         بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
                       </p>
                       <p className="text-muted-foreground text-xs">

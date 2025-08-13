@@ -8,7 +8,7 @@
 :root {
   /* Font Families */
   --font-family-body: 'Inter', 'sans-serif'; /* Example body font, replace with your choice */
-  --font-family-quran: 'Scheherazade New', 'Noto Naskh Arabic', 'Amiri Quran', 'serif';
+  --font-family-quran: 'KFGQPC-Hafs-Smart', 'KFGQPC-Hafs', 'KFGQPC-Uthman-Naskh', 'Scheherazade New', 'Noto Naskh Arabic', 'Amiri Quran', 'serif';
 
   /* DUSON Color Palette - Light Theme (default) */
   --duson-cream: 48, 67%, 94%; /* #FAF5E6 */
@@ -127,7 +127,10 @@ body {
   color: hsl(var(--foreground));
 }
 
-/* Utility class to apply Quranic text font */
+/* Utility class to apply Quranic text font with KFGQPC Uthmani */
 .font-quran {
   font-family: var(--font-family-quran);
+  font-feature-settings: "liga" on, "dlig" on, "calt" on;
+  text-rendering: optimizeLegibility;
+  line-height: 1.8;
 } 

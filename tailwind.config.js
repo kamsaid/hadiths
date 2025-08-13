@@ -19,7 +19,13 @@ module.exports = {
   	extend: {
       fontFamily: {
         sans: ['var(--font-family-body)', 'sans-serif'], // Default body font
-        amiri: ['var(--font-family-quran)', 'Amiri Quran', 'serif'] // Amiri Quran font
+        amiri: ['var(--font-family-quran)', 'Amiri Quran', 'serif'], // Amiri Quran font
+        // KFGQPC Uthmani fonts for authentic Quranic typography
+        'kfgqpc-hafs': ['KFGQPC-Hafs', 'Scheherazade New', 'serif'],
+        'kfgqpc-hafs-smart': ['KFGQPC-Hafs-Smart', 'KFGQPC-Hafs', 'serif'],
+        'kfgqpc-naskh': ['KFGQPC-Uthman-Naskh', 'Amiri-Quran', 'serif'],
+        'uthmani': ['KFGQPC-Hafs', 'KFGQPC-Uthman-Naskh', 'serif'],
+        'arabic': ['KFGQPC-Hafs-Smart', 'KFGQPC-Hafs', 'KFGQPC-Uthman-Naskh', 'Amiri-Quran', 'serif']
       },
   		colors: {
   			border: 'hsl(var(--border))',

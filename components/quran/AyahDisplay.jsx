@@ -99,8 +99,14 @@ const AyahDisplay = ({
         
         {/* Arabic text with proper typography */}
         <div dir="rtl" lang="ar" className="mb-6 pt-4 quran-verse">
-          <p style={{ fontSize: `calc(var(--ayah-fs, 1) * 1em)` }} className={`font-${arabicFont} text-arabic-large verse-animation text-foreground text-center`}>
+          <p 
+            style={{ fontSize: `calc(var(--ayah-fs, 1) * 1em)` }} 
+            className={`font-${arabicFont} text-arabic-large verse-animation text-foreground text-center leading-loose`}
+          >
             {ayah.text}
+            <span className="text-sm text-muted-foreground mr-2">
+              ﴿{ayah.number}﴾
+            </span>
           </p>
         </div>
         

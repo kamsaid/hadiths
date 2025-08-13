@@ -62,7 +62,7 @@ export default function SettingsModal({
     theme,
     transition,
     fontSize,
-    arabicFont: localStorage.getItem('quran-arabic-font') || 'uthmani' // Default to Uthmani style
+    arabicFont: localStorage.getItem('quran-arabic-font') || 'uthmani' // Default to KFGQPC Uthmani style
   });
   
   // Check for reduced motion preference
@@ -131,11 +131,14 @@ export default function SettingsModal({
     { value: 'curl', label: 'Page Curl' }
   ];
   
-  // Arabic font options
+  // Arabic font options with KFGQPC Uthmani fonts
   const arabicFontOptions = [
-    { value: 'uthmani', label: 'Uthmani (Traditional)' },
-    { value: 'naskh', label: 'Naskh' },
-    { value: 'amiri', label: 'Amiri' }
+    { value: 'uthmani', label: 'KFGQPC Uthmani (King Fahd Complex)' },
+    { value: 'kfgqpc-hafs-smart', label: 'KFGQPC Hafs Smart (Modern Devices)' },
+    { value: 'kfgqpc-hafs', label: 'KFGQPC Hafs Traditional' },
+    { value: 'kfgqpc-naskh', label: 'KFGQPC Uthman Naskh' },
+    { value: 'naskh', label: 'Naskh (Fallback)' },
+    { value: 'amiri', label: 'Amiri Quran (Traditional)' }
   ];
   
   return (
