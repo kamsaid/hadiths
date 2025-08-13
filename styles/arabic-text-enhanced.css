@@ -1,0 +1,170 @@
+/* Enhanced Arabic Typography System */
+
+/* Enhanced Size Variations with Better Scaling */
+.text-arabic-display {
+  font-size: clamp(3rem, 6vw + 1rem, 5rem);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  font-family: var(--font-family-quran);
+}
+
+.text-arabic-headline {
+  font-size: clamp(2.25rem, 4.5vw + 0.5rem, 3.5rem);
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.015em;
+  font-family: var(--font-family-quran);
+}
+
+.text-arabic-large {
+  font-size: clamp(1.875rem, 3.5vw + 0.5rem, 2.75rem);
+  line-height: 1.3;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  font-family: var(--font-family-quran);
+}
+
+.text-arabic-medium {
+  font-size: clamp(1.5rem, 2.5vw + 0.25rem, 2.25rem);
+  line-height: 1.4;
+  font-weight: 400;
+  letter-spacing: 0.025em;
+  font-family: var(--font-family-quran);
+}
+
+.text-arabic-small {
+  font-size: clamp(1.25rem, 1.75vw + 0.25rem, 1.75rem);
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  font-family: var(--font-family-quran);
+}
+
+.text-arabic-caption {
+  font-size: clamp(1rem, 1.25vw + 0.125rem, 1.375rem);
+  line-height: 1.6;
+  font-weight: 300;
+  letter-spacing: 0.035em;
+  font-family: var(--font-family-quran);
+}
+
+/* Enhanced Animations for Arabic Text */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes revealText {
+  from { 
+    opacity: 0; 
+    transform: translateY(10px) scale(0.95);
+    filter: blur(2px);
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes gentleGlow {
+  0%, 100% {
+    text-shadow: 0 0 5px rgba(251, 189, 13, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(251, 189, 13, 0.5), 0 0 25px rgba(253, 31, 74, 0.2);
+  }
+}
+
+.text-fade-in {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.text-glow-effect {
+  animation: gentleGlow 3s ease-in-out infinite;
+}
+
+.text-reveal {
+  animation: revealText 0.8s ease-out forwards;
+}
+
+/* Staggered Animation for Character-by-Character Reveal */
+.text-stagger > * {
+  opacity: 0;
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+
+.text-stagger > *:nth-child(1) { animation-delay: 0.1s; }
+.text-stagger > *:nth-child(2) { animation-delay: 0.2s; }
+.text-stagger > *:nth-child(3) { animation-delay: 0.3s; }
+.text-stagger > *:nth-child(4) { animation-delay: 0.4s; }
+.text-stagger > *:nth-child(5) { animation-delay: 0.5s; }
+.text-stagger > *:nth-child(6) { animation-delay: 0.6s; }
+.text-stagger > *:nth-child(7) { animation-delay: 0.7s; }
+.text-stagger > *:nth-child(8) { animation-delay: 0.8s; }
+.text-stagger > *:nth-child(9) { animation-delay: 0.9s; }
+.text-stagger > *:nth-child(10) { animation-delay: 1.0s; }
+
+/* Dynamic Text Sizing Based on Content Length */
+.arabic-text-auto {
+  font-size: calc(var(--arabic-base-size) * var(--arabic-font-scale));
+  line-height: calc(1.6 * var(--arabic-line-height-scale));
+  letter-spacing: calc(0.025em * var(--arabic-letter-spacing-scale));
+}
+
+.arabic-text-short {
+  font-size: calc(var(--arabic-large-size) * var(--arabic-font-scale));
+  line-height: calc(1.4 * var(--arabic-line-height-scale));
+}
+
+.arabic-text-long {
+  font-size: calc(var(--arabic-base-size) * 0.9 * var(--arabic-font-scale));
+  line-height: calc(1.8 * var(--arabic-line-height-scale));
+}
+
+/* Enhanced readability improvements */
+.dark .text-arabic-display,
+.dark .text-arabic-headline,
+.dark .text-arabic-large,
+.dark .text-arabic-medium,
+.dark .text-arabic-small,
+.dark .text-arabic-caption {
+  text-shadow: 0px 0px 2px rgba(255, 255, 255, 0.15), 0px 1px 3px rgba(0, 0, 0, 0.3);
+  filter: contrast(1.1) brightness(1.05);
+}
+
+/* Enhanced contrast for light backgrounds */
+.light .text-arabic-display,
+.light .text-arabic-headline,
+.light .text-arabic-large,
+.light .text-arabic-medium,
+.light .text-arabic-small,
+.light .text-arabic-caption {
+  text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.05);
+  filter: contrast(1.05);
+}
+
+/* Enhanced Accessibility and Performance */
+@media (prefers-reduced-motion: reduce) {
+  .text-fade-in,
+  .text-reveal,
+  .text-stagger > * {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .text-arabic-display,
+  .text-arabic-headline,
+  .text-arabic-large,
+  .text-arabic-medium,
+  .text-arabic-small,
+  .text-arabic-caption {
+    text-shadow: none;
+    filter: contrast(1.2);
+  }
+}

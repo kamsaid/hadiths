@@ -1,6 +1,7 @@
 from pydantic_settings import BaseSettings
 from pydantic import Field
 from functools import lru_cache
+from pathlib import Path
 
 
 class Settings(BaseSettings):
@@ -17,7 +18,9 @@ class Settings(BaseSettings):
     # OpenAI / Pinecone credentials & configuration
     # ------------------------------------------------------------------
     OPENAI_API_KEY: str = Field(..., env="OPENAI_API_KEY")
-    PINECONE_API_KEY: str = Field(..., env="PINECONE_API_KEY")
+    # Default to empty string so the app can still boot in dev; retrieval path
+    # has a graceful fallback when this is not configured.
+    PINECONE_API_KEY: str = Field("", env="PINECONE_API_KEY")
     # PINECONE_ENV is used by the Pinecone client to select the environment/region
     PINECONE_ENV: str = Field("us-east1-gcp", env="PINECONE_ENV")
     PINECONE_INDEX_NAME: str = Field("islamic-kb", env="PINECONE_INDEX_NAME")
@@ -40,10 +43,15 @@ class Settings(BaseSettings):
     # original `.env` loading and case-sensitivity, **plus** tell Pydantic
     # to *ignore* unrelated env vars (e.g. VITE_API_URL from the frontend)
     # instead of raising `ValidationError: extra_forbidden`.
+    # Resolve the env file from the project root regardless of current working
+    # directory so running `uvicorn backend.main:app --reload` from either the
+    # repo root or the `backend/` folder consistently picks up variables.
+    _ROOT_ENV_PATH = str(Path(__file__).resolve().parents[1] / ".env.local")
+
     model_config = {
-        "env_file": ".env.local",     # Load from .env.local file
-        "case_sensitive": True,  # preserve original behaviour
-        "extra": "ignore",      # <- crucial: ignore unknown env vars
+        "env_file": _ROOT_ENV_PATH,
+        "case_sensitive": True,
+        "extra": "ignore",
     }
 
 

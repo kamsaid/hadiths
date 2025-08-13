@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import logging
 from typing import List, Tuple
+import os
 
 # Import Pinecone and LangChain lazily inside the retrieval function to avoid
 # heavy dependencies (and ModuleNotFoundError) when Pinecone is not configured
@@ -94,6 +95,13 @@ async def retrieve_context(query: str, k: int = 5) -> Tuple[List[str], float]:
         logger.info(f"Pinecone index '{settings.PINECONE_INDEX_NAME}' stats: {stats}")
     except Exception as e:
         logger.error(f"Failed to get Pinecone index stats: {e}")
+
+    # Ensure third-party libs that expect env vars (LangChain Pinecone wrapper)
+    # see the keys even though we already loaded them via settings. Some
+    # versions of `langchain_pinecone` read only from env, not from the
+    # instantiated client above.
+    os.environ['OPENAI_API_KEY'] = settings.OPENAI_API_KEY
+    os.environ['PINECONE_API_KEY'] = settings.PINECONE_API_KEY
 
     # Wrap existing Pinecone index with LangChain vector store
     vector_store = PineconeVectorStore(

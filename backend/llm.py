@@ -24,7 +24,7 @@ settings = get_settings()
 _client = AsyncOpenAI(api_key=settings.OPENAI_API_KEY)
 
 # ---------------------------------------------------------------------------
-# System prompt used by GPT‑4o for the Islamic Q&A Mentor MVP
+# System prompt used by GPT‑5‑mini for the Islamic Q&A Mentor MVP
 # ---------------------------------------------------------------------------
 SYSTEM_PROMPT = """
 ## Agent Identity
@@ -70,7 +70,7 @@ Provide accurate, well‑sourced Islamic answers grounded in:
 flowchart TD
     Q[User Query] --> R(Pinecone Search)
     R --> C{Context Docs}
-    C --> LLLM[GPT‑4o\nwith System + Context + User]
+    C --> LLLM[GPT‑5‑mini\nwith System + Context + User]
     LLLM --> A[Answer + Citations]
 ```
 
@@ -123,7 +123,7 @@ async def moderate(text: str) -> bool:
 
 
 async def chat(context: list[str], user_query: str) -> Tuple[str, float]:
-    """Call GPT‑4o with context and user query.
+    """Call GPT‑5‑mini with context and user query.
 
     Returns a tuple of (answer, model_confidence) where model_confidence is a
     naive proxy currently fixed to 0.9. This can be refined when the API
@@ -136,13 +136,34 @@ async def chat(context: list[str], user_query: str) -> Tuple[str, float]:
     ]
 
     response = await _client.chat.completions.create(
-        model="gpt-4o-mini",  # Using GPT‑4o model for best reasoning
+        model="gpt-5-mini",  # Using GPT‑5‑mini model for fast reasoning and lower cost
         messages=messages,
-        temperature=0.2,
-        max_tokens=512,
+        max_completion_tokens=512,  # gpt-5 models require 'max_completion_tokens' instead of 'max_tokens'
     )
 
-    answer = response.choices[0].message.content
+    # Robustly extract text; GPT‑5 can return content parts not plain strings
+    choice = response.choices[0]
+    content = getattr(choice, "message").content
+
+    if isinstance(content, str):
+        answer = content.strip()
+    else:
+        text_segments = []
+        try:
+            for part in content or []:  # type: ignore[operator]
+                text_value = getattr(part, "text", None)
+                if not text_value and isinstance(part, dict):
+                    text_value = part.get("text") or part.get("content")
+                if isinstance(text_value, str) and text_value.strip():
+                    text_segments.append(text_value.strip())
+        except Exception:
+            text_segments = [str(content)]
+
+        answer = "\n".join(text_segments).strip()
+
+    if not answer:
+        # Prevent empty UI bubble, provide a helpful fallback
+        answer = "I wasn’t able to generate a response. Please try rephrasing your question."
     model_confidence: float = 0.9
     return answer, model_confidence
 

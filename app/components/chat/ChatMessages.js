@@ -108,9 +108,11 @@ export default function ChatMessages({ messages, isLoading }) {
                     : 'bg-duson-cream/80 dark:bg-duson-ebony/80 border border-duson-ebony/10 dark:border-duson-cream/10 text-duson-ebony dark:text-duson-cream'
               }`}
             >
-              {/* Display message content with proper whitespace handling */}
+              {/* Display message content with a defensive fallback so the UI never collapses */}
               <div className="whitespace-pre-wrap">
-                {message.content}
+                {typeof message.content === 'string' && message.content.trim().length > 0
+                  ? message.content
+                  : '...'}
               </div>
               
               {/* Render citations if present (only for assistant messages) */}

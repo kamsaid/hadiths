@@ -5,6 +5,17 @@
   --arabic-letter-spacing: 0.03em;
   --arabic-word-spacing: 0.08em;
   --selected-arabic-font: 'uthmani'; /* Default font style */
+  
+  /* Enhanced Arabic Typography Variables */
+  --arabic-font-scale: 1;
+  --arabic-line-height-scale: 1;
+  --arabic-letter-spacing-scale: 1;
+  --arabic-contrast-boost: 1;
+  
+  /* Responsive Arabic Scaling */
+  --arabic-base-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  --arabic-large-size: clamp(1.875rem, 4vw, 2.75rem);
+  --arabic-display-size: clamp(3rem, 6vw, 5rem);
 }
 
 /* Base styles for Arabic text */
@@ -40,30 +51,38 @@
 
 .font-uthmani {
   font-family: 'KFGQPC-Hafs', 'KFGQPC-Uthman-Naskh', 'Scheherazade New', serif;
-  font-size: 1.5rem;
-  line-height: 2.5;
-  letter-spacing: 0.025em;
+  font-size: calc(1.5rem * var(--arabic-font-scale, 1));
+  line-height: calc(2.5 * var(--arabic-line-height-scale, 1));
+  letter-spacing: calc(0.025em * var(--arabic-letter-spacing-scale, 1));
+  font-variation-settings: 'wght' 400, 'slnt' 0;
+  font-feature-settings: 'liga' on, 'dlig' on, 'calt' on, 'kern' on, 'mark' on, 'mkmk' on;
 }
 
 .font-kfgqpc-hafs-smart {
   font-family: 'KFGQPC-Hafs-Smart', 'KFGQPC-Hafs', serif;
-  font-size: 1.35rem;
-  line-height: 2.3;
-  letter-spacing: 0.02em;
+  font-size: calc(1.35rem * var(--arabic-font-scale, 1));
+  line-height: calc(2.3 * var(--arabic-line-height-scale, 1));
+  letter-spacing: calc(0.02em * var(--arabic-letter-spacing-scale, 1));
+  font-variation-settings: 'wght' 400;
+  font-feature-settings: 'liga' on, 'dlig' on, 'calt' on, 'kern' on, 'mark' on;
 }
 
 .font-kfgqpc-hafs {
   font-family: 'KFGQPC-Hafs', 'Scheherazade New', serif;
-  font-size: 1.4rem;
-  line-height: 2.4;
-  letter-spacing: 0.02em;
+  font-size: calc(1.4rem * var(--arabic-font-scale, 1));
+  line-height: calc(2.4 * var(--arabic-line-height-scale, 1));
+  letter-spacing: calc(0.02em * var(--arabic-letter-spacing-scale, 1));
+  font-variation-settings: 'wght' 400;
+  font-feature-settings: 'liga' on, 'dlig' on, 'calt' on, 'kern' on;
 }
 
 .font-kfgqpc-naskh {
   font-family: 'KFGQPC-Uthman-Naskh', 'Amiri-Quran', serif;
-  font-size: 1.3rem;
-  line-height: 2.2;
-  letter-spacing: 0.015em;
+  font-size: calc(1.3rem * var(--arabic-font-scale, 1));
+  line-height: calc(2.2 * var(--arabic-line-height-scale, 1));
+  letter-spacing: calc(0.015em * var(--arabic-letter-spacing-scale, 1));
+  font-variation-settings: 'wght' 400;
+  font-feature-settings: 'liga' on, 'dlig' on, 'calt' on, 'kern' on;
 }
 
 /* Responsive font sizing */
@@ -209,4 +228,4 @@
 
 .verse-animation {
   animation: fadeIn 0.5s ease-out forwards;
-} 
+}

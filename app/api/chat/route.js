@@ -37,13 +37,29 @@ export async function POST(request) {
       body: JSON.stringify(body),
     });
     
-    // If the backend returns an error, throw it
+    // If the backend returns an error, try to extract a helpful message
+    // rather than throwing due to a non-JSON error payload
     if (!response.ok) {
-      const errorData = await response.json();
-      return Response.json(
-        { error: errorData.detail || 'An error occurred while processing your request' },
-        { status: response.status }
-      );
+      let errorMessage = 'An error occurred while processing your request';
+      const contentType = response.headers.get('content-type') || '';
+
+      try {
+        // Prefer JSON error bodies when available
+        if (contentType.includes('application/json')) {
+          const errorData = await response.json();
+          errorMessage = errorData?.detail || errorData?.error || errorMessage;
+        } else {
+          // Fallback to plain text responses from the backend/web server
+          const errorText = await response.text();
+          if (errorText && errorText.trim().length > 0) {
+            errorMessage = errorText.trim();
+          }
+        }
+      } catch (_) {
+        // Silently ignore parsing errors and keep the default message
+      }
+
+      return Response.json({ error: errorMessage }, { status: response.status });
     }
     
     // Return the backend response
@@ -56,10 +72,12 @@ export async function POST(request) {
     // simply that the FastAPI backend is **not running**.  Detect this based on
     // error message patterns thrown by `fetch` and adjust the output so the UI
     // can show a helpful hint instead of a generic "unexpected error" string.
+    const message = typeof error?.message === 'string' ? error.message : '';
     const isConnRefused =
-      typeof error?.message === 'string' &&
-      (error.message.includes('ECONNREFUSED') ||
-        error.message.includes('Failed to fetch'));
+      message.includes('ECONNREFUSED') ||
+      message.includes('ENOTFOUND') ||
+      message.includes('fetch failed') ||
+      message.includes('Failed to fetch');
 
     const friendlyMessage = isConnRefused
       ? 'Unable to reach the backend service. Is the FastAPI server running?'

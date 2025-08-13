@@ -4,11 +4,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Import Arabic text optimizations */
+/**
+ * Import Arabic text optimizations for improved rendering and ligature support.
+ * Note: Removed erroneous '\n' and fixed import syntax.
+ */
 @import '../styles/arabic-text.css';
+@import '../styles/arabic-text-enhanced.css';
 
-/* Import King Fahd Complex (KFGQPC) Uthmani Fonts */
+/* Optimized Font Loading for KFGQPC Uthmani Fonts with Enhanced Fallbacks */
 @font-face {
   font-family: "KFGQPC-Hafs";
   src: url("https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.woff2") format("woff2"),
@@ -16,6 +19,7 @@
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
 }
 
 @font-face {
@@ -25,49 +29,119 @@
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
 }
 
 @font-face {
   font-family: "KFGQPC-Uthman-Naskh";
-  src: url("https://cdn.rawgit.com/mustafa0x/qpc-fonts/f93bf5f3/various-woff2/UthmanTN1%20Ver10.woff2") format("woff2"),
-       url("https://cdn.rawgit.com/mustafa0x/qpc-fonts/f93bf5f3/various-woff/UthmanTN1%20Ver10.woff") format("woff");
+  src: url("https://cdn.jsdelivr.net/gh/mustafa0x/qpc-fonts@latest/various-woff2/UthmanTN1%20Ver10.woff2") format("woff2"),
+       url("https://cdn.jsdelivr.net/gh/mustafa0x/qpc-fonts@latest/various-woff/UthmanTN1%20Ver10.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
 }
 
 @font-face {
   font-family: "KFGQPC-Uthman-Naskh";
-  src: url("https://cdn.rawgit.com/mustafa0x/qpc-fonts/f93bf5f3/various-woff2/UthmanTN1B%20Ver10.woff2") format("woff2"),
-       url("https://cdn.rawgit.com/mustafa0x/qpc-fonts/f93bf5f3/various-woff/UthmanTN1B%20Ver10.woff") format("woff");
+  src: url("https://cdn.jsdelivr.net/gh/mustafa0x/qpc-fonts@latest/various-woff2/UthmanTN1B%20Ver10.woff2") format("woff2"),
+       url("https://cdn.jsdelivr.net/gh/mustafa0x/qpc-fonts@latest/various-woff/UthmanTN1B%20Ver10.woff") format("woff");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
 }
 
-/* Traditional fallback Arabic fonts */
+/* Enhanced Fallback Arabic Fonts with Local Loading */
 @font-face {
   font-family: "Amiri-Quran";
   src: local("Amiri Quran"),
-       local("Amiri");
+       local("Amiri Regular"),
+       local("Amiri"),
+       url("https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap");
   font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
 }
 
-/* Theme colors */
+/* Enhanced System Font Fallbacks for Arabic */
+@font-face {
+  font-family: "Arabic-System-Fallback";
+  src: local("Tahoma"),
+       local("Arabic Typesetting"),
+       local("Geeza Pro"),
+       local("Baghdad"),
+       local("Al Bayan"),
+       local("Nadeem"),
+       local("DejaVu Sans"),
+       local("Lucida Grande");
+  font-display: block;
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF;
+}
+
+/* Enhanced Theme Colors with Better Organization */
 :root {
-  /* Duson Color Palette */
+  /* === DUSON COLOR PALETTE === */
   --color-bg-light:  #FAF5E6; /* duson-cream */
   --color-bg-dark:   #2D2C2E; /* duson-ebony */
   --color-accent:    #FBBD0D; /* duson-yellow */
   --color-text-main: #2D2C2E; /* duson-ebony */
   --color-text-alt:  #FD1F4A; /* duson-crimson */
   
-  /* No more legacy colors */
+  /* === SEMANTIC COLOR VARIABLES === */
+  --color-primary: var(--color-accent);
+  --color-secondary: var(--color-text-alt);
+  --color-background: var(--color-bg-light);
+  --color-foreground: var(--color-text-main);
+  --color-surface: rgba(250, 245, 230, 0.8);
+  --color-surface-elevated: rgba(250, 245, 230, 0.95);
+  --color-border: rgba(45, 44, 46, 0.15);
+  --color-border-hover: rgba(45, 44, 46, 0.25);
+  
+  /* === SPACING SYSTEM === */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+  
+  /* === BORDER RADIUS SYSTEM === */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+  
+  /* === SHADOW SYSTEM === */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  /* === Z-INDEX SYSTEM === */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
 }
 
 [data-theme="dark"], .dark {
+  /* === DARK MODE COLOR OVERRIDES === */
   --color-bg-light: #2D2C2E;   /* swap for dark mode - duson-ebony */
+  --color-bg-dark: #FAF5E6;    /* swap for dark mode - duson-cream */
   --color-text-main: #FAF5E6;  /* swap for dark mode - duson-cream */
+  --color-background: var(--color-bg-light);
+  --color-foreground: var(--color-text-main);
+  --color-surface: rgba(45, 44, 46, 0.8);
+  --color-surface-elevated: rgba(45, 44, 46, 0.95);
+  --color-border: rgba(250, 245, 230, 0.15);
+  --color-border-hover: rgba(250, 245, 230, 0.25);
 }
 
 @layer base {
@@ -170,12 +244,13 @@ body {
   line-height: 1.6;
 }
 
-/* Arabic font styling with KFGQPC Uthmani fonts */
+/* Enhanced Arabic font styling with optimized fallback chain */
 .font-arabic {
-  font-family: 'KFGQPC-Hafs-Smart', 'KFGQPC-Hafs', 'KFGQPC-Uthman-Naskh', 'Amiri-Quran', 'Scheherazade New', serif;
+  font-family: 'KFGQPC-Hafs-Smart', 'KFGQPC-Hafs', 'KFGQPC-Uthman-Naskh', 'Amiri-Quran', 'Arabic-System-Fallback', 'Scheherazade New', serif;
   line-height: 1.8;
   font-feature-settings: "liga" on, "dlig" on, "calt" on;
   text-rendering: optimizeLegibility;
+  font-optical-sizing: auto;
 }
 
 /* Specific font classes for different KFGQPC styles */
@@ -216,7 +291,8 @@ body {
 }
 
 .verse-animation {
-  transition: all 0.3s ease;
+  transition: transform var(--animation-duration-normal) var(--animation-easing);
+  will-change: transform;
 }
 
 .verse-animation:hover {
@@ -316,13 +392,23 @@ ul.crimson-bullets li::before {
   @apply bg-duson-cream dark:bg-duson-ebony rounded-xl shadow-sm transition-all duration-300 border-b-2 border-transparent hover:border-duson-crimson hover:shadow-md;
 }
 
-/* Subtle animations */
+/* Enhanced subtle animations with performance optimizations */
 .hover-lift {
-  @apply transition-transform duration-300 hover:-translate-y-1;
+  transition: transform var(--animation-duration-normal) var(--animation-easing);
+  will-change: transform;
+}
+
+.hover-lift:hover {
+  transform: translateY(-0.25rem);
 }
 
 .hover-grow {
-  @apply transition-transform duration-300 hover:scale-[1.02];
+  transition: transform var(--animation-duration-normal) var(--animation-easing);
+  will-change: transform;
+}
+
+.hover-grow:hover {
+  transform: scale(1.02);
 }
 
 /* Gradient overlays */
@@ -335,26 +421,65 @@ ul.crimson-bullets li::before {
   background: linear-gradient(180deg, rgba(253, 31, 74, 0) 0%, rgba(253, 31, 74, 0.15) 100%);
 }
 
-/* Line clamp utility */
+/* Enhanced Line clamp utilities with proper vendor prefixes */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  will-change: auto;
+}
+
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
+  will-change: auto;
 }
 
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
+  will-change: auto;
 }
 
 .line-clamp-4 {
   display: -webkit-box;
   -webkit-line-clamp: 4;
+  line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
+  will-change: auto;
+}
+
+.line-clamp-5 {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  will-change: auto;
+}
+
+.line-clamp-6 {
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  will-change: auto;
 }
 
 /* Add some space for content */
@@ -374,7 +499,8 @@ main {
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
+  animation: fadeIn var(--animation-duration-slow) var(--animation-easing) forwards;
+  will-change: opacity, transform;
 }
 
 /* Modern divider */
@@ -388,28 +514,14 @@ main {
 }
 
 @layer utilities {
-  .font-arabic {
-    font-family: 'KFGQPC-Hafs-Smart', 'KFGQPC-Hafs', 'KFGQPC-Uthman-Naskh', 'Amiri-Quran', 'Scheherazade New', serif;
-    font-feature-settings: "liga" on, "dlig" on, "calt" on;
-    text-rendering: optimizeLegibility;
-  }
-  
-  .line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
+  /* Line clamp utilities are consolidated below */
 }
 
-/* Custom animations */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
+/* Custom animations - consolidated fadeIn */
 
 .animate-fadeIn {
-  animation: fadeIn 0.5s ease-in-out;
+  animation: fadeIn var(--animation-duration-slow) var(--animation-easing);
+  will-change: opacity;
 }
 
 /* Responsive adjustments */
@@ -420,9 +532,11 @@ main {
   }
 }
 
-/* Custom styling for hadith cards */
+/* Enhanced styling for hadith cards with performance optimizations */
 .hadith-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform var(--animation-duration-normal) var(--animation-easing), 
+              box-shadow var(--animation-duration-normal) var(--animation-easing);
+  will-change: transform, box-shadow;
 }
 
 .hadith-card:hover {
@@ -496,16 +610,19 @@ a {
 
 .animate-float-up {
   animation: float-up 3s ease-out infinite;
+  will-change: transform, opacity;
 }
 
 .animate-float-up-delayed {
   animation: float-up-delayed 3.5s ease-out infinite;
   animation-delay: 0.5s;
+  will-change: transform, opacity;
 }
 
 .animate-float-up-slow {
   animation: float-up-slow 4s ease-out infinite;
   animation-delay: 1s;
+  will-change: transform, opacity;
 }
 
 /* Particle positions */
@@ -535,5 +652,522 @@ a {
 }
 
 .animate-spin-slow {
-  animation: spin-slow 3s linear infinite;
+  animation: spin-slow 8s linear infinite;
+  will-change: transform;
+}
+
+/* Advanced Gradient Utilities */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+.bg-gradient-conic {
+  background: conic-gradient(from 0deg, var(--tw-gradient-stops));
+}
+
+.bg-gradient-diamond {
+  background: linear-gradient(45deg, var(--tw-gradient-stops)),
+              linear-gradient(-45deg, var(--tw-gradient-stops));
+  background-blend-mode: multiply;
+}
+
+/* Islamic Pattern Utilities */
+.pattern-islamic-geometric {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.05'%3E%3Cpath d='M30 0l30 30-30 30L0 30 30 0zm0 10L10 30l20 20 20-20L30 10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: 120px 120px;
+}
+
+.pattern-islamic-star {
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.03'%3E%3Cpath d='M20 0l6 14h14l-12 8 6 14-14-10-14 10 6-14-12-8h14z'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 80px 80px;
+}
+
+.pattern-islamic-hexagon {
+  background-image: url("data:image/svg+xml,%3Csvg width='50' height='50' viewBox='0 0 50 50' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23000000' stroke-opacity='0.04' stroke-width='1'%3E%3Cpolygon points='25,5 45,15 45,35 25,45 5,35 5,15'/%3E%3Cpolygon points='25,15 35,20 35,30 25,35 15,30 15,20'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 100px 100px;
+}
+
+.pattern-islamic-tile {
+  background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.025'%3E%3Cpath d='M15 0l15 15-15 15L0 15 15 0zm0 5L5 15l10 10 10-10L15 5z'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 60px 60px;
+}
+
+/* Enhanced Glassmorphism Effects */
+.glass-light {
+  background: rgba(250, 245, 230, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(250, 245, 230, 0.2);
+}
+
+.glass-dark {
+  background: rgba(45, 44, 46, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(45, 44, 46, 0.2);
+}
+
+.glass-yellow {
+  background: rgba(251, 189, 13, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(251, 189, 13, 0.2);
+}
+
+.glass-crimson {
+  background: rgba(253, 31, 74, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(253, 31, 74, 0.2);
+}
+
+/* Enhanced Shadow System */
+.shadow-soft {
+  box-shadow: 0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04);
+}
+
+.shadow-glow-yellow {
+  box-shadow: 0 0 20px rgba(251, 189, 13, 0.3), 0 0 40px rgba(251, 189, 13, 0.1);
+}
+
+.shadow-glow-crimson {
+  box-shadow: 0 0 20px rgba(253, 31, 74, 0.3), 0 0 40px rgba(253, 31, 74, 0.1);
+}
+
+.shadow-inset {
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* Enhanced Text Effects */
+.text-shadow-soft {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.text-shadow-glow {
+  text-shadow: 0 0 10px rgba(251, 189, 13, 0.5), 0 0 20px rgba(253, 31, 74, 0.3);
+}
+
+/* Advanced Custom Animations */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes gentleFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes gentlePulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes wobble {
+  0% { transform: rotate(0deg); }
+  15% { transform: rotate(-5deg); }
+  30% { transform: rotate(4deg); }
+  45% { transform: rotate(-3deg); }
+  60% { transform: rotate(2deg); }
+  75% { transform: rotate(-1deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.animate-slideInUp {
+  animation: slideInUp var(--animation-duration-slow) var(--animation-easing);
+  will-change: opacity, transform;
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft var(--animation-duration-slow) var(--animation-easing);
+  will-change: opacity, transform;
+}
+
+.animate-scaleIn {
+  animation: scaleIn var(--animation-duration-slow) var(--animation-easing);
+  will-change: opacity, transform;
+}
+
+.animate-gentleFloat {
+  animation: gentleFloat 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-gentlePulse {
+  animation: gentlePulse 2s ease-in-out infinite;
+  will-change: opacity;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+  will-change: background-position;
+}
+
+.animate-spin-reverse {
+  animation: spin-reverse 6s linear infinite;
+  will-change: transform;
+}
+
+.animate-wobble {
+  animation: wobble 1s ease-in-out;
+  will-change: transform;
+}
+
+/* Enhanced Interactive Hover States with Performance Optimizations */
+.hover-lift {
+  transition: transform var(--animation-duration-normal) var(--animation-easing), 
+              box-shadow var(--animation-duration-normal) var(--animation-easing);
+  will-change: transform, box-shadow;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.hover-scale {
+  transition: transform var(--animation-duration-normal) var(--animation-easing);
+  will-change: transform;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-brighten {
+  transition: filter var(--animation-duration-normal) var(--animation-easing);
+  will-change: filter;
+}
+
+.hover-brighten:hover {
+  filter: brightness(1.1);
+}
+
+/* Islamic Calligraphy Text Effects */
+.text-islamic-glow {
+  color: transparent;
+  background: linear-gradient(45deg, 
+    hsl(var(--duson-yellow)), 
+    hsl(var(--duson-crimson)), 
+    hsl(var(--duson-yellow))
+  );
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* Enhanced Button Styles */
+.btn-islamic {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, hsl(var(--duson-crimson)), hsl(var(--duson-yellow)));
+  transition: all 0.3s ease;
+}
+
+.btn-islamic::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-islamic:hover::before {
+  left: 100%;
+}
+
+/* Enhanced scroll-triggered animations with performance optimizations */
+.scroll-fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--animation-duration-slow) var(--animation-easing), 
+              transform var(--animation-duration-slow) var(--animation-easing);
+  will-change: opacity, transform;
+}
+
+.scroll-fade-in.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-scale-in {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity var(--animation-duration-slow) var(--animation-easing), 
+              transform var(--animation-duration-slow) var(--animation-easing);
+  will-change: opacity, transform;
+}
+
+.scroll-scale-in.in-view {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Enhanced Typography Scale */
+.text-display {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.1;
+  font-weight: 800;
+}
+
+.text-headline {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.text-title {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.text-body-large {
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* Enhanced CSS Variables for Fonts and Typography */
+:root {
+  --font-family-quran: 'KFGQPC-Hafs-Smart', 'KFGQPC-Hafs', 'KFGQPC-Uthman-Naskh', 'Amiri-Quran', 'Arabic-System-Fallback', 'Scheherazade New', serif;
+  --font-family-arabic: 'KFGQPC-Hafs-Smart', 'KFGQPC-Hafs', 'KFGQPC-Uthman-Naskh', 'Amiri-Quran', 'Arabic-System-Fallback', 'Scheherazade New', serif;
+  --font-family-latin: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --arabic-base-size: 1.5rem;
+  --arabic-large-size: 2rem;
+  --arabic-font-scale: 1;
+  --arabic-line-height-scale: 1;
+  --arabic-letter-spacing-scale: 1;
+  
+  /* Performance optimization variables */
+  --animation-duration-fast: 0.2s;
+  --animation-duration-normal: 0.3s;
+  --animation-duration-slow: 0.5s;
+  --animation-easing: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =====================================================
+   ACCESSIBILITY ENHANCEMENTS
+   ===================================================== */
+
+/* Reduced Motion Support - Respects user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  /* Disable specific animations */
+  .animate-fade-in,
+  .animate-fadeIn,
+  .animate-float-up,
+  .animate-float-up-delayed,
+  .animate-float-up-slow,
+  .animate-spin-slow,
+  .animate-slideInUp,
+  .animate-slideInLeft,
+  .animate-scaleIn,
+  .animate-gentleFloat,
+  .animate-gentlePulse,
+  .animate-shimmer,
+  .animate-spin-reverse,
+  .animate-wobble,
+  .text-fade-in,
+  .text-reveal,
+  .text-stagger > * {
+    animation: none !important;
+    transform: none !important;
+  }
+  
+  /* Maintain hover effects but remove transforms */
+  .hover-lift:hover,
+  .hover-grow:hover,
+  .verse-animation:hover,
+  .hadith-card:hover {
+    transform: none !important;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  :root {
+    --color-bg-light: #FFFFFF;
+    --color-bg-dark: #000000;
+    --color-text-main: #000000;
+    --color-text-alt: #000000;
+    --color-accent: #000000;
+  }
+  
+  [data-theme="dark"], .dark {
+    --color-bg-light: #000000;
+    --color-text-main: #FFFFFF;
+  }
+  
+  /* Remove subtle colors and effects */
+  .glass-light,
+  .glass-dark,
+  .glass-yellow,
+  .glass-crimson {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border: 2px solid currentColor !important;
+  }
+  
+  /* Remove gradients and use solid colors */
+  .crimson-gradient,
+  .gradient-overlay {
+    background: transparent !important;
+  }
+  
+  /* Enhance text shadows for better contrast */
+  .text-arabic-display,
+  .text-arabic-headline,
+  .text-arabic-large,
+  .text-arabic-medium,
+  .text-arabic-small,
+  .text-arabic-caption,
+  .font-arabic,
+  .font-uthmani,
+  .font-hafs-smart,
+  .font-naskh,
+  .font-amiri {
+    text-shadow: none !important;
+    filter: contrast(1.5) !important;
+  }
+  
+  /* Simplify borders and focus indicators */
+  *:focus {
+    outline: 3px solid currentColor !important;
+    outline-offset: 2px !important;
+  }
+}
+
+/* Forced Colors Mode (Windows High Contrast) */
+@media (forced-colors: active) {
+  .pattern-islamic-geometric,
+  .pattern-islamic-star,
+  .pattern-islamic-hexagon,
+  .pattern-islamic-tile {
+    background-image: none !important;
+  }
+  
+  .shadow-soft,
+  .shadow-glow-yellow,
+  .shadow-glow-crimson,
+  .shadow-inset {
+    box-shadow: none !important;
+  }
+}
+
+/* Enhanced Focus Indicators for Keyboard Navigation */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.btn:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Print Styles for Islamic Content */
+@media print {
+  /* Ensure Arabic text prints well */
+  .font-arabic,
+  .font-uthmani,
+  .font-hafs-smart,
+  .font-naskh,
+  .font-amiri {
+    font-size: 14pt !important;
+    line-height: 1.8 !important;
+    color: black !important;
+    background: white !important;
+  }
+  
+  /* Remove animations and effects for print */
+  * {
+    animation: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  /* Optimize layout for print */
+  .container,
+  .container-custom {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+  
+  /* Hide non-essential elements */
+  .btn,
+  button,
+  .animate-float-up,
+  .animate-float-up-delayed,
+  .animate-float-up-slow {
+    display: none !important;
+  }
 }

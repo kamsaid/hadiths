@@ -144,7 +144,16 @@ module.exports = {
               'spin-slow': 'spin-slow 8s linear infinite',
               'page-curl': 'page-curl var(--page-transition-duration, 0.6s) ease-in-out',
               'page-slide-from-right': 'page-slide-from-right var(--page-transition-duration, 0.5s) ease-out',
-              'page-slide-to-left': 'page-slide-to-left var(--page-transition-duration, 0.5s) ease-out'
+              'page-slide-to-left': 'page-slide-to-left var(--page-transition-duration, 0.5s) ease-out',
+              // Enhanced Islamic animations
+              'gentle-float': 'gentle-float 3s ease-in-out infinite',
+              'gentle-pulse': 'gentle-pulse 2s ease-in-out infinite',
+              'shimmer': 'shimmer 2s infinite',
+              'slide-in-up': 'slide-in-up 0.6s ease-out',
+              'slide-in-left': 'slide-in-left 0.6s ease-out',
+              'scale-in': 'scale-in 0.5s ease-out',
+              'spin-reverse': 'spin-reverse 6s linear infinite',
+              'wobble': 'wobble 1s ease-in-out'
   		}
   	}
   },

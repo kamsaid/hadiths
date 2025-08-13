@@ -58,11 +58,20 @@ export default function ChatInterface() {
       }
       
       const data = await response.json();
-      
+
+      // Normalize/guard against empty answers to avoid rendering a tiny empty bubble
+      // Some models (e.g., gpt-5-mini) can occasionally return an empty string
+      // when content filters or output-part structures are involved. We provide
+      // a friendly fallback here to keep the UX clear and accessible.
+      const normalizedAnswer =
+        typeof data?.answer === "string" && data.answer.trim().length > 0
+          ? data.answer
+          : "I wasn’t able to generate a response this time. Please try rephrasing your question.";
+
       // Add assistant response to chat
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: data.answer, citations: data.citations || [] },
+        { role: "assistant", content: normalizedAnswer, citations: data.citations || [] },
       ]);
     } catch (err) {
       console.error("Error sending message:", err);
