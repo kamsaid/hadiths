@@ -1,4 +1,4 @@
-from typing import List, Literal
+from typing import List, Literal, Optional
 
 from pydantic import BaseModel, constr, validator
 
@@ -8,10 +8,19 @@ from pydantic import BaseModel, constr, validator
 # ---------------------------------------------------------------------------
 
 
+class Message(BaseModel):
+    """Represents a single message in conversation history."""
+    
+    role: Literal["user", "assistant", "system"]
+    content: str
+
+
 class ChatRequest(BaseModel):
-    """Represents an incoming question from the user."""
+    """Represents an incoming question from the user with optional conversation context."""
 
     query: constr(strip_whitespace=True, min_length=3)
+    messages: Optional[List[Message]] = None
+    session_id: Optional[str] = None
 
 
 class Citation(BaseModel):

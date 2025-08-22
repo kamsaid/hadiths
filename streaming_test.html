@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Streaming Chat Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .container {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .response-area {
+            border: 1px solid #ddd;
+            background: #f9f9f9;
+            padding: 15px;
+            min-height: 200px;
+            margin: 20px 0;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input {
+            width: 70%;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+        .status {
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Streaming Chat Test</h1>
+        <div>
+            <input type="text" id="queryInput" placeholder="Enter your question..." value="What does Islam say about prayer?">
+            <button onclick="sendStreamingRequest()" id="sendBtn">Send Streaming Request</button>
+        </div>
+        <div class="status" id="status"></div>
+        <div class="response-area" id="responseArea">Response will appear here...</div>
+        <button onclick="clearResponse()">Clear Response</button>
+    </div>
+
+    <script>
+        const apiUrl = 'http://localhost:8000/chat/stream';
+        
+        async function sendStreamingRequest() {
+            const queryInput = document.getElementById('queryInput');
+            const responseArea = document.getElementById('responseArea');
+            const status = document.getElementById('status');
+            const sendBtn = document.getElementById('sendBtn');
+            
+            const query = queryInput.value.trim();
+            if (!query) {
+                alert('Please enter a question');
+                return;
+            }
+            
+            // Reset UI
+            responseArea.textContent = '';
+            status.textContent = 'Connecting to streaming endpoint...';
+            status.className = 'status';
+            sendBtn.disabled = true;
+            
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ query: query })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                status.textContent = 'Streaming response...';
+                status.className = 'status success';
+                
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let buffer = '';
+                
+                while (true) {
+                    const { done, value } = await reader.read();
+                    
+                    if (done) {
+                        break;
+                    }
+                    
+                    // Decode the chunk
+                    buffer += decoder.decode(value, { stream: true });
+                    
+                    // Process complete lines
+                    const lines = buffer.split('\n');
+                    buffer = lines.pop() || ''; // Keep incomplete line in buffer
+                    
+                    for (const line of lines) {
+                        if (line.trim() === '') continue;
+                        
+                        if (line.startsWith('data: ')) {
+                            const data = line.substring(6);
+                            if (data === '[DONE]') {
+                                status.textContent = 'Stream completed!';
+                                status.className = 'status success';
+                                return;
+                            } else {
+                                responseArea.textContent += data;
+                                responseArea.scrollTop = responseArea.scrollHeight;
+                            }
+                        }
+                    }
+                }
+                
+            } catch (error) {
+                console.error('Streaming error:', error);
+                status.textContent = `Error: ${error.message}`;
+                status.className = 'status error';
+                responseArea.textContent = `Error occurred: ${error.message}`;
+            } finally {
+                sendBtn.disabled = false;
+            }
+        }
+        
+        function clearResponse() {
+            document.getElementById('responseArea').textContent = 'Response will appear here...';
+            document.getElementById('status').textContent = '';
+        }
+        
+        // Allow Enter key to send request
+        document.getElementById('queryInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendStreamingRequest();
+            }
+        });
+    </script>
+</body>
+</html>

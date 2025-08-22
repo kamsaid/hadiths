@@ -10,10 +10,11 @@ from typing import List, Dict, Any, Optional
 
 from fastapi import FastAPI, HTTPException, Body, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
 from starlette.status import HTTP_400_BAD_REQUEST, HTTP_429_TOO_MANY_REQUESTS
 
 from backend.config import get_settings
-from backend.llm import chat, moderate
+from backend.llm import chat, moderate, chat_stream
 from backend.models import ChatRequest, ChatResponse, Citation
 from backend.retrieval import retrieve_context
 
@@ -34,6 +35,7 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],  # Allow all methods
     allow_headers=["*"],  # Allow all headers
+    expose_headers=["*"],  # Expose headers for streaming responses
 )
 
 # ---------------------------------------------------------------------------
@@ -152,4 +154,145 @@ async def chat_endpoint(request: Request) -> ChatResponse:
 
     response = ChatResponse(answer=answer, citations=citations, confidence=overall_conf)
     logger.info(f"Returning response: {response}")
-    return response 
+    return response
+
+
+@app.post("/chat/stream")
+async def chat_stream_endpoint(request: Request) -> StreamingResponse:
+    """Streaming chat completion endpoint for real-time responses."""
+    
+    # Get the raw request body for debugging
+    try:
+        body_raw = await request.body()
+        logger.info(f"Streaming request - Raw body: {body_raw}")
+        
+        # Try to parse as JSON
+        try:
+            body = json.loads(body_raw)
+            logger.info(f"Streaming request - Parsed body: {body}")
+        except json.JSONDecodeError:
+            logger.error("Failed to parse streaming request body as JSON")
+            body = {}
+    except Exception as e:
+        logger.error(f"Error reading streaming request body: {str(e)}")
+        body = {}
+    
+    # Handle both direct ChatRequest and Vercel AI SDK format
+    query = ""
+    
+    if "query" in body:
+        # Standard request using our ChatRequest model
+        query = body["query"]
+        logger.info(f"Streaming - Found query in body: {query}")
+    elif "messages" in body:
+        # Vercel AI SDK format
+        messages = body["messages"]
+        logger.info(f"Streaming - Found messages in body: {messages}")
+        if messages and len(messages) > 0:
+            # Get the last user message
+            for message in reversed(messages):
+                if message.get("role") == "user":
+                    query = message.get("content", "")
+                    logger.info(f"Streaming - Extracted query from messages: {query}")
+                    break
+
+    if not query or len(query.strip()) < 3:
+        detail = "No valid query provided in streaming request or query too short (min 3 characters)"
+        logger.error(detail)
+        raise HTTPException(
+            status_code=HTTP_400_BAD_REQUEST,
+            detail=detail,
+        )
+
+    logger.info(f"Processing streaming chat request with query: '{query}'")
+
+    # 1️⃣ Safety: moderation check
+    if await moderate(query):
+        raise HTTPException(
+            status_code=HTTP_400_BAD_REQUEST,
+            detail="Your question violates content policy. Please rephrase.",
+        )
+
+    # 2️⃣ Retrieve knowledge context
+    try:
+        context_chunks, sim_score = await retrieve_context(query)
+    except Exception as e:
+        logger.error(f"Error retrieving context for streaming: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error retrieving context: {str(e)}",
+        )
+
+    # 3️⃣ Handle low similarity case
+    if sim_score < settings.CONFIDENCE_THRESHOLD:
+        async def low_confidence_response():
+            yield "data: I'm not sure about that. It may be best to consult a qualified scholar.\n\n"
+            yield "data: [DONE]\n\n"
+        
+        return StreamingResponse(
+            low_confidence_response(),
+            media_type="text/plain",
+            headers={
+                "Cache-Control": "no-cache",
+                "Connection": "keep-alive",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": "*",
+            }
+        )
+
+    # 4️⃣ Stream the response
+    async def generate_stream():
+        """Generate Server-Sent Events formatted stream."""
+        try:
+            logger.info("Starting streaming response generation")
+            async for chunk in chat_stream(context_chunks, query):
+                if chunk:
+                    # Format as Server-Sent Events
+                    yield f"data: {chunk}\n\n"
+            
+            # Send completion signal
+            yield "data: [DONE]\n\n"
+            logger.info("Streaming response completed successfully")
+            
+        except Exception as e:
+            logger.error(f"Error during streaming generation: {str(e)}")
+            yield f"data: I encountered an error while generating the response. Please try again.\n\n"
+            yield "data: [DONE]\n\n"
+
+    return StreamingResponse(
+        generate_stream(),
+        media_type="text/plain",
+        headers={
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers": "*",
+        }
+    )
+
+
+@app.get("/health")
+async def health_check():
+    """Health check endpoint for monitoring and load balancers."""
+    return {"status": "healthy", "version": "1.0.0"}
+
+
+@app.get("/")
+async def api_info():
+    """API information and available endpoints."""
+    return {
+        "name": "Yaseen API",
+        "version": "1.0.0",
+        "endpoints": {
+            "/chat": "Standard chat completion endpoint",
+            "/chat/stream": "Streaming chat completion endpoint (SSE format)",
+            "/health": "Health check endpoint"
+        },
+        "streaming": {
+            "format": "Server-Sent Events (SSE)",
+            "example": "data: response chunk\\n\\n",
+            "completion_signal": "data: [DONE]\\n\\n"
+        }
+    }

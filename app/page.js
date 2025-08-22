@@ -58,27 +58,35 @@ export default function Home() {
               <div className="space-y-4">
                 <div className="relative">
                   <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl relative z-10">
-                    <span className="block text-duson-ebony dark:text-duson-cream drop-shadow-sm">
-                      Alhamdulillah
-                    </span>
-                    <span className="block text-duson-crimson dark:text-duson-crimson drop-shadow-sm bg-gradient-to-r from-duson-crimson to-duson-yellow bg-clip-text text-transparent">
-                      For Islam
+                    {/* 
+                      Replaced the two-line heading with a single-line Arabic basmala.
+                      This fits on one line and uses appropriate Tailwind classes for style and accessibility.
+                    */}
+                    <span 
+                      // Arabic Basmala with elegant glow, shadow, and improved readability
+                      className="block text-center text-duson-cream dark:text-duson-yellow font-arabic text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight drop-shadow-[0_2px_16px_rgba(253,31,74,0.25)] relative z-20"
+                      aria-label="Bismillah ir-Rahman ir-Rahim"
+                    >
+                      بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
                     </span>
                   </h1>
-                  {/* Text Shadow/Glow Effect */}
-                  <div className="absolute inset-0 text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl opacity-20 blur-sm">
-                    <span className="block text-duson-yellow">Alhamdulillah</span>
-                    <span className="block text-duson-crimson">For Islam</span>
+                  {/* Soft golden glow and subtle shadow for depth */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+                    <span className="block text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-duson-yellow/80 opacity-60 blur-md drop-shadow-[0_4px_32px_rgba(253,31,74,0.25)]">
+                      بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+                    </span>
                   </div>
                 </div>
                 
-                {/* Enhanced Quote with Better Styling */}
-                <div className="relative max-w-[600px]">
-                  <blockquote className="text-lg md:text-xl text-duson-ebony/80 dark:text-duson-cream/80 font-medium leading-relaxed">
-                    "Seeking knowledge is an obligation upon every Muslim."
+                {/* Quote with modern accent bar and improved typography */}
+                <div className="relative max-w-[600px] mt-4 pl-8">
+                  {/* Decorative vertical accent bar with dual color */}
+                  <div className="absolute left-0 top-2 h-14 w-1.5 rounded-full bg-gradient-to-b from-duson-yellow via-duson-yellow/80 to-duson-crimson shadow-lg"></div>
+                  <blockquote className="text-base md:text-lg text-duson-cream dark:text-duson-yellow/90 font-medium leading-relaxed drop-shadow-[0_1px_8px_rgba(0,0,0,0.10)]">
+                    “Seeking knowledge is an obligation upon every Muslim.”
                   </blockquote>
-                  <cite className="block mt-2 text-sm text-duson-crimson dark:text-duson-yellow font-medium">
-                    — Sunan Ibn Mājah 224
+                  <cite className="block mt-2 text-sm italic text-duson-yellow dark:text-duson-yellow/90 font-semibold tracking-wide">
+                    — <span className="font-arabic">Sunan Ibn Mājah 224</span>
                   </cite>
                   {/* Decorative Quote Accent */}
                   <div className="absolute -left-4 top-0 w-1 h-16 bg-gradient-to-b from-duson-yellow to-duson-crimson rounded-full"></div>
@@ -87,21 +95,27 @@ export default function Home() {
               
               {/* Enhanced CTA Buttons with Better Styling */}
               <div className="flex flex-wrap gap-4 pt-4">
-                <Button 
-                  size="lg" 
-                  className="bg-gradient-to-r from-duson-crimson to-duson-crimson/90 hover:from-duson-crimson/90 hover:to-duson-crimson text-duson-cream shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300"
-                >
-                  <BookOpen className="mr-2 h-5 w-5" />
-                  Explore Quran
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  className="border-2 border-duson-yellow text-duson-ebony dark:text-duson-cream hover:bg-duson-yellow/10 dark:hover:bg-duson-yellow/20 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300 backdrop-blur-sm"
-                >
-                  <MessageCircle className="mr-2 h-5 w-5" />
-                  Daily Hadith
-                </Button>
+                <Link href="/quran" passHref legacyBehavior>
+                  <Button 
+                    size="lg" 
+                    className="bg-gradient-to-r from-duson-crimson to-duson-crimson/90 hover:from-duson-crimson/90 hover:to-duson-crimson text-duson-cream shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300"
+                    as="a"
+                  >
+                    <BookOpen className="mr-2 h-5 w-5" />
+                    Explore Quran
+                  </Button>
+                </Link>
+                <Link href="/hadith" passHref legacyBehavior>
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    className="border-2 border-duson-yellow text-duson-ebony dark:text-duson-cream hover:bg-duson-yellow/10 dark:hover:bg-duson-yellow/20 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300 backdrop-blur-sm"
+                    as="a"
+                  >
+                    <MessageCircle className="mr-2 h-5 w-5" />
+                    Daily Hadith
+                  </Button>
+                </Link>
               </div>
             </div>
             
@@ -289,7 +303,7 @@ export default function Home() {
             <TabsContent value="featured" className="space-y-4">
               <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                 {/* Enhanced Resource Cards */}
-                <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-duson-cream to-duson-cream/90 dark:from-duson-ebony dark:to-duson-ebony/90 border border-duson-yellow/20 dark:border-duson-yellow/30 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                <Link href="/hadith" className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-duson-cream to-duson-cream/90 dark:from-duson-ebony dark:to-duson-ebony/90 border border-duson-yellow/20 dark:border-duson-yellow/30 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 block">
                   <div className="absolute inset-0 bg-gradient-to-br from-duson-yellow/5 to-duson-crimson/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="relative p-6">
                     <div className="flex items-center justify-between mb-4">
@@ -310,9 +324,9 @@ export default function Home() {
                       Explore <span className="ml-1 transform group-hover:translate-x-1 transition-transform duration-300">→</span>
                     </div>
                   </div>
-                </div>
+                </Link>
                 
-                <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-duson-cream to-duson-cream/90 dark:from-duson-ebony dark:to-duson-ebony/90 border border-duson-yellow/20 dark:border-duson-yellow/30 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                <Link href="/prophet-stories" className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-duson-cream to-duson-cream/90 dark:from-duson-ebony dark:to-duson-ebony/90 border border-duson-yellow/20 dark:border-duson-yellow/30 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 block">
                   <div className="absolute inset-0 bg-gradient-to-br from-duson-crimson/5 to-duson-yellow/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="relative p-6">
                     <div className="flex items-center justify-between mb-4">
@@ -333,9 +347,9 @@ export default function Home() {
                       Read Stories <span className="ml-1 transform group-hover:translate-x-1 transition-transform duration-300">→</span>
                     </div>
                   </div>
-                </div>
+                </Link>
                 
-                <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-duson-cream to-duson-cream/90 dark:from-duson-ebony dark:to-duson-ebony/90 border border-duson-yellow/20 dark:border-duson-yellow/30 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                <Link href="/quran" className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-duson-cream to-duson-cream/90 dark:from-duson-ebony dark:to-duson-ebony/90 border border-duson-yellow/20 dark:border-duson-yellow/30 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 block">
                   <div className="absolute inset-0 bg-gradient-to-br from-duson-yellow/5 to-duson-crimson/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="relative p-6">
                     <div className="flex items-center justify-between mb-4">
@@ -350,13 +364,13 @@ export default function Home() {
                       Quran Explorer
                     </h3>
                     <p className="text-duson-ebony/70 dark:text-duson-cream/70 text-sm leading-relaxed">
-                      Interactive Quran with translations and audio recitations
+                      Interactive Quran with translations
                     </p>
                     <div className="mt-4 flex items-center text-duson-crimson dark:text-duson-yellow text-sm font-medium opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
                       Start Reading <span className="ml-1 transform group-hover:translate-x-1 transition-transform duration-300">→</span>
                     </div>
                   </div>
-                </div>
+                </Link>
               </div>
             </TabsContent>
             <TabsContent value="quran" className="space-y-4">
@@ -633,21 +647,7 @@ export default function Home() {
                   <span className="font-medium text-duson-crimson dark:text-duson-yellow"> Yaseen</span> is available 24/7 to answer your questions.
                 </p>
                 
-                {/* Community Stats */}
-                <div className="grid grid-cols-3 gap-4 py-4">
-                  <div className="text-center p-3 rounded-lg bg-duson-yellow/5 dark:bg-duson-yellow/10 border border-duson-yellow/20">
-                    <div className="text-2xl font-bold text-duson-crimson">10K+</div>
-                    <div className="text-xs text-duson-ebony/60 dark:text-duson-cream/60">Members</div>
-                  </div>
-                  <div className="text-center p-3 rounded-lg bg-duson-crimson/5 dark:bg-duson-crimson/10 border border-duson-crimson/20">
-                    <div className="text-2xl font-bold text-duson-yellow">24/7</div>
-                    <div className="text-xs text-duson-ebony/60 dark:text-duson-cream/60">Support</div>
-                  </div>
-                  <div className="text-center p-3 rounded-lg bg-duson-yellow/5 dark:bg-duson-yellow/10 border border-duson-yellow/20">
-                    <div className="text-2xl font-bold text-duson-crimson">100+</div>
-                    <div className="text-xs text-duson-ebony/60 dark:text-duson-cream/60">Countries</div>
-                  </div>
-                </div>
+
               </div>
               
               {/* Enhanced Buttons */}
@@ -656,11 +656,6 @@ export default function Home() {
                   <Button className="bg-gradient-to-r from-duson-crimson to-duson-crimson/90 hover:from-duson-crimson/90 hover:to-duson-crimson text-duson-cream shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300" size="lg" as="a">
                     <MessageCircle className="mr-2 h-5 w-5" />
                     Chat with Yaseen
-                  </Button>
-                </Link>
-                <Link href="/community" passHref legacyBehavior>
-                  <Button variant="outline" size="lg" className="border-2 border-duson-yellow text-duson-ebony dark:text-duson-cream hover:bg-duson-yellow/10 dark:hover:bg-duson-yellow/20 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300 backdrop-blur-sm" as="a">
-                    Join Community
                   </Button>
                 </Link>
               </div>
@@ -814,46 +809,12 @@ export default function Home() {
                 platform. Experience the beauty of Islam with modern technology.
               </p>
               
-              {/* Statistics */}
-              <div className="grid grid-cols-3 gap-8 py-8 max-w-md mx-auto">
-                <div className="text-center">
-                  <div className="text-2xl md:text-3xl font-bold text-duson-crimson">50K+</div>
-                  <div className="text-sm text-duson-ebony/60 dark:text-duson-cream/60">Active Users</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl md:text-3xl font-bold text-duson-yellow">114</div>
-                  <div className="text-sm text-duson-ebony/60 dark:text-duson-cream/60">Surahs</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl md:text-3xl font-bold text-duson-crimson">6K+</div>
-                  <div className="text-sm text-duson-ebony/60 dark:text-duson-cream/60">Hadiths</div>
-                </div>
-              </div>
+
             </div>
             
             {/* Enhanced CTA Buttons */}
             <div className="flex flex-wrap justify-center gap-6 pt-8">
-              <Link href="/try-free" passHref legacyBehavior>
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-duson-crimson to-duson-yellow hover:from-duson-crimson/90 hover:to-duson-yellow/90 text-duson-cream shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 px-8 py-3"
-                  as="a"
-                >
-                  <Sparkles className="mr-2 h-5 w-5" />
-                  Try Free for 7 Days
-                </Button>
-              </Link>
-              <Link href="/about" passHref legacyBehavior>
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  className="border-2 border-duson-yellow text-duson-ebony dark:text-duson-cream hover:bg-duson-yellow/10 dark:hover:bg-duson-yellow/20 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 backdrop-blur-sm px-8 py-3" 
-                  as="a"
-                >
-                  <BookOpen className="mr-2 h-5 w-5" />
-                  Learn More
-                </Button>
-              </Link>
+              {/* CTA buttons section - keeping the container for potential future buttons */}
             </div>
             
             {/* Trust Indicators */}

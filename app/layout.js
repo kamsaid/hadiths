@@ -77,15 +77,6 @@ export default function RootLayout({ children }) {
                       Login
                     </Button>
                   </Link>
-                  <Link href="/try-free" passHref legacyBehavior>
-                    <Button
-                      size="sm"
-                      className="bg-gradient-to-r from-duson-yellow to-duson-crimson hover:from-duson-crimson hover:to-duson-yellow text-duson-ebony dark:text-duson-ebony"
-                      as="a"
-                    >
-                      Try Free
-                    </Button>
-                  </Link>
                 </div>
               </div>
             </div>

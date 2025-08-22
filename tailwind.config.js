@@ -135,6 +135,32 @@ module.exports = {
               'page-slide-to-left': {
                 '0%': { transform: 'translateX(0)', opacity: '1' },
                 '100%': { transform: 'translateX(-100%)', opacity: '0' },
+              },
+              // Chat message animations
+              'slide-in-from-bottom-4': {
+                '0%': { transform: 'translateY(16px)', opacity: '0' },
+                '100%': { transform: 'translateY(0)', opacity: '1' },
+              },
+              'slide-in-from-top-2': {
+                '0%': { transform: 'translateY(-8px)', opacity: '0' },
+                '100%': { transform: 'translateY(0)', opacity: '1' },
+              },
+              'gentle-bounce': {
+                '0%, 100%': { transform: 'translateY(0) scale(1)' },
+                '50%': { transform: 'translateY(-4px) scale(1.05)' },
+              },
+              'typewriter-cursor': {
+                '0%, 50%': { opacity: '1' },
+                '51%, 100%': { opacity: '0' },
+              },
+              'hover-lift': {
+                '0%': { transform: 'translateY(0) scale(1)' },
+                '100%': { transform: 'translateY(-2px) scale(1.02)' },
+              },
+              'button-press': {
+                '0%': { transform: 'scale(1)' },
+                '50%': { transform: 'scale(0.95)' },
+                '100%': { transform: 'scale(1)' },
               }
   		},
   		animation: {
@@ -153,7 +179,15 @@ module.exports = {
               'slide-in-left': 'slide-in-left 0.6s ease-out',
               'scale-in': 'scale-in 0.5s ease-out',
               'spin-reverse': 'spin-reverse 6s linear infinite',
-              'wobble': 'wobble 1s ease-in-out'
+              'wobble': 'wobble 1s ease-in-out',
+              // Chat specific animations
+              'slide-in-from-bottom-4': 'slide-in-from-bottom-4 0.5s ease-out',
+              'slide-in-from-top-2': 'slide-in-from-top-2 0.3s ease-out',
+              'gentle-bounce': 'gentle-bounce 2s ease-in-out infinite',
+              'typewriter-cursor': 'typewriter-cursor 1s step-end infinite',
+              // Enhanced micro-interactions
+              'hover-lift': 'hover-lift 0.3s ease-out',
+              'button-press': 'button-press 0.1s ease-in-out'
   		}
   	}
   },
