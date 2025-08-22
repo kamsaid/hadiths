@@ -1,0 +1,50 @@
+{
+  "name": "Yaseen - Islamic Knowledge Companion",
+  "short_name": "Yaseen",
+  "description": "Your spiritual companion for Islamic prayer, Quran reading, and hadith study",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAF5E6",
+  "theme_color": "#FBBD0D",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["education", "lifestyle", "productivity"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Read Quran",
+      "short_name": "Quran",
+      "description": "Open the Quran reader",
+      "url": "/quran/1",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Daily Hadith",
+      "short_name": "Hadith",
+      "description": "Read daily hadith",
+      "url": "/hadith",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Chat with Yaseen",
+      "short_name": "Chat",
+      "description": "Ask Islamic questions",
+      "url": "/chat",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

@@ -18,8 +18,8 @@ import InteractiveCalligraphy from "@/components/interactive-calligraphy"
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-duson-cream dark:bg-duson-ebony">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden py-20 md:py-32 min-h-screen flex items-center">
+      {/* Hero Section - Mobile Optimized */}
+      <section className="relative overflow-hidden py-16 sm:py-20 md:py-32 min-h-[80vh] sm:min-h-screen flex items-center">
         {/* Background Layers */}
         <div className="absolute inset-0">
           {/* Primary Background Gradient */}
@@ -52,27 +52,27 @@ export default function Home() {
         </div>
         
         <div className="container relative z-10 px-4 md:px-6">
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-8 items-center">
-            <div className="space-y-8">
-              {/* Enhanced Typography with Depth */}
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-8 items-center">
+            <div className="space-y-6 sm:space-y-8">
+              {/* Enhanced Typography with Mobile Optimization */}
               <div className="space-y-4">
                 <div className="relative">
-                  <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl relative z-10">
+                  <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl relative z-10">
                     {/* 
-                      Replaced the two-line heading with a single-line Arabic basmala.
-                      This fits on one line and uses appropriate Tailwind classes for style and accessibility.
+                      Mobile-optimized Arabic basmala with responsive sizing
+                      Constrained for mobile readability while maintaining desktop beauty
                     */}
                     <span 
-                      // Arabic Basmala with elegant glow, shadow, and improved readability
-                      className="block text-center text-duson-cream dark:text-duson-yellow font-arabic text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight drop-shadow-[0_2px_16px_rgba(253,31,74,0.25)] relative z-20"
+                      // Arabic Basmala with mobile-optimized sizing and improved readability
+                      className="block text-center text-duson-cream dark:text-duson-yellow font-arabic text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight drop-shadow-[0_2px_16px_rgba(253,31,74,0.25)] relative z-20"
                       aria-label="Bismillah ir-Rahman ir-Rahim"
                     >
                       بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
                     </span>
                   </h1>
-                  {/* Soft golden glow and subtle shadow for depth */}
+                  {/* Soft golden glow and subtle shadow for depth - Mobile optimized */}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-                    <span className="block text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-duson-yellow/80 opacity-60 blur-md drop-shadow-[0_4px_32px_rgba(253,31,74,0.25)]">
+                    <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight text-duson-yellow/80 opacity-60 blur-md drop-shadow-[0_4px_32px_rgba(253,31,74,0.25)]">
                       بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
                     </span>
                   </div>
@@ -93,12 +93,12 @@ export default function Home() {
                 </div>
               </div>
               
-              {/* Enhanced CTA Buttons with Better Styling */}
-              <div className="flex flex-wrap gap-4 pt-4">
+              {/* Enhanced CTA Buttons with Mobile Optimization */}
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
                 <Link href="/quran" passHref legacyBehavior>
                   <Button 
                     size="lg" 
-                    className="bg-gradient-to-r from-duson-crimson to-duson-crimson/90 hover:from-duson-crimson/90 hover:to-duson-crimson text-duson-cream shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300"
+                    className="w-full sm:w-auto bg-gradient-to-r from-duson-crimson to-duson-crimson/90 hover:from-duson-crimson/90 hover:to-duson-crimson text-duson-cream shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 h-12 sm:h-11"
                     as="a"
                   >
                     <BookOpen className="mr-2 h-5 w-5" />
@@ -109,7 +109,7 @@ export default function Home() {
                   <Button 
                     variant="outline" 
                     size="lg" 
-                    className="border-2 border-duson-yellow text-duson-ebony dark:text-duson-cream hover:bg-duson-yellow/10 dark:hover:bg-duson-yellow/20 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300 backdrop-blur-sm"
+                    className="w-full sm:w-auto border-2 border-duson-yellow text-duson-ebony dark:text-duson-cream hover:bg-duson-yellow/10 dark:hover:bg-duson-yellow/20 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300 backdrop-blur-sm h-12 sm:h-11"
                     as="a"
                   >
                     <MessageCircle className="mr-2 h-5 w-5" />

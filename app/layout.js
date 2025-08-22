@@ -7,9 +7,10 @@ import '../styles/themes.css'
 import '../styles/arabic-text.css'
 import { ThemeProvider } from "@/components/theme-provider"
 import Link from "next/link"
-import { Sparkles } from "lucide-react"
+import { Sparkles, Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
+import MobileMenu from "@/components/mobile-menu"
 
 export const metadata = {
   title: 'Yaseen',
@@ -20,6 +21,28 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Essential mobile viewport configuration */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+        
+        {/* Enhanced mobile experience meta tags */}
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Yaseen" />
+        <meta name="format-detection" content="telephone=no" />
+        
+        {/* PWA Manifest */}
+        <link rel="manifest" href="/manifest.json" />
+        
+        {/* Theme color for mobile browsers */}
+        <meta name="theme-color" content="#FBBD0D" />
+        <meta name="msapplication-TileColor" content="#FBBD0D" />
+        
+        {/* Apple Touch Icons */}
+        <link rel="apple-touch-icon" href="/icon-192.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+        
         <script dangerouslySetInnerHTML={{
           __html: `
             // Initialize Arabic font style from localStorage
@@ -36,47 +59,66 @@ export default function RootLayout({ children }) {
       </head>
       <body className="min-h-screen bg-background flex flex-col">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {/* Header */}
-          <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="container flex h-16 items-center justify-between">
-              <div className="flex items-center gap-6">
-                <Link href="/" className="flex items-center gap-2">
-                  <div className="relative h-8 w-8">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Sparkles className="h-6 w-6 text-duson-yellow" />
-                    </div>
-                    <div className="absolute inset-0 animate-spin-slow rounded-full border-2 border-dashed border-duson-yellow opacity-75"></div>
+          {/* Mobile-Optimized Header */}
+          <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+            <div className="container flex h-16 items-center justify-between px-4">
+              {/* Logo - Optimized for mobile */}
+              <Link href="/" className="flex items-center gap-2 flex-shrink-0">
+                <div className="relative h-8 w-8">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Sparkles className="h-6 w-6 text-duson-yellow" />
                   </div>
-                  <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-duson-yellow to-duson-crimson">
-                    Yaseen
-                  </span>
-                </Link>
-                <nav className="hidden md:flex gap-6">
+                  <div className="absolute inset-0 animate-spin-slow rounded-full border-2 border-dashed border-duson-yellow opacity-75"></div>
+                </div>
+                <span className="text-xl sm:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-duson-yellow to-duson-crimson">
+                  Yaseen
+                </span>
+              </Link>
+
+              {/* Desktop Navigation */}
+              <nav className="hidden lg:flex gap-6">
                 <Link href="/quran/1" className="text-sm font-medium transition-colors hover:text-duson-yellow">
-                    Quran
-                  </Link>
-                  <Link href="/hadith" className="text-sm font-medium transition-colors hover:text-duson-yellow">
-                    Hadiths
-                  </Link>
-                  <Link href="/prophet-stories" className="text-sm font-medium transition-colors hover:text-duson-yellow">
-                    Prophet Stories
-                  </Link>
-                  <Link href="/explore" className="text-sm font-medium transition-colors hover:text-duson-yellow">
-                    Explore
-                  </Link>
-                  <Link href="/chat" className="text-sm font-medium transition-colors hover:text-duson-yellow">
-                    Chat with Yaseen
-                  </Link>
-                </nav>
-              </div>
-              <div className="flex items-center gap-4">
+                  Quran
+                </Link>
+                <Link href="/hadith" className="text-sm font-medium transition-colors hover:text-duson-yellow">
+                  Hadiths
+                </Link>
+                <Link href="/prophet-stories" className="text-sm font-medium transition-colors hover:text-duson-yellow">
+                  Prophet Stories
+                </Link>
+                <Link href="/explore" className="text-sm font-medium transition-colors hover:text-duson-yellow">
+                  Explore
+                </Link>
+                <Link href="/chat" className="text-sm font-medium transition-colors hover:text-duson-yellow">
+                  Chat with Yaseen
+                </Link>
+              </nav>
+
+              {/* Right side controls */}
+              <div className="flex items-center gap-2 sm:gap-4">
+                {/* Theme Toggle - Always visible */}
                 <ThemeToggle />
-                <div className="hidden sm:flex gap-2">
+                
+                {/* Desktop Login Button */}
+                <div className="hidden lg:flex gap-2">
                   <Link href="/login" passHref legacyBehavior>
                     <Button variant="outline" size="sm" as="a">
                       Login
                     </Button>
                   </Link>
+                </div>
+
+                {/* Mobile Menu - Show on mobile and tablet */}
+                <div className="lg:hidden">
+                  <MobileMenu 
+                    items={[
+                      { name: "Quran", href: "/quran/1" },
+                      { name: "Hadiths", href: "/hadith" },
+                      { name: "Prophet Stories", href: "/prophet-stories" },
+                      { name: "Explore", href: "/explore" },
+                      { name: "Chat with Yaseen", href: "/chat" }
+                    ]}
+                  />
                 </div>
               </div>
             </div>

@@ -244,13 +244,35 @@ body {
   line-height: 1.6;
 }
 
-/* Enhanced Arabic font styling with optimized fallback chain */
+/* Enhanced Arabic font styling with optimized fallback chain and mobile optimization */
 .font-arabic {
   font-family: 'KFGQPC-Hafs-Smart', 'KFGQPC-Hafs', 'KFGQPC-Uthman-Naskh', 'Amiri-Quran', 'Arabic-System-Fallback', 'Scheherazade New', serif;
   line-height: 1.8;
   font-feature-settings: "liga" on, "dlig" on, "calt" on;
   text-rendering: optimizeLegibility;
   font-optical-sizing: auto;
+}
+
+/* Mobile-optimized Arabic typography */
+@media (max-width: 768px) {
+  .font-arabic {
+    line-height: 2.0;
+    font-size: 0.9em; /* Slightly smaller for mobile readability */
+  }
+  
+  /* Adjust large Arabic text for mobile */
+  .text-arabic-large {
+    font-size: calc(1.4rem * var(--ayah-fs, 1));
+    line-height: calc(2.2 * var(--ayah-fs, 1));
+  }
+  
+  /* Home page Arabic heading optimization for mobile */
+  .font-arabic.text-4xl,
+  .font-arabic.text-5xl,
+  .font-arabic.text-6xl {
+    font-size: 2rem; /* Constrain very large Arabic text on mobile */
+    line-height: 2.4;
+  }
 }
 
 /* Specific font classes for different KFGQPC styles */
@@ -524,11 +546,56 @@ main {
   will-change: opacity;
 }
 
-/* Responsive adjustments */
+/* Mobile-first responsive adjustments */
 @media (max-width: 640px) {
   .container {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+  
+  /* Optimize main typography for mobile */
+  body {
+    font-size: 16px; /* Ensure readable font size on mobile */
+    line-height: 1.6;
+  }
+  
+  /* Adjust button sizes for mobile touch targets */
+  .btn,
+  button {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px 16px;
+  }
+  
+  /* Home page mobile optimizations */
+  .text-4xl { font-size: 2rem; }
+  .text-5xl { font-size: 2.5rem; }
+  .text-6xl { font-size: 3rem; }
+  .text-7xl { font-size: 3.5rem; }
+  
+  /* Better spacing for mobile */
+  .py-20 { padding-top: 3rem; padding-bottom: 3rem; }
+  .py-24 { padding-top: 4rem; padding-bottom: 4rem; }
+  .py-32 { padding-top: 5rem; padding-bottom: 5rem; }
+  
+  /* Optimize cards for mobile */
+  .card,
+  .card-accent {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  /* Ensure buttons remain touch-friendly on tablets */
+  .btn,
+  button {
+    min-height: 44px;
   }
 }
 
@@ -1378,14 +1445,43 @@ a:focus-visible {
   .chat-input {
     min-height: 50px;
     max-height: 100px;
+    font-size: 16px; /* Prevents zoom on iOS */
   }
   
   .send-button {
     padding: 10px;
+    min-height: 44px;
+    min-width: 44px;
   }
   
   .message-timestamp {
     font-size: 10px;
+  }
+  
+  /* Better touch targets for mobile */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Optimize Quran text selection for mobile */
+  .quran-text,
+  .ayah-text {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    touch-action: manipulation;
+  }
+  
+  /* Prevent iOS double-tap zoom on buttons */
+  button,
+  .btn,
+  [role="button"] {
+    touch-action: manipulation;
   }
 }
 

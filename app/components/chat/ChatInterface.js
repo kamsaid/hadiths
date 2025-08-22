@@ -236,7 +236,7 @@ export default function ChatInterface() {
   }, []);
 
   return (
-    <div className="flex flex-col bg-gradient-to-br from-duson-cream/95 via-duson-cream to-duson-cream/90 dark:from-duson-ebony/95 dark:via-duson-ebony dark:to-duson-ebony/90 backdrop-blur-sm rounded-xl shadow-2xl border border-duson-ebony/10 dark:border-duson-cream/10 h-[600px] md:h-[700px] overflow-hidden relative">
+    <div className="flex flex-col bg-gradient-to-br from-duson-cream/95 via-duson-cream to-duson-cream/90 dark:from-duson-ebony/95 dark:via-duson-ebony dark:to-duson-ebony/90 backdrop-blur-sm rounded-xl shadow-2xl border border-duson-ebony/10 dark:border-duson-cream/10 h-[70vh] sm:h-[600px] md:h-[700px] overflow-hidden relative">
       {/* Status indicator */}
       <ChatStatus 
         isLoading={isLoading}
